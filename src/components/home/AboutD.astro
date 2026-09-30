@@ -1,0 +1,81 @@
+---
+import Img from '../Img.astro';
+---
+<section id="about" class="bg-[#020202] flex flex-col items-start pb-[100px] pt-[120px] px-[80px] relative w-full">
+  <div class="flex items-center justify-between relative shrink-0 w-[1280.953px]">
+    <div class="flex flex-col h-[511.24px] items-start justify-between relative shrink-0">
+      <div class="flex flex-col items-start relative shrink-0 w-full">
+        <div class="flex flex-col items-start relative shrink-0 w-[462.953px]"><h2 class="font-utara font-semibold leading-[80.64px] not-italic relative shrink-0 text-[84px] text-white tracking-[-3.38px] whitespace-nowrap">ABOUT ME</h2></div>
+        <div class="flex flex-col items-start pt-[24px] relative shrink-0 w-full">
+          <div class="flex flex-col gap-[8px] items-start relative shrink-0 w-full">
+            <div class="flex gap-[12px] items-center relative shrink-0 w-full">
+              <img src="/icons/home.svg" alt="" width="24" height="24" class="relative shrink-0 size-[24px]" />
+              <div class="flex flex-[1_0_0] flex-col items-start min-w-px relative"><p class="font-ral font-medium leading-[31.2px] relative shrink-0 text-[#f5f5f5] text-[20.8px] whitespace-nowrap">Lahore, Pakistan</p></div>
+            </div>
+            <div class="flex gap-[12px] items-center relative shrink-0 w-full">
+              <img src="/icons/phone.svg" alt="" width="24" height="24" class="relative shrink-0 size-[24px]" />
+              <a href="https://wa.me/923246319870" target="_blank" rel="noopener" class="cursor-pointer flex flex-[1_0_0] flex-col items-start min-w-px relative"><p class="font-['Arial',sans-serif] leading-[31.2px] not-italic overflow-hidden relative shrink-0 text-[#f5f5f5] text-[20.8px] text-ellipsis text-left whitespace-nowrap">+92 324 6319870</p></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-[22px] items-start relative shrink-0 w-full">
+        <div class="flex flex-col items-start pt-[42px] relative shrink-0 w-full">
+          <div class="flex flex-col items-start relative shrink-0 w-full">
+            <h3 class="font-utara font-semibold leading-[39.6px] not-italic relative shrink-0 text-[#f5f5f5] text-[26.4px] whitespace-nowrap">Tools</h3>
+            <ul class="flex flex-col gap-[4.48px] items-start relative shrink-0 w-full pt-[12.8px] m-0 p-0 list-none" style="padding-top:12.8px">
+              {['Figma','Claude Design','Google Stitch','Loveable'].map((t)=>(
+              <li class="flex gap-[13.6px] items-center relative shrink-0 w-full">
+                <span class="bg-[#96a3f9] relative rounded-[3.836px] shrink-0 size-[7.672px]"></span>
+                <p class="font-ral font-normal leading-[21.6px] relative shrink-0 text-[#f5f5f5] text-[21.6px] whitespace-nowrap">{t}</p>
+              </li>))}
+            </ul>
+          </div>
+        </div>
+        <div class="flex gap-[24px] items-center pt-[48px] relative shrink-0">
+          <div class="flex gap-[20px] items-center relative shrink-0">
+            <img src="/icons/figma.svg" alt="Figma" width="32" height="32" class="relative shrink-0 size-[32px]" />
+            <img src="/icons/claude.svg" alt="Claude" width="32" height="31.618" class="h-[31.618px] relative shrink-0 w-[32px]" />
+          </div>
+          <img src="/icons/lovable.svg" alt="Lovable" width="32" height="32" class="relative shrink-0 size-[32px]" />
+          <div class="h-[32px] relative shrink-0 w-[144px]"><Img f="PortfolioH_47-823" alt="Stitch" class="absolute inset-0 size-full" sizes="144px" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row items-center self-stretch">
+      <div class="flex flex-col gap-[60px] h-full items-start relative shrink-0">
+        <p class="font-ral font-normal leading-[0] relative shrink-0 text-[#f5f5f5] text-[20px] tracking-[-0.544px] w-[693px]"><span class="leading-[35.36px]">I am a </span><span class="font-ral font-medium leading-[35.36px]">UI/UX Designer</span><span class="leading-[35.36px]"> and</span><span class="font-ral italic leading-[35.36px]"> Computer Science</span><span class="leading-[35.36px]"> Graduate from </span><span class="font-ral font-medium leading-[35.36px]">FAST-NUCES</span><span class="leading-[35.36px]"> who bridges the gap between aesthetic product design and technical execution. With </span><span class="font-inter font-medium leading-[35.36px] not-italic">3+</span><span class="leading-[35.36px]"> years of experience, I combine structured visual systems with advanced AI workflows to build scalable, developer-ready interfaces. I turn complex problems into functional, production-aligned digital experiences, focusing on robust design systems, usability, and seamless developer handoff.</span></p>
+        <div class="flex flex-col items-start relative shrink-0 w-full">
+          <h3 class="font-utara font-semibold leading-[39.6px] not-italic relative shrink-0 text-[#f5f5f5] text-[26.4px] whitespace-nowrap">Hobbies</h3>
+          <div class="flex items-start justify-between relative shrink-0 w-full" style="padding-top:12.8px">
+            {[['gym','Gym',false],['game','E-Gaming',true],['camera','Photography',false],['colorize','Colour-grading',false]].map(([i,t,fixed])=>(
+            <div class="flex gap-[12px] items-center relative shrink-0">
+              <img src={`/icons/${i}.svg`} alt="" width="24" height="24" class="relative shrink-0 size-[24px]" />
+              <p class={`font-ral font-normal leading-[21.6px] relative shrink-0 text-[#f5f5f5] text-[21.6px] ${fixed?'w-[116px]':'whitespace-nowrap'}`}>{t}</p>
+            </div>))}
+          </div>
+        </div>
+        <div class="flex items-start relative shrink-0 w-full">
+          <div class="flex flex-[1_0_0] gap-[50px] items-start min-w-px relative">
+            <div class="border-[#96a3f9] border-[1.5px] border-solid overflow-clip relative shrink-0 size-[144px]" style="background-image:linear-gradient(13.043734067492124deg, rgb(122, 145, 246) 19.019%, rgb(49, 71, 166) 50.509%, rgb(0, 0, 0) 81.4%)">
+              <div class="-translate-x-1/2 absolute h-[139px] left-[calc(50%+1.55px)] top-[14.89px] w-[133px]"><Img f="PortfolioH_35-319" alt="Portrait of Mehroze Maqsood" class="absolute inset-0 size-full object-cover" sizes="133px" /></div>
+            </div>
+            <div class="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px relative">
+              <div class="flex flex-col items-start relative shrink-0 w-full">
+                <p class="font-utara font-semibold leading-[37.84px] not-italic relative shrink-0 text-[#96a3f9] text-[40px] whitespace-nowrap">Mehroze Maqsood</p>
+                <div class="flex flex-col items-start pt-[7.2px] relative shrink-0 w-full">
+                  <p class="font-ral font-medium leading-[0] relative shrink-0 text-[#f5f5f5] text-[27.2px] whitespace-nowrap not-italic"><span class="font-utara font-semibold leading-[40.8px]">UX/UI</span><span class="font-inter font-medium leading-[40.8px]"> </span><span class="font-inter font-normal leading-[40.8px]">Designer</span></p>
+                </div>
+              </div>
+              <div class="cursor-pointer flex gap-[20px] items-start relative shrink-0 w-full">
+                <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex items-center relative shrink-0" aria-label="LinkedIn"><span class="relative shrink-0 size-[32px]"><Img f="PortfolioH_60-14598" class="absolute inset-0 size-full" sizes="32px" /></span></a>
+                <a href="mailto:mehrozemaqsood8@gmail.com" class="flex items-center relative shrink-0" aria-label="Email"><span class="bg-white overflow-clip relative rounded-[6px] shrink-0 size-[32px]"><span class="absolute" style="inset:20.34% 10.71% 20.71% 10.71%"><img src="/icons/gmail.svg" alt="" class="absolute block inset-0 max-w-none size-full" /></span></span></a>
+                <a href="https://www.behance.net/mehrozemaqsood" target="_blank" rel="noopener" class="flex items-center relative shrink-0" aria-label="Behance"><span class="relative shrink-0 size-[32px]"><Img f="PortfolioH_60-14616" class="absolute inset-0 size-full" sizes="32px" /></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

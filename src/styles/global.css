@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@font-face{font-family:Utara;font-weight:300;font-display:swap;src:url(/fonts/Utara-Light.woff2) format("woff2")}
+@font-face{font-family:Utara;font-weight:400;font-display:swap;src:url(/fonts/Utara-Regular.woff2) format("woff2")}
+@font-face{font-family:Utara;font-weight:500;font-display:swap;src:url(/fonts/Utara-Medium.woff2) format("woff2")}
+@font-face{font-family:Utara;font-weight:600;font-display:swap;src:url(/fonts/Utara-SemiBold.woff2) format("woff2")}
+@font-face{font-family:Utara;font-weight:700;font-display:swap;src:url(/fonts/Utara-Bold.woff2) format("woff2")}
+@theme{ --font-ral:"Raleway",sans-serif; --font-utara:"Utara",sans-serif; --font-inter:"Inter",sans-serif; --font-nun:"Nunito",sans-serif; }
+html,body{margin:0;background:#020202;color:#fff;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.stage{display:none;transform-origin:top left;position:relative}
+/* Each Figma frame is shown 1:1 and uniformly scaled between its design width and the next breakpoint */
+@media (min-width:1024px){.stage-d{display:block;width:1440px;zoom:var(--z,1)}}
+@media (min-width:600px) and (max-width:1023.98px){.stage-t{display:block;width:768px;zoom:var(--z,1)}}
+@media (max-width:599.98px){.stage-m{display:block;width:390px;zoom:var(--z,1)}}
+.stage *{box-sizing:border-box}
+.stage p,.stage h1,.stage h2,.stage h3{margin:0}
+.stage button{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.stage a{color:inherit;text-decoration:none}

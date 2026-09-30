@@ -1,0 +1,14 @@
+---
+import data from '../assets/images.json';
+const { f, alt = '', class: cls = '', style = '', eager = false, sizes = '100vw' } = Astro.props;
+const m = data[f];
+if (!m) console.warn('MISSING IMAGE: ' + f);
+const ws = m ? m.variants : [];
+const ss = (ext) => ws.map((w) => `/img/${f}-${w}.${ext} ${w}w`).join(', ');
+const big = ws[ws.length - 1];
+---
+{m ? (<picture>
+  <source type="image/avif" srcset={ss('avif')} sizes={sizes} />
+  <img src={`/img/${f}-${big}.webp`} srcset={ss('webp')} sizes={sizes} width={m.w} height={m.h} alt={alt}
+    class={cls} style={style} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
+</picture>) : (<span class={cls} style="background:#f0f" data-missing={f}></span>)}
