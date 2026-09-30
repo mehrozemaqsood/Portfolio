@@ -1,0 +1,76 @@
+---
+import DSection from './DSection.astro';
+import DNumCards from './DNumCards.astro';
+import Img from '../Img.astro';
+const glance = [
+  ['1','Approved homepage','Signed off by the client'],
+  ['1','Mobile layout','Same sections, one column'],
+  ['3','Design versions','V1, V2 and V3 explored'],
+  ['5','Main sections','Sportpark to Contact'],
+  ['5','House colours','Red and blue lead'],
+];
+const goals = [
+  ['01','Show the role','One screen explains what the foundation does, which park it manages and who it works with.'],
+  ['02','Route, don’t dump','Focus cards, previews and short sections lead visitors on to Sportpark, Gebruikers, Stichting, Media and Contact.'],
+  ['03','Feel local and active','Real photography, the red and blue house colours and a warm tone stay professional without feeling municipal.'],
+];
+const brief = [
+  ['The brief','Design a renewed website that presents the foundation as a reliable, locally involved manager of the sports park, with a compact structure: Sportpark, Gebruikers, Stichting, Media and Contact.'],
+  ['My role','UI/UX designer. I designed the homepage and its mobile layout in Figma, explored three versions, and applied the Nunito house style with red and blue leading.'],
+  ['Scope','Homepage on desktop and mobile. The brief also describes the Sportpark, Gebruikers, Stichting, Media and Contact pages.'],
+];
+// [key, top offset (% of 280 tall box is 411.93% image)], label, label chip width, title, text
+const finds = [
+  ['HERO',108,'0','A photo with no message','The hero is a wide aerial photo with no headline or call to action, so visitors do not learn what the foundation does.'],
+  ['INTRODUCTION',164,'-72.21%','A wall of text beside a video','The introduction is one long paragraph next to a video, followed by a block about a single club, which makes the foundation look like a football association.'],
+  ['TABS',106,'-125.82%','Content hidden behind tabs','Informatie, Gebruikers, Bestuur, Verleden & Heden and Publiciteit sit behind pill tabs, so nothing is visible until it is clicked.'],
+  ['CONTACT',130,'-283.37%','A plain form and a thin footer','Contact is a basic form on a grey page, and the footer offers little more than two logos and legal links.'],
+];
+---
+<!-- At a Glance -->
+<section aria-label="At a glance" class="absolute left-0 top-[59px] flex h-[217px] w-full items-start justify-between bg-[#020202] px-[120px] py-[48px] whitespace-nowrap">
+  {glance.map(([n,t,s]) => (
+    <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+      <p class="relative top-[1px] shrink-0 font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+      <p class="shrink-0 font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+      <p class="shrink-0 font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{s}</p>
+    </div>
+  ))}
+</section>
+
+<DSection top={276} h={790} eyebrow={'01  /  OVERVIEW'} eyebrowId="overview" title="OVERVIEW" statement="A sports park foundation should feel as reliable as the grounds it looks after." bg="linear-gradient(4.516653272834219deg, rgb(0, 0, 0) 37.573%, rgb(8, 165, 216) 51.604%, rgb(0, 134, 178) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+  <p class="relative w-[900px] shrink-0 font-ral text-[17px] font-normal leading-[28px] text-white">Stichting Sportparkbeheer Beuningen manages Sportpark De Ooigraaf for its users, the municipality and local partners. The old website held the right information but buried it in text and tabs. The redesign keeps the official house style and turns it into a homepage that sends visitors to the right place.</p>
+  <DNumCards items={goals} w={384} h={242} />
+</DSection>
+
+<DSection top={1066} h={744} eyebrow={'02  /  BRIEF AND ROLE'} title="BRIEF AND ROLE" statement="The brief: make the existing identity feel more modern, structured and professional online.">
+  <div class="relative flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {brief.map(([t,b]) => (
+      <div class="relative flex h-[216px] w-[384px] shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]">
+        <h3 class="w-full shrink-0 font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="relative top-[1px] w-full shrink-0 font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{b}</p>
+      </div>
+    ))}
+  </div>
+  <p class="relative w-[900px] shrink-0 font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">This is a design project. Screens use Dutch copy because the final website will be built in Dutch.</p>
+</DSection>
+
+<DSection top={1810} h={1244} eyebrow={'03  /  THE STARTING POINT'} title="THE STARTING POINT" statement="The old site had the right information, but it was hard to scan.">
+  <div class="relative flex w-[1200px] shrink-0 flex-wrap items-start gap-x-[24px] gap-y-[24px]">
+    {finds.map(([k,w,top,t,b]) => (
+      <div class="relative flex w-[588px] shrink-0 flex-col items-start gap-[16px]">
+        <div class="relative flex h-[280px] w-full shrink-0 flex-col items-center justify-center overflow-clip rounded-[16px] border border-dashed border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.03)]">
+          <div class="absolute left-[-1px] top-[-1px] h-[280px] w-[588px] rounded-[16px]">
+            <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px]">
+              <Img f="StichtingS_284-1748" class="absolute left-0 h-[411.93%] w-full max-w-none" style={`top:${top === '0' ? '0' : top}`} sizes="588px" />
+            </div>
+          </div>
+          <div class="absolute left-[5px] top-[5px] h-[21px] rounded-[5px] bg-[rgba(2,2,2,0.88)]" style={`width:${w}px`}></div>
+          <p class="absolute left-[11px] top-[11px] font-ral text-[9px] font-bold leading-[normal] tracking-[1.5px] text-[#9e9ea6] whitespace-pre">{'BEFORE  /  ' + k}</p>
+        </div>
+        <h3 class="w-full shrink-0 font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="relative top-[1px] w-full shrink-0 font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{b}</p>
+      </div>
+    ))}
+  </div>
+</DSection>

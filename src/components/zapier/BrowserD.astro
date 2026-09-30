@@ -1,0 +1,78 @@
+---
+import Img from '../Img.astro';
+import { k } from './keys';
+// Figma "Zapier Desktop" (Page=Light | Page=Dark): [light node, dark node, left, top, width, height]
+const { s = 1 } = Astro.props;
+const chunks = [
+  [2960, 3026, 0, 12530, 1200, 465], [2961, 3027, 0, 12196.99, 1200, 333.333], [2962, 3028, 0, 11416.99, 1200, 780],
+  [2963, 3029, 66.67, 9517.97, 1066.475, 1819.025], [2964, 3030, 66.67, 8804.63, 1067.5, 600], [2965, 3039, 0, 7091.3, 1200, 1633.333],
+  [2966, 3031, 0, 5980.83, 1200, 1110.467], [2967, 3032, 58.33, 4685.83, 1075, 1215], [2968, 3033, 0, 3852.5, 1200, 753.333],
+  [2969, 3034, 85, 2530, 1030.833, 1222.5], [2970, 3035, 66.67, 1018.33, 1066.667, 1410.733], [2971, 3036, 66.67, 846.67, 1070.833, 65],
+  [2972, 3037, 16.67, 126.67, 1166.667, 632.5], [2973, 3038, 0, 0, 1200, 46.667],
+];
+---
+<div class="zb flex flex-col items-start gap-[20px]" data-zb data-theme="light" style={s === 1 ? undefined : `zoom:${s}`}>
+  <div class="flex items-start gap-[12px]" role="group" aria-label="Theme">
+    <button type="button" data-set="light" aria-pressed="true" class="zchip rounded-[999px] border border-solid px-[20px] py-[10px] font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap">Light</button>
+    <button type="button" data-set="dark" aria-pressed="false" class="zchip rounded-[999px] border border-solid px-[20px] py-[10px] font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap">Dark</button>
+  </div>
+  <div class="zbrowser relative flex w-[1200px] flex-col items-start overflow-clip bg-[#15151a]" style={`border-radius:${16 / s}px`}>
+    <div class="zbar flex h-[44px] w-[1200px] shrink-0 items-center gap-[8px] px-[16px]">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="shrink-0"><circle cx="6" cy="6" r="6" fill="#FF5E57"/></svg>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="shrink-0"><circle cx="6" cy="6" r="6" fill="#FFBD2E"/></svg>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" class="shrink-0"><circle cx="6" cy="6" r="6" fill="#29C940"/></svg>
+      <div class="zurl flex items-start rounded-[999px] px-[16px] py-[5px]"><p class="font-ral text-[13px] font-normal leading-[normal] text-[#666673] whitespace-nowrap">zapier.com</p></div>
+    </div>
+    <div class="zvp relative h-[714px] w-[1200px] shrink-0 overflow-x-clip overflow-y-auto" data-vp tabindex="0" aria-label="Zapier landing page preview, scrollable">
+      <div class="zbase absolute left-0 top-0 h-[12995px] w-[1200px]"></div>
+      {chunks.map(([l, d, x, y, w, h]) => (
+        <div class="zchunk absolute" style={`left:${x}px;top:${y}px;width:${w}px;height:${h}px`}>
+          <div class="zbase absolute inset-0"></div>
+          <Img f={k(l)} class="zl absolute size-full max-w-none object-cover" sizes="1200px" alt="" />
+          <Img f={k(d)} class="zd absolute size-full max-w-none object-cover" sizes="1200px" alt="" />
+        </div>
+      ))}
+    </div>
+    <div class="pointer-events-none absolute left-0 top-[44px] h-[714px] w-[1200px]">
+      <div class="absolute left-[1182px] top-[12px] h-[690px] w-[10px] rounded-[5px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(15,15,20,0.55)] backdrop-blur-[5px]"></div>
+      <div data-thumb class="absolute left-[1184px] top-[14px] h-[44px] w-[6px] rounded-[3px] bg-[rgba(255,255,255,0.92)]"></div>
+      <div data-hint class="absolute left-[525px] top-[661px] flex items-center justify-center gap-[8px] overflow-clip rounded-[20px] border border-solid border-[rgba(255,255,255,0.18)] bg-[rgba(10,10,15,0.72)] py-[9px] pl-[16px] pr-[14px] shadow-[0px_6px_16px_0px_rgba(0,0,0,0.35)] backdrop-blur-[6px] transition-opacity duration-300">
+        <p class="font-ral text-[13px] font-medium leading-[normal] text-white whitespace-nowrap">Scroll to explore</p>
+        <svg width="10" height="5" viewBox="0 0 12 7" fill="none" aria-hidden="true" class="block overflow-visible"><path d="M0.9 0.9L5.9 5.9L10.9 0.9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+<style is:global>
+  .zbrowser{--bg:#fffefb;--bar:#16161a;--url:#15151a}
+  [data-theme='dark'] .zbrowser{--bg:#0f0f0f;--bar:#15151a;--url:#fff}
+  .zbase{background:var(--bg)}
+  .zbar{background:var(--bar)}
+  .zurl{background:var(--url)}
+  .zvp{background:var(--bg);scrollbar-width:none}
+  .zvp::-webkit-scrollbar{display:none}
+  .zchip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#9e9ea6;cursor:pointer}
+  .zchip[aria-pressed='true']{background:#ff4f00;border-color:rgba(255,255,255,0);color:#fff;cursor:default}
+  .zd{display:none}
+  [data-theme='dark'] .zd{display:block}
+  [data-theme='dark'] .zl{display:none}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-zb]').forEach((root) => {
+    const vp = root.querySelector<HTMLElement>('[data-vp]')!;
+    const thumb = root.querySelector<HTMLElement>('[data-thumb]')!;
+    const hint = root.querySelector<HTMLElement>('[data-hint]')!;
+    root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((b) =>
+      b.addEventListener('click', () => {
+        root.dataset.theme = b.dataset.set;
+        root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      }));
+    const upd = () => {
+      const max = vp.scrollHeight - vp.clientHeight;
+      const r = max > 0 ? vp.scrollTop / max : 0;
+      thumb.style.transform = `translateY(${r * (656 - 14)}px)`;
+      hint.style.opacity = vp.scrollTop > 8 ? '0' : '1';
+    };
+    vp.addEventListener('scroll', upd, { passive: true });
+  });
+</script>

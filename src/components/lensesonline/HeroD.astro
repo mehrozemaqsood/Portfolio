@@ -1,0 +1,65 @@
+---
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import BgLines from './BgLines.astro';
+import BrowserMock from './BrowserMock.astro';
+const nav = [['Overview', '#overview'], ['Principles', '#principles'], ['Every Page', '#every-page'], ['Outcomes', '#outcomes']];
+const meta = [['ROLE', 'UI/UX Designer'], ['TIMELINE', 'Redesign Project'], ['TOOLS', 'Figma'], ['CLIENT', 'LensesOnline (NZ)']];
+---
+<section aria-label="LensesOnline hero art" class="absolute left-0 top-0 h-[788px] w-full overflow-clip" style="background-image:linear-gradient(1.6095533985933344deg, rgb(122, 145, 246) 28.782%, rgb(49, 71, 166) 54.697%, rgb(0, 0, 0) 90.241%)">
+  <BgLines top={0} h={884} />
+  <header class="absolute left-[82px] top-[30px] flex h-[43px] w-[1277px] items-center">
+    <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+      <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+        <div class="flex-none -skew-x-[28deg] scale-y-[0.88]">
+          <div class="relative flex cursor-pointer items-start gap-[4.257px]">
+            <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <nav class="flex shrink-0 cursor-pointer items-center gap-[31px]">
+      {nav.map(([t, h]) => <a href={h} class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] text-left whitespace-nowrap">{t}</p></a>)}
+    </nav>
+    <div class="flex min-w-px flex-[1_0_0] items-start justify-end gap-[12px]">
+      <a href="/Mehroze_UIUX_CV.pdf" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 items-center gap-[10px] rounded-[46px] border border-solid border-[#8499f8] px-[16px]">
+        <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-[#8499f8] whitespace-nowrap">View CV</p>
+        <span class="relative block size-[16px] shrink-0"><Arrow /></span>
+      </a>
+      <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-[#8499f8] pl-[13px] pr-[6px]">
+        <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-black text-left whitespace-nowrap">Connect Now</p>
+        <span class="grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black" style="background-image:linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%), linear-gradient(90deg, rgb(168, 184, 255) 0%, rgb(168, 184, 255) 100%)"><Arrow /></span>
+      </a>
+    </div>
+  </header>
+  <p aria-hidden="true" class="absolute left-[722px] top-[137px] -translate-x-1/2 bg-clip-text font-utara text-[171px] font-semibold not-italic leading-[normal] tracking-[-1.16px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.21414268486212507deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(172.04049303394493deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%);-webkit-background-clip:text;background-clip:text">E-COMMERCE</p>
+  <div class="absolute left-[225.88px] top-[745.57px] h-[138.429px] w-[988.905px] rounded-tl-[36px] rounded-tr-[36px] bg-[#050505]"></div>
+  <div class="absolute left-[340.65px] top-[671.94px] h-[110.726px] w-[759.785px]"><Img f="PortfolioH_124-1789" class="absolute inset-0 size-full max-w-none object-bottom" sizes="760px" eager /></div>
+  <div class="absolute left-[340.81px] top-[238px] h-[544.664px] w-[644.842px]"><Img f="R2_124-1791" alt="LensesOnline homepage on a desktop monitor" class="absolute inset-0 size-full max-w-none" sizes="645px" eager /></div>
+  <div class="absolute left-[713.35px] top-[282.58px] flex h-[14.358px] w-[25.993px] items-center justify-center">
+    <div class="flex-none rotate-[1.01deg]"><div class="relative h-[13.906px] w-[25.752px]"><div class="pointer-events-none absolute inset-0 overflow-hidden"><Img f="PortfolioH_124-1792" class="absolute left-[-0.49%] top-[-7.41%] h-[107.41%] w-[100.99%] max-w-none" sizes="26px" /></div></div></div>
+  </div>
+  <div class="absolute left-[985.49px] top-[291.78px] flex h-[333.758px] w-[3.691px] items-center justify-center"><div class="h-[3.691px] w-[333.758px] flex-none -rotate-90 bg-gradient-to-l from-[#141611] to-[#020204]"></div></div>
+  <div class="absolute left-[439.24px] top-[274.38px] flex h-[356.958px] w-[4.745px] items-center justify-center"><div class="h-[4.745px] w-[356.958px] flex-none -rotate-90 rounded-bl-[3px] rounded-tl-[3px] bg-gradient-to-l from-[#262528] to-[#020204]"></div></div>
+  <div class="absolute left-[434.58px] top-[271.83px] flex h-[360.458px] w-[5.272px] items-center justify-center"><div class="h-[360.448px] w-[4.389px] flex-none rotate-[-0.14deg] rounded-bl-[1.5px] rounded-tl-[1.5px] bg-gradient-to-b from-[#414344] to-[#4a4b50]"></div></div>
+</section>
+
+<section aria-label="LensesOnline introduction" class="absolute left-0 top-[729px] flex h-[1377px] w-full flex-col items-start px-[120px] py-[100px]">
+  <div class="h-[16px] w-px shrink-0"></div>
+  <h1 class="font-ral text-[88px] font-semibold leading-[88px] tracking-[-3.5px] text-white whitespace-nowrap">LensesOnline</h1>
+  <div class="h-[24px] w-px shrink-0"></div>
+  <p class="min-w-full w-[min-content] font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5]">A full UI redesign of an online contact-lens retailer — rebuilding a dated, cluttered storefront into a clean, trustworthy shopping experience across 18+ page types.</p>
+  <div class="h-[48px] w-px shrink-0"></div>
+  <div class="flex w-full shrink-0 items-start justify-between overflow-clip leading-[normal] whitespace-nowrap">
+    {meta.map(([k, v]) => (
+      <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+        <p class="font-ral text-[24px] font-bold uppercase tracking-[1.3px] text-[#0083f0]">{k}</p>
+        <p class="font-ral text-[18px] font-medium text-white">{v}</p>
+      </div>
+    ))}
+  </div>
+  <div class="h-[56px] w-px shrink-0"></div>
+  <BrowserMock eager />
+</section>

@@ -1,0 +1,70 @@
+---
+import Img from '../Img.astro';
+// Figma "Prototype Mobile Web" (kind="web", switcher chips) and "Prototype Native App" (kind="native", tab bar hotspots).
+const { kind = 'web' } = Astro.props;
+const web = [
+  { id: 'dashboard', label: 'Dashboard', content: 'COMPProtot_212-1462', ch: 1949, head: 'COMPProtot_212-1307' },
+  { id: 'account', label: 'Account detail', content: 'COMPProtot_212-1657', ch: 2020, head: 'COMPProtot_212-1560' },
+  { id: 'segments', label: 'Segments', content: 'COMPProtot_212-1812', ch: 765, head: 'COMPProtot_212-1560' },
+];
+const native = [
+  { id: 'dashboard', label: 'Dashboard', content: 'COMPProtot_212-2078', ch: 1519, head: 'COMPProtot_212-1956', tab: 'COMPProtot_212-2095' },
+  { id: 'account', label: 'Account detail', content: 'COMPProtot_212-2262', ch: 1746, head: 'COMPProtot_212-2190', tab: 'COMPProtot_212-2279' },
+  { id: 'segments', label: 'Segments', content: 'COMPProtot_212-2442', ch: 783, head: 'COMPProtot_212-2372', tab: 'COMPProtot_212-2459' },
+];
+const screens = kind === 'web' ? web : native;
+const hh = kind === 'web' ? 55 : 118;
+const sh = kind === 'web' ? 645 : 504;
+const spots = [{ id: 'dashboard', l: 33, n: 'Dashboard' }, { id: 'account', l: 124.67, n: 'Account detail' }, { id: 'segments', l: 216.33, n: 'Segments' }];
+---
+<div data-proto={kind} class={`relative flex shrink-0 flex-col items-center ${kind === 'web' ? 'gap-[20px]' : ''}`}>
+  <div class="relative h-[724px] w-[364px] shrink-0 rounded-[52px] border-[1.5px] border-solid border-[rgba(255,255,255,0.18)] bg-[#111114]">
+    <div class="absolute left-[10.5px] top-[10.5px] h-[700px] w-[340px] overflow-clip rounded-[40px] bg-[#fafafa]">
+      {screens.map((s, i) => (
+        <div data-screen={s.id} hidden={i !== 0} class="absolute inset-0">
+          <div data-scroll class="absolute left-0 w-[340px] overflow-y-auto overflow-x-clip bg-[#fafafa] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" style={`top:${hh}px;height:${sh}px`}>
+            <div class="absolute left-0 top-0 w-[340px]" style={`height:${s.ch}px`}><Img f={s.content} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="340px" /></div>
+          </div>
+          <div class="absolute left-0 top-0 w-[340px]" style={`height:${hh}px`}><Img f={s.head} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="340px" /></div>
+          {kind === 'native' && (
+            <div class="absolute left-0 top-[622px] h-[78px] w-[340px] overflow-clip bg-[#fafafa]">
+              <div class="absolute left-[33px] top-[8px] h-[50px] w-[275px]"><Img f={s.tab} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="275px" /></div>
+              {spots.map((p) => (
+                <button type="button" data-go={p.id} aria-label={`Show ${p.n} screen`} class={`absolute top-[8px] block h-[50px] w-[91.667px] bg-[rgba(255,255,255,0.01)] ${p.id === s.id ? 'cursor-default' : 'cursor-pointer'}`} style={`left:${p.l}px`}></button>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+  {kind === 'web' && (
+    <div class="flex shrink-0 items-start gap-[6px] overflow-clip rounded-[999px] bg-[rgba(255,255,255,0.08)] p-[6px]">
+      {screens.map((s, i) => (
+        <button type="button" data-go={s.id} data-chip class={`flex shrink-0 cursor-pointer items-start overflow-clip rounded-[999px] px-[14px] py-[8px] ${i === 0 ? 'bg-[#0083f0]' : ''}`}>
+          <p class={`font-ral text-[13px] font-semibold leading-[normal] text-left whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[#9e9ea6]'}`}>{s.label}</p>
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-proto="web"],[data-proto="native"]').forEach((root) => {
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-screen]')];
+    const chips = [...root.querySelectorAll<HTMLElement>('[data-chip]')];
+    root.querySelectorAll<HTMLElement>('[data-go]').forEach((b) => b.addEventListener('click', () => {
+      const id = b.dataset.go;
+      panels.forEach((p) => {
+        const on = p.dataset.screen === id;
+        if (on && p.hidden) { p.hidden = false; const sc = p.querySelector<HTMLElement>('[data-scroll]'); if (sc) sc.scrollTop = 0; }
+        else if (!on) p.hidden = true;
+      });
+      chips.forEach((c) => {
+        const on = c.dataset.go === id;
+        c.classList.toggle('bg-[#0083f0]', on);
+        const t = c.firstElementChild as HTMLElement;
+        t.classList.toggle('text-white', on); t.classList.toggle('text-[#9e9ea6]', !on);
+      });
+    }));
+  });
+</script>

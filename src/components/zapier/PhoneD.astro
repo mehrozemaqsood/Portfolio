@@ -1,0 +1,73 @@
+---
+import Img from '../Img.astro';
+import { k } from './keys';
+// Figma "Zapier Mobile" Page=Light / Page=Dark: [node, left, top, width, height]
+const light = [
+  [3104, 0, 0, 393, 56.431], [3105, 13.1, 100.77, 366.8, 1844.077], [3106, 13.1, 1989.18, 366.8, 121.931], [3107, 15.12, 2155.45, 362.769, 2148.4],
+  [3108, 11.08, 4348.19, 370.831, 2784.254], [3109, 11.08, 7176.79, 370.831, 670.115], [3110, 6.05, 7891.24, 380.908, 1174.969], [3111, 0, 9110.55, 393, 1229.385],
+  [3112, 0, 10258.31, 393, 1989.185], [3113, 0, 12291.21, 393, 1621.998], [3114, 0, 13957.55, 393, 2608.915], [3115, 0, 16610.8, 393, 1400.692],
+  [3116, 0, 18055.83, 393, 325.485], [3117, 0, 18425.65, 393, 1896.477],
+];
+const dark = [
+  [3172, 0, 0, 393, 56.431], [3173, 20.15, 100.77, 352.692, 1844.077], [3174, 20.15, 1989.18, 352.692, 121.931], [3175, 20.15, 2155.45, 352.692, 2108.092],
+  [3176, 20.15, 4307.88, 352.692, 2784.254], [3177, 20.15, 7136.48, 352.692, 646.938], [3178, 16.12, 7827.75, 365.792, 1174.969], [3179, 20.15, 9047.06, 352.692, 1229.385],
+  [3180, 0, 10202.88, 393, 1989.185], [3181, 0, 12235.79, 393, 1621.998], [3182, 20.15, 13902.13, 372.846, 2608.915], [3183, 20.15, 16555.38, 352.692, 1400.692],
+  [3184, 0, 18000.41, 393, 325.485], [3185, 20.15, 18370.23, 352.692, 1896.477],
+];
+const layer = (cls, arr) => arr.map(([n, x, y, w, h]) => ({ cls, key: k(n), style: `left:${x}px;top:${y}px;width:${w}px;height:${h}px` }));
+const all = [...layer('zl', light), ...layer('zd', dark)];
+const nav = { l: k(3104), d: k(3172) };
+---
+<div class="zp flex items-start gap-[80px]" data-zp data-theme="light">
+  <div class="relative h-[804px] w-[417px] shrink-0 rounded-[56px] bg-[#15151a]">
+    <div class="absolute left-[12px] top-[12px] h-[780px] w-[393px] overflow-clip rounded-[44px] bg-white">
+      <div class="zpvp absolute left-0 top-0 h-[780px] w-[393px] overflow-x-clip overflow-y-auto" tabindex="0" aria-label="Zapier mobile landing page preview, scrollable">
+        <div class="zpbase absolute left-0 top-0 h-[20322.131px] w-[393px]"></div>
+        {all.map((c) => (
+          <div class={`${c.cls} absolute`} style={c.style}>
+            <div class="zpbase absolute inset-0"></div>
+            <Img f={c.key} class="absolute size-full max-w-none object-cover" sizes="393px" alt="" />
+          </div>
+        ))}
+      </div>
+      <div class="absolute left-0 top-0 h-[56.431px] w-[393px]">
+        <div class="zpbase absolute inset-0"></div>
+        <Img f={nav.l} class="zl absolute size-full max-w-none object-cover" sizes="393px" alt="" />
+        <Img f={nav.d} class="zd absolute size-full max-w-none object-cover" sizes="393px" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="flex w-[640px] shrink-0 flex-col items-start gap-[24px]">
+    <div class="flex items-start gap-[12px]" role="group" aria-label="Theme">
+      <button type="button" data-set="light" aria-pressed="true" class="zpchip rounded-[999px] border border-solid px-[20px] py-[10px] font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap">Light</button>
+      <button type="button" data-set="dark" aria-pressed="false" class="zpchip rounded-[999px] border border-solid px-[20px] py-[10px] font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap">Dark</button>
+    </div>
+    <p class="w-[640px] font-ral text-[44px] font-semibold leading-[50px] tracking-[-1px] text-white"><span class="zl">Light mode</span><span class="zd">Dark mode</span></p>
+    <p class="w-[560px] font-ral text-[18px] font-normal leading-[29px] text-[rgba(255,255,255,0.9)]"><span class="zl">The same landing page in one column: promise, proof, diagrams, toolkit, testimonial, results and security. Light theme.</span><span class="zd">The dark theme uses the same layout and content. Only the colour tokens change.</span></p>
+    <p class="w-[560px] font-ral text-[14px] font-normal leading-[22px] text-[rgba(255,255,255,0.75)]">Scroll inside the phone. The navigation stays pinned at the top.</p>
+  </div>
+</div>
+<style is:global>
+  .zp{--bg:#fffefb}
+  .zp[data-theme='dark']{--bg:#0f0f0f}
+  .zpbase{background:var(--bg)}
+  .zpvp{background:var(--bg);scrollbar-width:none}
+  .zpvp::-webkit-scrollbar{display:none}
+  .zpchip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.9);cursor:pointer}
+  .zpchip[aria-pressed='true']{background:#ff4f00;border-color:rgba(255,255,255,0);color:#fff;cursor:default}
+  .zd{display:none}
+  [data-theme='dark'] .zd{display:block}
+  [data-theme='dark'] .zl{display:none}
+  span.zd,span.zl{display:inline}
+  [data-theme='light'] span.zd{display:none}
+  [data-theme='dark'] span.zl{display:none}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-zp]').forEach((root) => {
+    root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((b) =>
+      b.addEventListener('click', () => {
+        root.dataset.theme = b.dataset.set;
+        root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      }));
+  });
+</script>

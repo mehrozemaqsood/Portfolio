@@ -1,3 +1,86 @@
 ---
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import Tile from './Tile.astro';
+import Footer from './FooterVD.astro';
+import { desktop as secs } from './data';
+const stripes = 'background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(0,0,0,.02) 65.4545px)';
+const sheen = 'background-image:linear-gradient(7.606deg, #000 27.897%, #f5f5f5 45.429%, #838383 61.811%, #000 92.236%)';
+const box = 'absolute inset-0 size-full max-w-none rounded-[16px] object-cover';
+const altOf = (t: string, i: number) => `${t.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} design ${i + 1}`;
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO visual-design Desktop</div>
+<div class="relative w-full overflow-clip bg-[#020202]">
+  <!-- Header band -->
+  <section class="relative h-[718px] w-full overflow-clip" style="background-image:linear-gradient(to bottom, #020202 16.109%, #676767 64.821%, #4e4e4e 100%)" aria-label="Visual design intro">
+    <div class="absolute left-0 right-0 top-0 h-[884px]" style={stripes} aria-hidden="true"></div>
+    <header class="absolute left-[82px] top-[30px] flex w-[1277px] items-center">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <span class="flex flex-none items-start gap-[4.257px]" style="transform:scaleY(.88) skewX(-28deg)">
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+          </span>
+        </a>
+      </div>
+      <nav class="relative flex shrink-0 items-center gap-[31px]" aria-label="Sections">
+        <a href="#brand-identity" class="flex flex-col items-start opacity-95"><span class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Brand Identity</span></a>
+        <a href="#e-commerce" class="flex flex-col items-start opacity-95"><span class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">E-commerce</span></a>
+        <a href="#social-media" class="flex flex-col items-start opacity-95"><span class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Social Media</span></a>
+        <a href="#growth-stories" class="flex flex-col items-start opacity-95"><span class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Growth Stories</span></a>
+      </nav>
+      <div class="relative flex min-w-px flex-[1_0_0] items-start justify-end gap-[12px]">
+        <a href="/Mehroze_UIUX_CV.pdf" target="_blank" rel="noopener" class="relative flex h-[43px] shrink-0 items-center gap-[10px] rounded-[46px] border border-solid border-white px-[16px]">
+          <span class="font-ral text-[14px] font-semibold leading-[16.5px] text-white whitespace-nowrap">View CV</span>
+          <span class="relative size-[16px] shrink-0"><Arrow c="#fff" /></span>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="relative flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-white pl-[13px] pr-[6px]">
+          <span class="font-ral text-[14px] font-semibold leading-[16.5px] text-black whitespace-nowrap">Connect Now</span>
+          <span class="relative grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black bg-black"><Arrow c="#fff" /></span>
+        </a>
+      </div>
+    </header>
+    <h1 class="absolute top-[174px] whitespace-nowrap bg-clip-text font-ral text-[183px] font-semibold leading-[normal] tracking-[-8px] text-[transparent]" style="left:calc(50% - 634px);background-image:linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.04));-webkit-background-clip:text;background-clip:text">VISUAL DESIGN</h1>
+    <div class="absolute left-[137.16px] top-[435.88px] flex h-[301.594px] w-[246.37px] items-center justify-center"><div class="relative h-[290.212px] w-[231.962px] flex-none rotate-[-2.9deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1838" alt="" class={box} sizes="232px" eager /></div></div>
+    <div class="absolute left-[518.83px] top-[375px] h-[411.914px] w-[399.432px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_320-1823" alt="" class={box} sizes="400px" eager /></div>
+    <div class="absolute left-[1062.96px] top-[431.27px] flex size-[310.807px] items-center justify-center"><div class="relative size-[290.212px] flex-none rotate-[4.23deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1840" alt="" class={box} sizes="291px" eager /></div></div>
+    <div class="absolute left-[365.93px] top-[484.22px] flex h-[275.275px] w-[228.681px] items-center justify-center"><div class="relative h-[259.007px] w-[208.037px] flex-none rotate-[-4.73deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1843" alt="" class={box} sizes="208px" eager /></div></div>
+    <div class="absolute left-[865.22px] top-[476.94px] flex h-[338.083px] w-[237.873px] items-center justify-center"><div class="relative h-[323.882px] w-[215.922px] flex-none rotate-[3.98deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1783" alt="" class={box} sizes="216px" eager /></div></div>
+    <div class="absolute left-[-37.39px] top-[507.97px] flex h-[288.854px] w-[197.682px] items-center justify-center"><div class="relative h-[282.868px] w-[188.579px] flex-none rotate-[-1.86deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1778" alt="" class={box} sizes="189px" eager /></div></div>
+    <div class="absolute left-[1271.77px] top-[550.66px] flex size-[212.477px] items-center justify-center"><div class="relative size-[193.395px] flex-none rotate-[5.98deg] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)]"><Img f="VisualDesi_326-1740" alt="" class={box} sizes="194px" eager /></div></div>
+  </section>
+
+  <!-- Hero -->
+  <section class="flex h-[459px] w-full flex-col items-start px-[120px] pt-[100px]" aria-label="About this work">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <p class="shrink-0 whitespace-nowrap font-ral text-[88px] font-semibold leading-[88px] tracking-[-3.5px] text-white">Visual Design</p>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="w-full shrink-0 font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5]">Brand identities, campaign posters, e-commerce visuals, social posts and covers: a selection of visual work across beauty, food, consumer and energy brands.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 items-start justify-between overflow-clip leading-[normal] whitespace-nowrap">
+      {[['ROLE','Graphic Designer'],['WORK','Brand, marketing, social'],['FORMATS','Posters, listings, covers'],['PIECES','60+ designs']].map(([k, v]) => (
+        <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="shrink-0 font-ral text-[24px] font-bold uppercase tracking-[1.3px] text-[#0083f0]">{k}</p>
+          <p class="shrink-0 font-ral text-[18px] font-medium text-white">{v}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Gallery sections -->
+  {secs.map((s) => (
+    <section class="relative w-full overflow-clip bg-[#020202]" style={`height:${s.h}px;${s.lines === 'sheen' ? sheen : ''}`} aria-label={s.title}>
+      {s.lines && <div class="absolute left-0 right-0 top-0" style={`${stripes};height:${s.lines === 'sheen' ? 2920 : 884}px`} aria-hidden="true"></div>}
+      <p id={s.id} class="absolute left-[120px] top-[96px] whitespace-pre font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0]">{s.eyebrow}</p>
+      <h2 class="absolute left-[120px] top-[144px] whitespace-nowrap font-ral text-[84px] font-semibold leading-[88px] tracking-[-2.5px] text-white">{s.title}</h2>
+      <p class="absolute left-[120px] top-[264px] w-[1162px] font-ral text-[30px] font-semibold leading-[40px] text-white">{s.statement}</p>
+      <div class="absolute left-[120px] top-[376px] w-[1200px]" style={`height:${s.gh}px`}>
+        {s.tiles.map(([f, x, y, w, h], i) => (
+          <Tile f={f} alt={altOf(s.title, i)} sizes={`${w}px`} style={`left:${x}px;top:${y}px;width:${w}px;height:${h}px`} />
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <Footer />
+</div>

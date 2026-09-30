@@ -1,0 +1,80 @@
+---
+// Figma "LensesOnline Desktop" instance: tab chips + browser window with a scrollable viewport of page "chunks".
+// Drawn at its native 1200px width and uniformly scaled with `s` for tablet/mobile (radius stays 16px like Figma).
+import Img from '../Img.astro';
+const { s = 1, eager = false } = Astro.props;
+const tabs = [
+  { n: 'Home', c: [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.083], ['R2_I239-7709-239-7634', 554.167], ['R2_I239-7709-255-22521', 565.021], ['R2_I239-7709-255-22522', 1180.833], ['R2_I239-7709-255-22523', 614.167], ['R2_I239-7709-255-22524', 496.25], ['R2_I239-7709-255-22525', 531.25]] },
+  { n: 'Category', c: [['LensesOnli_239-7653', 108.333], ['LensesOnli_239-7654', 216.667], ['LensesOnli_255-22526', 1374.667], ['LensesOnli_255-22527', 536.667], ['LensesOnli_255-22528', 531.25]] },
+  { n: 'Product', c: [['LensesOnli_239-7673', 1336.333], ['LensesOnli_239-7674', 46.667], ['LensesOnli_239-7675', 199.167], ['LensesOnli_255-22529', 425.833], ['LensesOnli_255-22530', 499.187], ['LensesOnli_255-22531', 487.5], ['LensesOnli_255-22532', 531.25]] },
+  { n: 'Calculator', c: [['LensesOnli_239-7694', 108.333], ['LensesOnli_239-7695', 173.333], ['LensesOnli_255-22533', 600.833], ['LensesOnli_255-22534', 280], ['LensesOnli_255-22535', 748.333], ['LensesOnli_255-22536', 531.25]] },
+];
+const rad = 16 / s;
+const scaled = s !== 1 ? `transform:scale(${s});transform-origin:0 0;` : '';
+---
+<div class="relative shrink-0" style={`width:${1200 * s}px;height:${818 * s}px`}>
+<div class="lo-tabs absolute left-0 top-0 flex w-[1200px] flex-col items-start gap-[20px]" style={scaled} data-lo-tabs>
+  <div class="flex items-start gap-[12px]" role="tablist" aria-label="LensesOnline pages">
+    {tabs.map((t, i) => (
+      <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i} class="flex cursor-pointer items-start rounded-[999px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)] px-[20px] py-[10px] aria-selected:border-[rgba(255,255,255,0)] aria-selected:bg-[#0083f0]">
+        <span class="font-ral text-[15px] font-semibold leading-[normal] text-[#9e9ea6] whitespace-nowrap" data-lbl>{t.n}</span>
+      </button>
+    ))}
+  </div>
+  <div class="relative flex w-[1200px] flex-col items-start overflow-clip bg-[#15151a]" style={`border-radius:${rad}px`}>
+    <div class="flex h-[44px] w-[1200px] shrink-0 items-center gap-[8px] bg-[#16161a] px-[16px]">
+      <svg width="12" height="12" viewBox="0 0 12 12" class="shrink-0" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="#FF5E57"/></svg>
+      <svg width="12" height="12" viewBox="0 0 12 12" class="shrink-0" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="#FFBD2E"/></svg>
+      <svg width="12" height="12" viewBox="0 0 12 12" class="shrink-0" aria-hidden="true"><circle cx="6" cy="6" r="6" fill="#29C940"/></svg>
+      <div class="flex items-start rounded-[999px] bg-[#15151a] px-[16px] py-[5px]"><p class="font-ral text-[13px] font-normal leading-[normal] text-[#b8b8b8] whitespace-nowrap">lensesonline.co.nz</p></div>
+    </div>
+    <div class="relative h-[714px] w-[1200px] shrink-0">
+      {tabs.map((t, i) => (
+        <div class="lo-vp h-[714px] w-[1200px] overflow-y-auto overflow-x-clip" data-panel={i} hidden={i !== 0} tabindex="0" role="tabpanel" aria-label={`${t.n} page, scrollable`}>
+          {t.c.map(([k, h]) => (
+            <Img f={k} alt="" class="block max-w-none object-cover" style={`width:1200px;height:${h}px`} sizes="1200px" eager={eager && i === 0} />
+          ))}
+        </div>
+      ))}
+    </div>
+    <div class="pointer-events-none absolute left-0 top-[44px] h-[714px] w-[1200px]" aria-hidden="true">
+      <div class="absolute left-[1182px] top-[12px] h-[690px] w-[10px] rounded-[5px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(15,15,20,0.55)] backdrop-blur-[5px]"></div>
+      <div class="lo-thumb absolute left-[1184px] top-[14px] h-[100px] w-[6px] rounded-[3px] bg-[rgba(255,255,255,0.92)]"></div>
+      <div class="lo-hint absolute left-[525px] top-[661px] flex items-center justify-center gap-[8px] overflow-clip rounded-[20px] border border-solid border-[rgba(255,255,255,0.18)] bg-[rgba(10,10,15,0.72)] py-[9px] pl-[16px] pr-[14px] shadow-[0px_6px_16px_0px_rgba(0,0,0,0.35)] backdrop-blur-[6px] transition-opacity duration-300">
+        <p class="font-ral text-[13px] font-medium leading-[normal] text-white whitespace-nowrap">Scroll to explore</p>
+        <svg width="12" height="7" viewBox="0 0 12 7" fill="none" class="block shrink-0" aria-hidden="true" style="margin:-0.9px"><path d="M0.900391 0.900391L5.90039 5.90039L10.9004 0.900391" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<style>
+  .lo-vp { scrollbar-width: none; }
+  .lo-vp::-webkit-scrollbar { display: none; }
+  [data-lo-tabs] button[aria-selected='true'] [data-lbl] { color: #fff; }
+  .lo-hint.gone { opacity: 0; }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-lo-tabs]').forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLElement>('[role=tab]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-panel]')];
+    const thumb = root.querySelector<HTMLElement>('.lo-thumb')!;
+    const hint = root.querySelector<HTMLElement>('.lo-hint');
+    let cur = 0;
+    const sync = () => {
+      const p = panels[cur];
+      const max = p.scrollHeight - p.clientHeight;
+      thumb.style.top = 14 + (max > 0 ? (p.scrollTop / max) * 586 : 0) + 'px';
+      if (p.scrollTop > 4) hint?.classList.add('gone');
+    };
+    panels.forEach((p) => p.addEventListener('scroll', sync, { passive: true }));
+    tabs.forEach((t, i) =>
+      t.addEventListener('click', () => {
+        cur = i;
+        tabs.forEach((x, j) => x.setAttribute('aria-selected', String(j === i)));
+        panels.forEach((x, j) => { x.hidden = j !== i; if (j === i) x.scrollTop = 0; });
+        hint?.classList.remove('gone');
+        sync();
+      }));
+  });
+</script>

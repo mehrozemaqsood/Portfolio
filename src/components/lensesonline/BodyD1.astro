@@ -1,0 +1,82 @@
+---
+import Img from '../Img.astro';
+import Head from './Head.astro';
+const stats = [['19', 'Desktop pages', 'Every core shopping page'], ['19', 'Mobile pages', 'A layout for each page'], ['13', 'Components', 'Cards, navigation, buttons'], ['13', 'Overlay screens', 'Login, cart slider, pop-up'], ['2', 'Breakpoints', 'Desktop and mobile']];
+const goals = [['01', 'Build trust early', 'Delivery, guarantee and reviews sit in the layout itself, so the shopper is reassured before they are asked for anything.'], ['02', 'Make prescriptions easy', 'The most demanding step of buying lenses becomes a clear, guided form instead of a wall of dropdowns.'], ['03', 'Speed up reorders', 'Accounts, subscriptions and a cart slider keep repeat purchases to a few taps.']];
+const brief = [['The brief', 'Redesign the LensesOnline storefront end to end, keeping the products and the shopping journey but replacing the interface and its patterns.'], ['My role', 'UI/UX designer. I audited the old site, defined the page structure, designed every screen, built the component library and drew the mobile layouts.'], ['Scope', 'Home, category, product, cart, checkout, account, calculator, help, blog, reviews and more: 18+ page types in Figma.']];
+const finds = [
+  ['Home', 'BEFORE  /  HOME', 110, 'LensesOnli_269-1534', 'h-full left-0 top-0 w-[100.77%]', 'Three stacked strips before any content', 'A promo bar, a header and a rating strip come before the hero, and the hero itself is a rotating slider of photos that say little about the brand.'],
+  ['Product cards', 'BEFORE  /  PRODUCT CARDS', 172, 'LensesOnli_269-1536', 'h-[198.66%] left-[-62.58%] top-[-68.36%] w-[200.26%]', 'Uneven cards, repeated buttons', 'Product images come in different sizes and the same "Enter Prescription" button repeats on every card, so nothing stands out.'],
+  ['Category', 'BEFORE  /  CATEGORY', 137, 'LensesOnli_269-1536', 'h-[155.67%] left-[-30%] top-[-17.23%] w-[156.8%]', 'A text list instead of filters', 'Browsing relied on a long sidebar of plain text links, with no visual way to narrow down by brand, type or price.'],
+  ['Product form', 'BEFORE  /  PRODUCT FORM', 166, 'LensesOnli_269-1540', 'h-[155.67%] left-[-30%] top-[-55.67%] w-[156.8%]', 'Six dropdowns and a quantity of 0', 'The prescription form opens as six "Choose Options" dropdowns with a quantity of 0 for each eye, so nothing is pre-filled.'],
+];
+const principles = [['01', 'Trust is part of the layout', 'Delivery, guarantee and review signals are placed where doubt appears, not hidden in the footer.'], ['02', 'Prescription first', 'Lenses are useless without the right prescription, so that step gets the clearest, calmest form.'], ['03', 'Calm, consistent components', 'One button, card and nav system replaces one-off styles, so pages feel related.'], ['04', 'One system, two breakpoints', 'Every desktop page has a mobile layout built from the same components.']];
+const sec = 'relative flex w-full flex-col items-start gap-[32px] overflow-clip px-[120px] py-[96px]';
+const card = 'flex shrink-0 flex-col items-start gap-[16px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+---
+<section aria-label="At a glance" class="flex h-[217px] w-full items-start justify-between bg-[#020202] px-[120px] py-[48px] whitespace-nowrap">
+  {stats.map(([n, t, d]) => (
+    <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+      <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+      <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+      <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{d}</p>
+    </div>
+  ))}
+</section>
+
+<section aria-label="Overview" class={`${sec} h-[830px]`} style="background-image:linear-gradient(4.744325639251159deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+  <Head id="overview" eyebrow="01  /  OVERVIEW" title="OVERVIEW" lead="An online contact-lens shop should feel as calm and trustworthy as an optician, not like a clearance flyer." />
+  <p class="w-[900px] font-ral text-[17px] font-normal leading-[28px] text-white">LensesOnline is a New Zealand contact-lens retailer. The existing storefront stacked promotional strips, uneven product cards and long text lists. I redesigned the whole experience as one UI system: 19 desktop pages and 18 mobile pages, built from 13 reusable components.</p>
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {goals.map(([n, t, d]) => (
+      <div class={`${card} h-[242px] w-[384px]`}>
+        <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+        <h3 class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section aria-label="Brief and role" class={`${sec} h-[744px] bg-[#020202]`}>
+  <Head id="brief" eyebrow="02  /  BRIEF AND ROLE" title="BRIEF AND ROLE" lead="The brief: make a dated, cluttered storefront feel modern and safe to buy from, on desktop and mobile." />
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {brief.map(([t, d]) => (
+      <div class={`${card} h-[216px] w-[384px]`}>
+        <h3 class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+  <p class="w-[900px] font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">This is a design project. Screens use placeholder content where needed, and no live performance figures are claimed.</p>
+</section>
+
+<section aria-label="The starting point" class={`${sec} h-[1244px] bg-[#020202]`}>
+  <Head id="starting-point" eyebrow="03  /  THE STARTING POINT" title="THE STARTING POINT" lead="The old site worked, but almost every page asked the shopper to do extra work." />
+  <div class="grid w-[1200px] shrink-0 grid-cols-[588px_588px] gap-x-[24px] gap-y-[24px]">
+    {finds.map(([, lab, chipW, key, crop, t, d]) => (
+      <div class="flex w-[588px] flex-col items-start gap-[16px]">
+        <div class="relative flex h-[280px] w-full shrink-0 flex-col items-center justify-center overflow-clip rounded-[16px] border border-dashed border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.03)]">
+          <div class="absolute left-[-1px] top-[-1px] h-[280px] w-[588px] rounded-[16px]"><div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px]"><Img f={key} alt="" class={`absolute max-w-none ${crop}`} sizes="1200px" /></div></div>
+          <div class="absolute left-[5px] top-[5px] h-[21px] rounded-[5px] bg-[rgba(2,2,2,0.88)]" style={`width:${chipW}px`}></div>
+          <p class="absolute left-[11px] top-[10px] font-ral text-[9px] font-bold leading-[normal] tracking-[1.5px] text-[#9e9ea6] whitespace-pre">{lab}</p>
+        </div>
+        <h3 class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section aria-label="Principles" class={`${sec} h-[770px] bg-[#020202]`}>
+  <Head id="principles" eyebrow="04  /  PRINCIPLES" title="PRINCIPLES" lead="Four rules kept every screen consistent, from the home page to the last checkout step." />
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {principles.map(([n, t, d]) => (
+      <div class={`${card} h-[298px] w-[282px]`}>
+        <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+        <h3 class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+</section>

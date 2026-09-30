@@ -1,3 +1,313 @@
 ---
+import Img from '../Img.astro';
+import BgLines from './BgLines.astro';
+import Head from './Head.astro';
+import ProtoDesktop from './ProtoDesktop.astro';
+import ProtoPhone from './ProtoPhone.astro';
+
+const stats = [
+  ['5', 'UI states', 'Error, loading, empty, success'],
+  ['3', 'Surfaces', 'Desktop, mobile web, native app'],
+  ['5', 'Overlays', 'Filters, sort, segment, plan'],
+  ['1', 'Design system', 'Tokens and components'],
+  ['2', 'Themes', 'Light and dark'],
+];
+const questions = [
+  ['01', 'Which accounts need attention?', 'A prioritised, filterable list with health, trend and revenue at stake, so the riskiest accounts rise to the top.'],
+  ['02', 'Why did they change?', 'Account detail explains the movement: usage, support and billing signals behind a health drop, in one place.'],
+  ['03', 'What should we do next?', 'Create Plan turns an insight into an owned, dated action without leaving the account.'],
+];
+const asked = ['Design a customer intelligence product for customer-facing teams', 'Deliver desktop, responsive mobile web and a native app', 'Cover states, overlays and the key user flow, not just the happy path', 'Document the foundations and components behind the screens'];
+const owned = ['Framing the problem and the three core questions', 'Information architecture and the risk-response user flow', 'All UI in light and dark, across three surfaces', 'Design tokens, component library, states and overlays'];
+const principles = [
+  ['01', 'Answer first, explore second', 'The overview leads with what needs attention; detail is one click deeper, never in the way.'],
+  ['02', 'Show why, not only what', 'A number without a cause is a dead end. Every change links to the signals behind it.'],
+  ['03', 'Every insight ends in an action', 'Plans, segments and follow-ups are reachable from where the problem is spotted.'],
+  ['04', 'One system, three surfaces', 'Desktop, mobile web and app share tokens and components so behaviour stays consistent.'],
+];
+const outcomes = [
+  ['Product thinking', 'A problem framed as three questions, with each screen answering one of them.'],
+  ['Systems thinking', 'Tokens and components shared across light, dark, web and app.'],
+  ['Responsive depth', 'Three surfaces designed intentionally, not scaled.'],
+  ['Attention to detail', 'Error, loading, empty and success states plus overlays, all designed.'],
+];
+const tryWeb = [['Dashboard', 'Health, ARR and engagement as stacked cards; the accounts list becomes tappable cards.'], ['Account detail', 'Why the health changed, with Contact and Create Action within thumb reach.'], ['Segments', 'Saved groups with one-tap access to the accounts inside them.']];
+const tryApp = [['Dashboard', 'Personal greeting, key metrics and the trend, with a fixed bottom tab bar.'], ['Account detail', 'The same story as web, redesigned with native spacing and patterns.'], ['Segments', 'Group cards sized for one-handed use.']];
+const shot = 'relative shrink-0 rounded-[12px] border border-solid border-[rgba(255,255,255,0.12)]';
+const shotImg = 'pointer-events-none absolute inset-0 size-full max-w-none rounded-[12px] object-cover';
+const cap = 'font-ral text-[13px] font-medium leading-[normal] text-[#9e9ea6]';
+const eyebrow = 'font-utara text-[14px] font-bold not-italic leading-[normal] tracking-[2px] text-[#0083f0] whitespace-pre';
+const sec = 'relative flex w-full flex-col items-start gap-[32px] px-[120px] py-[96px]';
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO boltshift Desktop</div>
+<div class="relative h-[16340px] w-full overflow-clip bg-[#020202]">
+  <!-- Hero art (Block - Var2) -->
+  <section aria-label="BoltShift hero" class="absolute left-0 top-0 h-[788px] w-full overflow-clip" style="background-image:linear-gradient(1.6095533985933344deg, rgb(245, 245, 245) 28.782%, rgb(135, 135, 135) 54.697%, rgb(0, 0, 0) 90.241%)">
+    <BgLines top={0} h={884} />
+    <header class="absolute left-[82px] top-[30px] flex h-[43px] w-[1277px] items-center">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <div class="flex-none -skew-x-[28deg] scale-y-[0.88]">
+            <div class="relative flex cursor-pointer items-start gap-[4.257px]">
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <nav class="flex shrink-0 items-center gap-[31px]">
+        <a href="#overview" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Overview</p></a>
+        <a href="#user-flow" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">User Flow</p></a>
+        <a href="#design-system" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Design System</p></a>
+        <a href="#outcomes" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Outcomes</p></a>
+      </nav>
+      <div class="flex min-w-px flex-[1_0_0] items-start justify-end gap-[12px]">
+        <a href="/Mehroze_UIUX_CV.pdf" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 items-center gap-[10px] rounded-[46px] border border-solid border-white px-[16px]">
+          <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-white whitespace-nowrap">View CV</p>
+          <img src="/icons/bs-arrow-w.svg" alt="" width="16" height="16" class="block size-[16px] shrink-0" />
+        </a>
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-white pl-[13px] pr-[6px]">
+          <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-black text-left whitespace-nowrap">Connect Now</p>
+          <span class="grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black bg-black"><img src="/icons/bs-arrow-w.svg" alt="" width="16" height="16" class="block size-[16px]" /></span>
+        </a>
+      </div>
+    </header>
+    <p aria-hidden="true" class="absolute top-[116px] left-[calc(50%-646px)] bg-clip-text font-utara text-[144px] font-semibold not-italic leading-[normal] tracking-[-1.16px] text-[transparent] whitespace-nowrap" style="background-image:linear-gradient(0.9256067022429164deg, rgb(255, 255, 255) 27.446%, rgb(166, 166, 166) 47.541%, rgb(2, 2, 2) 85.498%), linear-gradient(173.51863501447946deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">SAAS DASHBOARD</p>
+    <div class="absolute left-0 top-[182px] h-[852px] w-[1142px]">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden">
+        <Img f="BoltShiftC_124-1494" alt="BoltShift dashboard on a desktop monitor" class="absolute inset-0 size-full max-w-none object-cover" sizes="1142px" eager />
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section aria-label="BoltShift introduction" class="absolute left-0 top-[718px] flex h-[1268px] w-full flex-col items-start px-[120px] py-[100px]">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <h1 class="font-ral text-[88px] font-semibold leading-[88px] tracking-[-3.5px] text-white whitespace-nowrap">BoltShift</h1>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5] min-w-full w-[min-content]">A B2B Customer Intelligence platform that helps customer-facing teams answer three questions fast: which accounts need attention, why they changed, and what to do next.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 items-start justify-between overflow-clip leading-[normal] whitespace-nowrap">
+      {[['ROLE', 'UX/UI & Product Designer'], ['DOMAIN', 'B2B SaaS · Customer Success'], ['PROJECT TYPE', 'Concept · Design brief'], ['TOOLS', 'Figma']].map(([k, v]) => (
+        <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="font-ral text-[24px] font-bold uppercase leading-[28px] tracking-[1.3px] text-[#0083f0]">{k}</p>
+          <p class="font-ral text-[18px] font-medium leading-[21px] text-white">{v}</p>
+        </div>
+      ))}
+    </div>
+    <div class="h-[56px] w-px shrink-0"></div>
+    <ProtoDesktop eager />
+    <div class="h-[16px] w-px shrink-0"></div>
+    <p class="font-ral text-[13px] font-medium leading-[normal] text-[#9e9ea6] whitespace-nowrap">Interactive prototype: open Present mode, scroll the page and click Dashboard, Accounts or Segments in the header.</p>
+  </section>
+
+  <!-- Body -->
+  <div class="absolute left-0 top-[1986px] w-full">
+    <section aria-label="At a glance" class="flex h-[217px] w-full items-start justify-between bg-[#020202] px-[120px] py-[48px] whitespace-nowrap">
+      {stats.map(([n, t, d]) => (
+        <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+          <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+          <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{d}</p>
+        </div>
+      ))}
+    </section>
+
+    <section id="overview" aria-label="Overview" class={`${sec} h-[886px]`} style="background-image:linear-gradient(5.062813266116265deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+      <Head eyebrow="01  /  OVERVIEW" title="OVERVIEW" lead="One screen, three questions: which accounts need attention, why they changed, and what to do next." leadClass="w-[1162px]" />
+      <p class="font-ral text-[17px] font-normal leading-[28px] text-white min-w-full w-[min-content]">BoltShift is a concept B2B Customer Intelligence platform that I designed end to end for a UI/UX design assessment. Customer-facing teams do not need more charts; they need to know where to look first and what to do about it. The work covers desktop, responsive mobile web and a native mobile app, backed by a documented design system.</p>
+      <div class="flex shrink-0 items-start gap-[24px] overflow-clip">
+        {questions.map(([n, t, d]) => (
+          <div class="flex h-[296px] w-[384px] shrink-0 flex-col items-start gap-[16px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]">
+            <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+            <h3 class="w-[320px] font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+            <p class="w-[320px] font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-label="Brief and role" class={`${sec} h-[666px] bg-[#020202]`}>
+      <Head eyebrow="02  /  THE BRIEF AND MY ROLE" title="BRIEF & ROLE" lead="A broad brief with a short list of hard constraints: clarity first, three surfaces, and a system that scales." leadClass="min-w-full w-[min-content]" />
+      <div class="flex w-full shrink-0 items-start justify-between overflow-clip">
+        {[['WHAT WAS ASKED', asked], ['WHAT I OWNED', owned]].map(([h, items]) => (
+          <div class="flex w-[500px] shrink-0 flex-col items-start gap-[16px]">
+            <h3 class="font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-white whitespace-nowrap">{h}</h3>
+            {items.map((t) => (
+              <ul class="block font-ral text-[17px] font-normal leading-[0] text-[#9e9ea6] whitespace-nowrap"><li class="ms-[25.5px] list-disc"><span class="leading-[28px]">{t}</span></li></ul>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-label="Design principles" class={`${sec} h-[704px] bg-[#020202]`}>
+      <Head eyebrow="03  /  DESIGN PRINCIPLES" title="PRINCIPLES" lead="Four decisions that shaped every screen." />
+      <div class="flex shrink-0 items-start gap-[24px] overflow-clip">
+        {principles.map(([n, t, d]) => (
+          <div class="flex h-[270px] w-[282px] shrink-0 flex-col items-start gap-[12px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[28px]">
+            <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+            <h3 class="w-[226px] font-ral text-[20px] font-semibold leading-[28px] text-white">{t}</h3>
+            <p class="w-[226px] font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="user-flow" aria-label="User flow" class={`${sec} h-[1141px] bg-[#020202]`}>
+      <Head eyebrow="04  /  USER FLOW" title="USER FLOW" lead="Designing the path from “this account is at risk” to “a plan is in motion”." />
+      <div class="flex shrink-0 items-start gap-[64px] overflow-clip">
+        <div class="flex w-[380px] shrink-0 flex-col items-start overflow-clip">
+          <p class="w-[380px] font-ral text-[17px] font-normal leading-[28px] text-[#9e9ea6]">Before drawing screens I mapped the risk-response journey: spot a drop on the dashboard, open the account, understand the cause, then create a plan and confirm it. Each step was checked against the states it can fail in, so error, loading and empty states were designed from the start, not added at the end.</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+          <div class="relative h-[680px] w-[760px] shrink-0 overflow-y-auto overflow-x-clip rounded-[12px] border border-solid border-[rgba(255,255,255,0.12)] bg-white shadow-[0px_20px_60px_0px_rgba(26,77,255,0.12)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div class="absolute left-[-1px] top-[-1px] h-[1676px] w-[760px]"><Img f="BoltShiftC_201-1148" alt="User flow: customer risk response" class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="760px" /></div>
+          </div>
+          <p class={`${cap} w-[760px]`}>Customer risk response flow</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Light and dark" class={`${sec} h-[1058px] bg-[#020202]`}>
+      <Head eyebrow="06  /  LIGHT AND DARK" title="LIGHT & DARK" lead="Both themes come from the same tokens, so dark mode is a mode switch, not a second design." />
+      <div class="flex shrink-0 items-start gap-[24px] overflow-clip">
+        <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+          <div class={`${shot} h-[557px] w-[588px]`}><Img f="BoltShiftC_201-1927" alt="BoltShift dashboard in light theme" class={shotImg} sizes="588px" /></div>
+          <p class={`${cap} w-[588px]`}>Light</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+          <div class={`${shot} h-[557px] w-[588px]`}><Img f="BoltShiftC_201-2299" alt="BoltShift dashboard in dark theme" class={shotImg} sizes="588px" /></div>
+          <p class={`${cap} w-[588px]`}>Dark</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Responsive mobile web" class={`${sec} h-[1308px]`} style="background-image:linear-gradient(7.451438449412123deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+      <Head eyebrow="07  /  RESPONSIVE MOBILE WEB" title="RESPONSIVE" lead="The same three screens rebuilt for 393px: tables become cards, filters move into overlays, and actions stay within thumb reach." />
+      <div class="flex shrink-0 items-start gap-[80px] overflow-clip">
+        <ProtoPhone kind="web" />
+        <div class="flex shrink-0 flex-col items-start gap-[20px] overflow-clip">
+          <p class="font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0] whitespace-nowrap">TRY IT</p>
+          <p class="w-[480px] font-ral text-[22px] font-semibold leading-[30px] text-white">Use the switcher under the phone to change screens.</p>
+          {tryWeb.map(([t, d]) => (
+            <div class="flex shrink-0 flex-col items-start gap-[6px] overflow-clip pt-[16px] leading-[24px]">
+              <h3 class="w-[480px] font-ral text-[17px] font-semibold text-white">{t}</h3>
+              <p class="w-[480px] font-ral text-[15px] font-normal text-[#efefef]">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class={`${cap} whitespace-nowrap`}>Interactive prototype: open Present mode to scroll and tap. Screens reset each time you switch.</p>
+      <BgLines top={2.5} h={1306} w={57.4762} last={233} />
+    </section>
+
+    <section aria-label="Native mobile app" class={`${sec} h-[1245px] bg-[#020202]`}>
+      <Head eyebrow="08  /  NATIVE MOBILE APP" title="NATIVE APP" lead="A dedicated app layout with native patterns instead of a shrunken website." />
+      <div class="flex shrink-0 items-start gap-[80px] overflow-clip">
+        <ProtoPhone kind="native" />
+        <div class="flex shrink-0 flex-col items-start gap-[20px] overflow-clip">
+          <p class="font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0] whitespace-nowrap">TRY IT</p>
+          <p class="w-[480px] font-ral text-[22px] font-semibold leading-[30px] text-white">Scroll the screen, then tap the tab bar to change screens.</p>
+          {tryApp.map(([t, d]) => (
+            <div class="flex shrink-0 flex-col items-start gap-[6px] overflow-clip pt-[16px] leading-[24px]">
+              <h3 class="w-[480px] font-ral text-[17px] font-semibold text-white">{t}</h3>
+              <p class="w-[480px] font-ral text-[15px] font-normal text-[#9e9ea6]">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class={`${cap} whitespace-nowrap`}>Interactive prototype: open Present mode to scroll and tap. Screens reset each time you switch.</p>
+    </section>
+
+    <section aria-label="Overlays" class={`${sec} h-[2146px]`} style="background-image:linear-gradient(12.111104949052745deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+      <Head eyebrow="09  /  OVERLAYS" title="OVERLAYS" lead="Filtering, sorting, segment creation and plan creation live in overlays, keeping people in context." />
+      <div class="flex shrink-0 items-start gap-[32px] overflow-clip">
+        <div class="flex h-[527px] shrink-0 flex-col items-start overflow-clip"><div class={`${shot} h-[498px] w-[260px]`}><Img f="BoltShiftC_201-3073" alt="Create segment overlay" class={shotImg} sizes="260px" /></div></div>
+        <div class="flex shrink-0 flex-col items-start overflow-clip"><div class={`${shot} h-[448px] w-[200px]`}><Img f="BoltShiftC_201-3088" alt="Sort by overlay" class={shotImg} sizes="200px" /></div></div>
+        <div class="flex shrink-0 flex-col items-start overflow-clip"><div class={`${shot} h-[578px] w-[240px]`}><Img f="BoltShiftC_201-3112" alt="Filters overlay" class={shotImg} sizes="240px" /></div></div>
+        <div class="flex shrink-0 flex-col items-start overflow-clip"><div class={`${shot} h-[814px] w-[260px]`}><Img f="BoltShiftC_201-3235" alt="Create plan overlay on mobile" class={shotImg} sizes="260px" /></div></div>
+      </div>
+      <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+        <div class={`${shot} h-[799px] w-[810px]`}><Img f="BoltShiftC_201-3358" alt="Create plan overlay on desktop" class={shotImg} sizes="810px" /></div>
+        <p class={`${cap} w-[810px]`}>Create Plan: the step that turns insight into action (desktop and mobile versions)</p>
+      </div>
+      <BgLines top={0.5} h={2146} />
+    </section>
+
+    <section aria-label="Edge cases and states" class={`${sec} h-[727px] bg-[#020202]`}>
+      <Head eyebrow="10  /  EDGE CASES AND STATES" title="EDGE STATES" lead="The unhappy paths are designed too: error, loading, empty and success." />
+      <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+        <div class={`${shot} h-[226px] w-[1200px]`}><Img f="BoltShiftC_201-3381" alt="Error, loading, empty and success states" class={shotImg} sizes="1200px" /></div>
+        <p class={`${cap} w-[1200px]`}>Error, loading, empty (segments and accounts) and success states</p>
+      </div>
+    </section>
+
+    <section id="design-system" aria-label="Design system" class={`${sec} h-[1662px] bg-[#020202]`}>
+      <Head eyebrow="11  /  DESIGN SYSTEM" title="THE SYSTEM" lead="Every token is extracted from the dashboard itself, so the system documents the product rather than decorating it." />
+      <p class="w-[900px] font-ral text-[17px] font-normal leading-[28px] text-[#9e9ea6]">Colour, type, spacing, radius and elevation are documented as foundations, then assembled into components that all three surfaces share.</p>
+      <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+        <div class={`${shot} h-[1073px] w-[1200px]`}><Img f="BoltShiftC_201-5146" alt="Foundations: colour, typography, spacing, radius and elevation" class={shotImg} sizes="1200px" /></div>
+        <p class={`${cap} w-[1200px]`}>Foundations: colour, typography, spacing, radius and elevation</p>
+      </div>
+    </section>
+
+    <section aria-label="Component library" class={`${sec} h-[1309px]`} style="background-image:linear-gradient(5.0964872301672415deg, rgb(0, 0, 0) 27.897%, rgb(122, 145, 246) 45.429%, rgb(49, 71, 166) 61.811%, rgb(0, 0, 0) 92.236%)">
+      <BgLines top={0.5} h={2146} />
+      <Head eyebrow="12  /  COMPONENT LIBRARY" title="COMPONENTS" lead="A documented library, not a pile of one-off frames." />
+      <p class="w-[900px] font-ral text-[17px] font-normal leading-[28px] text-[#9e9ea6]">Buttons, inputs, tables, cards, charts, badges, overlays and navigation are built once with variants and states, and reused across desktop, mobile web and the native app.</p>
+      <div class="flex shrink-0 flex-col items-start gap-[12px] overflow-clip">
+        <div class="relative h-[760px] w-[1200px] shrink-0 overflow-y-auto overflow-x-clip rounded-[12px] border border-solid border-[rgba(255,255,255,0.12)] bg-white shadow-[0px_20px_60px_0px_rgba(26,77,255,0.12)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div class="absolute left-[-1px] top-[-1px] h-[2726px] w-[1200px]"><Img f="BoltShiftC_201-5153" alt="Component library with variants and states" class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="1200px" /></div>
+        </div>
+        <p class={`${cap} w-[1200px]`}>Component library with variants and states</p>
+      </div>
+    </section>
+
+    <section id="outcomes" aria-label="Outcomes" class={`${sec} h-[684px] bg-[#020202]`}>
+      <Head eyebrow="13  /  WHAT THIS PROJECT DEMONSTRATES" title="OUTCOMES" lead="Scope and rigour I would bring to a real product team." />
+      <div class="flex shrink-0 items-start gap-[24px] overflow-clip">
+        {outcomes.map(([t, d]) => (
+          <div class="flex h-[170px] w-[282px] shrink-0 flex-col items-start gap-[12px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[28px]">
+            <h3 class="w-[226px] font-ral text-[20px] font-semibold leading-[28px] text-white">{t}</h3>
+            <p class="w-[226px] font-ral text-[15px] font-normal leading-[24px] text-[#cecece]">{d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="w-[900px] font-ral text-[15px] font-medium leading-[24px] text-[#9e9ea6]">What I would do next: validate the risk signals and plan flow with real customer-success users, then test the health-score logic against live data. This concept has not been user-tested.</p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute left-0 top-[15739px] h-[601px] w-full overflow-clip" style="background-image:linear-gradient(11.955853866081299deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
+    <BgLines top={0} h={601} />
+    <p class="absolute top-[77px] -translate-x-1/2 bg-clip-text font-utara text-[126px] font-semibold not-italic leading-[normal] tracking-[-1.16px] text-[transparent] text-center whitespace-nowrap" style="left:calc(50% + 0.5px);background-image:linear-gradient(0.16214002469791922deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(173.95684027926643deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">Let’s build something!</p>
+    <div class="absolute left-[120px] top-[296px] flex w-[1200px] items-center justify-between overflow-clip">
+      <div class="flex shrink-0 flex-col items-start overflow-clip">
+        <p class="w-[560px] font-ral text-[18px] font-normal leading-[30px] text-[rgba(255,255,255,0.75)]">Open to full-time UI/UX &amp; product design roles and select freelance projects. Send a brief and I'll get back to you.</p>
+      </div>
+      <div class="flex shrink-0 items-start gap-[40px] overflow-clip whitespace-nowrap">
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal]">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Explore</p>
+          <a href="/#about" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">About Me</a>
+          <a href="/#work" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">Selected Works</a>
+          <a href="/#services" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">What I Do</a>
+          <a href="/#contact" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">Contact</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal]">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Connect</p>
+          <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">LinkedIn</a>
+          <a href="https://www.behance.net/mehrozemaqsood" target="_blank" rel="noopener" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">Behance</a>
+          <a href="mailto:mehrozemaqsood8@gmail.com" class="block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]">Email</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip">
+          <p class="font-ral text-[12px] font-bold uppercase leading-[normal] tracking-[2px] text-[#96a3f9]">Get in touch</p>
+          <p class="font-ral text-[16px] font-medium leading-[normal] text-[rgba(255,255,255,0.85)]">Lahore, Pakistan</p>
+          <a href="https://wa.me/923246319870" target="_blank" rel="noopener" class="block font-[Arial,Helvetica,sans-serif] text-[16px] not-italic leading-[normal] text-[rgba(255,255,255,0.85)]">+92 324 6319870</a>
+          <p class="font-ral text-[16px] font-medium leading-[0] text-[rgba(255,255,255,0.85)]"><span class="leading-[normal]">Replies within </span><span class="font-[Arial,Helvetica,sans-serif] font-normal not-italic leading-[normal]">24</span><span class="leading-[normal]">h</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-[120px] top-[511px] h-[0.5px] w-[1200px] bg-white"></div>
+  </footer>
+</div>

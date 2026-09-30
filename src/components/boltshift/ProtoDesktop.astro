@@ -1,0 +1,71 @@
+---
+import Img from '../Img.astro';
+// Figma "Prototype Desktop" (Screen = Start | Dashboard | Account detail | Segments). Start = Dashboard + click-hint callout.
+const screens = [
+  { id: 'dashboard', label: 'Dashboard', page: 'COMPProtot_222-1665', head: 'COMPProtot_222-1304', ph: 1058, thumb: 283, ind: true },
+  { id: 'account', label: 'Account detail', page: 'COMPProtot_222-1877', head: 'COMPProtot_222-1678', ph: 1561, thumb: 192, ind: true },
+  { id: 'segments', label: 'Segments', page: 'COMPProtot_222-1974', head: 'COMPProtot_222-1890', ph: 281, thumb: 0, ind: false },
+];
+const spots = [{ id: 'dashboard', l: 474.83, w: 83.449, n: 'Dashboard' }, { id: 'account', l: 564.12, w: 75.104, n: 'Account detail' }, { id: 'segments', l: 645.9, w: 79.277, n: 'Segments' }];
+const { eager = false } = Astro.props;
+---
+<div data-proto="desktop" class="relative flex w-[1200px] shrink-0 flex-col items-start overflow-clip rounded-[14px] border border-solid border-[rgba(255,255,255,0.16)] bg-[#15151a]">
+  <div class="relative h-[36px] w-[1200px] shrink-0 bg-[#15151a]">
+    <span class="absolute left-[16px] top-[13px] size-[10px] rounded-full bg-[#ff5f57]"></span>
+    <span class="absolute left-[34px] top-[13px] size-[10px] rounded-full bg-[#febc2e]"></span>
+    <span class="absolute left-[52px] top-[13px] size-[10px] rounded-full bg-[#28c840]"></span>
+  </div>
+  <div class="relative h-[640px] w-[1200px] shrink-0 overflow-clip bg-[#fafafa]">
+    {screens.map((s, i) => (
+      <div data-screen={s.id} hidden={i !== 0} class="absolute inset-0">
+        <div data-scroll class="absolute left-0 top-[79px] h-[561px] w-[1200px] overflow-y-auto overflow-x-clip bg-[#fafafa] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div class="absolute left-0 top-0 w-[1200px]" style={`height:${s.ph}px`}>
+            <Img f={s.page} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="1200px" eager={eager && i === 0} />
+          </div>
+        </div>
+        <div class="absolute left-0 top-0 h-[79px] w-[1200px] bg-[#fafafa]">
+          <div class="absolute left-0 top-0 h-[79px] w-[1200px]"><Img f={s.head} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="1200px" eager={eager && i === 0} /></div>
+          {spots.map((p) => (
+            <button type="button" data-go={p.id} aria-label={`Show ${p.n} screen`} class={`absolute top-[10px] block h-[59px] bg-[rgba(255,255,255,0.01)] ${p.id === s.id ? 'cursor-default' : 'cursor-pointer'}`} style={`left:${p.l}px;width:${p.w}px`}></button>
+          ))}
+        </div>
+        {s.ind && (
+          <div class="pointer-events-none absolute left-0 top-[79px] h-[561px] w-[1200px]">
+            <div class="absolute left-[1182px] top-[12px] h-[537px] w-[10px] rounded-[5px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(15,15,20,0.55)] backdrop-blur-[5px]"></div>
+            <div data-thumb class="absolute left-[1184px] top-[14px] w-[6px] rounded-[3px] bg-[rgba(255,255,255,0.92)]" style={`height:${s.thumb}px`}></div>
+            <div class="absolute left-[525px] top-[508px] flex items-center justify-center gap-[8px] overflow-clip rounded-[20px] border border-solid border-[rgba(255,255,255,0.18)] bg-[rgba(10,10,15,0.72)] py-[9px] pl-[16px] pr-[14px] shadow-[0px_6px_16px_0px_rgba(0,0,0,0.35)] backdrop-blur-[6px]">
+              <p class="font-ral text-[13px] font-medium leading-[normal] text-white whitespace-nowrap">Scroll to explore</p>
+              <div class="relative h-[5px] w-[10px] shrink-0"><div class="absolute inset-[-18%_-9%]"><img src="/icons/bs-chevron.svg" alt="" width="12" height="7" class="block size-full max-w-none" /></div></div>
+            </div>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+  <button type="button" data-go="dashboard" data-hint class="absolute left-[391px] top-[107px] flex cursor-pointer flex-col items-center">
+    <div class="relative h-[12px] w-[16px] shrink-0"><div class="absolute bottom-1/4 left-[6.7%] right-[6.7%] top-0"><img src="/icons/bs-pointer.svg" alt="" width="14" height="9" class="block size-full max-w-none" /></div></div>
+    <div class="flex shrink-0 items-center overflow-clip rounded-[999px] bg-[#0083f0] px-[18px] py-[10px] shadow-[0px_8px_24px_0px_rgba(0,77,229,0.35)]"><p class="font-ral text-[14px] font-semibold leading-[normal] text-left text-white whitespace-nowrap">Click Dashboard, Accounts or Segments to switch screens</p></div>
+  </button>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-proto="desktop"]').forEach((root) => {
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-screen]')];
+    const sync = (p: HTMLElement) => {
+      const sc = p.querySelector<HTMLElement>('[data-scroll]'), th = p.querySelector<HTMLElement>('[data-thumb]');
+      if (!sc || !th) return;
+      const max = sc.scrollHeight - sc.clientHeight; if (max <= 0) return;
+      const h = 533 * sc.clientHeight / sc.scrollHeight;
+      th.style.height = h + 'px'; th.style.top = 14 + (sc.scrollTop / max) * (533 - h) + 'px';
+    };
+    panels.forEach((p) => p.querySelector('[data-scroll]')?.addEventListener('scroll', () => sync(p), { passive: true }));
+    root.querySelectorAll<HTMLElement>('[data-go]').forEach((b) => b.addEventListener('click', () => {
+      const id = b.dataset.go;
+      root.querySelectorAll<HTMLElement>('[data-hint]').forEach((h) => (h.hidden = true));
+      panels.forEach((p) => {
+        const on = p.dataset.screen === id;
+        if (on && p.hidden) { p.hidden = false; const sc = p.querySelector<HTMLElement>('[data-scroll]'); if (sc) sc.scrollTop = 0; sync(p); }
+        else if (!on) p.hidden = true;
+      });
+    }));
+  });
+</script>

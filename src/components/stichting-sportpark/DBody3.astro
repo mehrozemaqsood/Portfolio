@@ -1,0 +1,88 @@
+---
+import '@fontsource/nunito/800.css';
+import DSection from './DSection.astro';
+import DNumCards from './DNumCards.astro';
+import Img from '../Img.astro';
+const versions = [
+  ['StichtingS_285-1745','Version 1'],
+  ['StichtingS_285-1748','Version 2'],
+  ['StichtingS_285-1751','Version 3'],
+  ['StichtingS_285-1754','Approved version'],
+];
+const photos = [
+  ['StichtingS_287-1635','Sports park'],
+  ['StichtingS_287-1638','Clubhouse'],
+  ['StichtingS_287-1641','Canteen'],
+  ['StichtingS_287-1644','Fields'],
+  ['StichtingS_287-1647','Meeting rooms'],
+  ['StichtingS_287-1650','Changing rooms'],
+  ['StichtingS_287-1653','Clubhouse interior'],
+  ['StichtingS_287-1656','Canteen interior'],
+];
+const palette = [
+  ['Red','#E62A2C','Main','#e62a2c'],
+  ['Blue','#08A5D8','Main','#08a5d8'],
+  ['Green','#68B42D','Support','#68b42d'],
+  ['Yellow','#F9AF19','Support','#f9af19'],
+  ['Pink','#E41372','Small accent','#e41372'],
+  ['Ink','#1B1C1B','Text and logo','#1b1c1b'],
+];
+const outcomes = [
+  ['01','Information design','A long text page becomes eight scannable sections with clear routes onward.'],
+  ['02','Brand-led UI','Red and blue from the official style lead, with green and yellow used sparingly.'],
+  ['03','Responsive design','A single-column mobile layout keeps the same sections, cards and calls to action.'],
+  ['04','Content strategy','Focus cards, user previews and news show who does what, without leaning on football alone.'],
+];
+const bgHouse = 'linear-gradient(5.483188116153244deg, rgb(0, 0, 0) 37.573%, rgb(8, 165, 216) 51.604%, rgb(0, 134, 178) 64.714%, rgb(0, 0, 0) 89.063%)';
+---
+<DSection top={6537} h={678} eyebrow={'07  /  VARIATIONS'} title="VARIATIONS" statement="Three versions were explored before the approved homepage." bg="linear-gradient(3.878432386370392deg, rgb(0, 0, 0) 37.573%, rgb(8, 165, 216) 51.604%, rgb(0, 134, 178) 64.714%, rgb(0, 0, 0) 89.063%)" stripe={65.4545} stripeH={2920}>
+  <p class="relative shrink-0 font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#9e9ea6] whitespace-pre">DESKTOP  /  HOME PAGE VERSIONS</p>
+  <div class="relative flex w-[1200px] shrink-0 flex-wrap content-start items-start gap-x-[24px] gap-y-[32px]">
+    {versions.map(([k,t]) => (
+      <figure class="relative m-0 flex w-[282px] shrink-0 flex-col items-start gap-[10px]">
+        <div class="relative h-[172px] w-[282px] shrink-0 overflow-clip rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)] bg-[#f5f5f5]">
+          <Img f={k} class="absolute inset-0 size-full max-w-none object-cover" sizes="282px" />
+        </div>
+        <figcaption class="shrink-0 font-ral text-[14px] font-medium leading-[normal] text-white whitespace-nowrap">{t}</figcaption>
+      </figure>
+    ))}
+  </div>
+</DSection>
+
+<DSection top={7215} h={900} eyebrow={'08  /  IMAGERY'} title="IMAGERY" statement="Photos of the fields, clubhouse, canteen and meeting rooms keep the design local and specific.">
+  <div class="relative flex w-[1200px] shrink-0 flex-wrap content-start items-start gap-x-[24px] gap-y-[32px]">
+    {photos.map(([k,t]) => (
+      <figure class="relative m-0 flex w-[282px] shrink-0 flex-col items-start gap-[10px]">
+        <div class="relative h-[172px] w-[282px] shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]">
+          <Img f={k} class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[10px] object-cover" sizes="282px" />
+        </div>
+        <figcaption class="shrink-0 font-ral text-[14px] font-medium leading-[normal] text-white whitespace-nowrap">{t}</figcaption>
+      </figure>
+    ))}
+  </div>
+</DSection>
+
+<DSection top={8115} h={960} eyebrow={'09  /  HOUSE STYLE'} title="HOUSE STYLE" statement="Nunito and a disciplined red and blue palette, taken from the official house style." bg={bgHouse} stripe={65.4545} stripeH={2146}>
+  <div class="relative flex w-[1200px] shrink-0 items-start gap-[20px] overflow-clip">
+    {palette.map(([n,hex,role,col]) => (
+      <div class="relative flex min-w-px flex-[1_0_0] flex-col items-start gap-[10px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[16px]">
+        <div class={`relative h-[120px] w-full shrink-0 rounded-[10px] ${n === 'Ink' ? 'border border-solid border-[rgba(255,255,255,0.25)]' : ''}`} style={`background-color:${col}`}></div>
+        <p class="h-[23px] shrink-0 font-ral text-[20px] font-semibold leading-[normal] text-white whitespace-nowrap">{n}</p>
+        <p class="shrink-0 font-ral text-[14px] font-medium leading-[normal] text-[#d9d9e0] whitespace-nowrap">{hex}</p>
+        <p class="shrink-0 font-ral text-[14px] font-normal leading-[normal] text-[#d9d9e0] whitespace-nowrap">{role}</p>
+      </div>
+    ))}
+  </div>
+  <div class="relative flex w-[1200px] shrink-0 items-center gap-[48px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-[40px] py-[32px] leading-[normal]">
+    <p class="relative top-[-1px] shrink-0 font-nun text-[140px] font-extrabold text-white whitespace-nowrap" aria-hidden="true">Aa</p>
+    <div class="relative flex min-w-px flex-[1_0_0] flex-col items-start gap-[10px] overflow-clip">
+      <p class="relative top-[-1px] shrink-0 font-ral text-[32px] font-semibold text-white whitespace-nowrap">Nunito</p>
+      <p class="relative top-[1px] w-full shrink-0 font-ral text-[16px] font-normal text-[#9e9ea6]">The official house typeface. Headings, buttons and body text all use one family, with weight and size doing the work of hierarchy. Text and logo colour is #1B1C1B.</p>
+    </div>
+  </div>
+</DSection>
+
+<DSection top={9075} h={814} eyebrow={'10  /  OUTCOMES'} eyebrowId="outcomes" title="WHAT THIS SHOWS" statement="A text-heavy association site becomes a clear routing page.">
+  <p class="relative w-[900px] shrink-0 font-ral text-[17px] font-normal leading-[28px] text-white">This is a design case study, not a shipped product, so there are no live figures. It shows how structure, hierarchy and the existing house style change how a local foundation is understood.</p>
+  <DNumCards items={outcomes} w={282} h={294} />
+</DSection>

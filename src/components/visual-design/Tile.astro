@@ -1,0 +1,55 @@
+---
+// Gallery tile: looks exactly like the Figma tile (1px 10% white border, 16px radius, object-cover image).
+// It is a <button> so the image can open in the lightbox (no visual change at rest).
+import Img from '../Img.astro';
+import data from '../../assets/images.json';
+const { f, alt = '', class: cls = '', style = '', sizes = '400px', rad = 16, bw = 1 } = Astro.props;
+const m = (data as any)[f];
+const big = m ? m.variants[m.variants.length - 1] : 0;
+---
+<button type="button" class={`vd-tile absolute cursor-zoom-in border-solid border-[rgba(255,255,255,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${cls}`} style={`border-width:${bw}px;border-radius:${rad}px;${style}`} data-full={`/img/${f}-${big}.webp`} data-alt={alt} aria-label={`Open full size: ${alt}`}>
+  <Img f={f} alt={alt} class="absolute inset-0 size-full max-w-none object-cover pointer-events-none" style={`border-radius:${rad}px`} sizes={sizes} />
+</button>
+<script>
+  // Minimal accessible lightbox (native <dialog>): Esc / backdrop click / close button close it, arrow keys step through visible tiles.
+  let dlg: HTMLDialogElement | null = null, imgEl: HTMLImageElement, cur: HTMLElement | null = null, last: HTMLElement | null = null;
+  const visible = () => Array.from(document.querySelectorAll<HTMLElement>('.vd-tile')).filter((t) => t.offsetParent !== null);
+  function show(t: HTMLElement) {
+    cur = t;
+    imgEl.removeAttribute('src');
+    imgEl.alt = t.dataset.alt || '';
+    imgEl.src = t.dataset.full!;
+  }
+  function build() {
+    dlg = document.createElement('dialog');
+    dlg.className = 'vd-lb';
+    dlg.setAttribute('aria-label', 'Image viewer');
+    dlg.innerHTML = '<button type="button" class="vd-lb-x" aria-label="Close">&times;</button><img alt="" />';
+    imgEl = dlg.querySelector('img')!;
+    dlg.addEventListener('click', (e) => { if (e.target !== imgEl) dlg!.close(); });
+    dlg.addEventListener('close', () => { imgEl.removeAttribute('src'); last?.focus(); });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const v = visible(), i = v.indexOf(cur!);
+      if (i < 0) return;
+      show(v[(i + (e.key === 'ArrowRight' ? 1 : v.length - 1)) % v.length]);
+    });
+    document.body.appendChild(dlg);
+  }
+  document.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>('.vd-tile');
+    if (!t) return;
+    if (!dlg) build();
+    last = t;
+    show(t);
+    dlg!.showModal();
+  });
+</script>
+<style is:global>
+  .vd-lb{position:fixed;inset:0;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(2,2,2,.94);display:none;align-items:center;justify-content:center;overflow:hidden}
+  .vd-lb[open]{display:flex}
+  .vd-lb::backdrop{background:rgba(2,2,2,.94)}
+  .vd-lb img{max-width:92vw;max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:8px}
+  .vd-lb-x{position:absolute;top:16px;right:20px;width:44px;height:44px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font:400 28px/1 Arial,sans-serif;cursor:pointer}
+  .vd-lb-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+</style>

@@ -1,0 +1,11 @@
+---
+// Generic case-study section (desktop 1440): eyebrow / big title / statement, then the slot. Figma: px 120, py 96, gap 32.
+const { top, h, eyebrow, title, statement, id, bg, stripe, stripeH, eyebrowId } = Astro.props;
+---
+<section id={id} aria-label={title} class="absolute left-0 flex w-full flex-col items-start gap-[32px] overflow-clip px-[120px] py-[96px]" style={`top:${top}px;height:${h}px;${bg ? 'background-image:' + bg : 'background-color:#020202'}`}>
+  {stripe && <div class="absolute left-0 right-0 top-0" style={`height:${stripeH}px;background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(0,0,0,.02) ${stripe}px)`} aria-hidden="true"></div>}
+  <p id={eyebrowId} class="relative shrink-0 font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#08a5d8] whitespace-pre">{eyebrow}</p>
+  <h2 class="relative top-[1px] shrink-0 font-ral text-[84px] font-semibold leading-[88px] tracking-[-2.5px] text-white whitespace-nowrap">{title}</h2>
+  <p class="relative top-[1px] w-[1162px] shrink-0 font-ral text-[30px] font-semibold leading-[40px] text-white">{statement}</p>
+  <slot />
+</section>

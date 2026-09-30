@@ -1,0 +1,7 @@
+---
+// Section header used by every body section: eyebrow + big title + lead.
+const { id, eyebrow, title, lead, leadClass = 'w-[1162px]' } = Astro.props;
+---
+<p id={id} class="font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0] whitespace-pre">{eyebrow}</p>
+<h2 class="font-ral text-[84px] font-semibold leading-[88px] tracking-[-2.5px] text-white whitespace-nowrap">{title}</h2>
+<p class={`font-ral text-[30px] font-semibold leading-[40px] text-white ${leadClass}`}>{lead}</p>

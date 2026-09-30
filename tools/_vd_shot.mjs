@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+import fs from 'fs';
+const [,, url='http://localhost:4321/', out='/tmp/full.png', w='1440'] = process.argv;
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const c = await b.newContext({viewport:{width:+w,height:900},reducedMotion:'reduce'});
+const p = await c.newPage();
+await p.goto(url,{waitUntil:'networkidle'});
+await p.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=400){scrollTo(0,y);await new Promise(r=>setTimeout(r,120))}scrollTo(0,0)});
+await p.addStyleTag({content:'[data-fb]{display:none!important}'});await p.waitForTimeout(800);
+await p.screenshot({path:out,fullPage:true});
+await b.close();

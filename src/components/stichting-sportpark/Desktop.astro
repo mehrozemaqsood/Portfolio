@@ -1,3 +1,20 @@
 ---
+import DHeader from './DHeader.astro';
+import DHero from './DHero.astro';
+import DBody1 from './DBody1.astro';
+import DBody2 from './DBody2.astro';
+import DBody3 from './DBody3.astro';
+import DFooter from './DFooter.astro';
+import FloatingBar from '../FloatingBar.astro';
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO stichting-sportpark Desktop</div>
+<div class="relative h-[12478px] w-full overflow-clip bg-[#020202]">
+  <DHeader />
+  <DHero />
+  <div class="absolute left-0 top-[2047px] h-[9889px] w-full" style="isolation:isolate">
+    <DBody1 />
+    <DBody2 />
+    <DBody3 />
+  </div>
+  <DFooter />
+</div>
+<FloatingBar v="d" />

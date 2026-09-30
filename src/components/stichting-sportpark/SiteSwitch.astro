@@ -1,0 +1,40 @@
+---
+// Shared behaviour/styles for the "New homepage / Old site" browser mockup (Figma component set "Stichting Desktop"/"Stichting Mobile").
+---
+<style is:global>
+[data-site-switch] [data-chip]{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#9e9ea6}
+[data-site-switch] [data-chip][aria-pressed="true"]{background:#08a5d8;border-color:rgba(255,255,255,0);color:#fff;cursor:default}
+[data-site-switch] [data-viewport]{scrollbar-width:none}
+[data-site-switch] [data-viewport]::-webkit-scrollbar{display:none}
+[data-site-switch][data-state="old"] [data-url]{background:#fff}
+[data-site-switch][data-state="new"] [data-url]{background:#15151a}
+[data-site-switch][data-state="old"] [data-bar]{background:#15151a}
+[data-site-switch][data-state="new"] [data-bar]{background:#16161a}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-site-switch]').forEach((root) => {
+    const vp = root.querySelector<HTMLElement>('[data-viewport]')!;
+    const thumb = root.querySelector<HTMLElement>('[data-thumb]')!;
+    const chips = root.querySelectorAll<HTMLElement>('[data-chip]');
+    const panes = root.querySelectorAll<HTMLElement>('[data-pane]');
+    const hNew = thumb.dataset.hNew, hOld = thumb.dataset.hOld;
+    const sync = () => {
+      const max = vp.scrollHeight - vp.clientHeight;
+      const h = thumb.offsetHeight;
+      const t0 = +(thumb.dataset.top ?? 14), span = +(thumb.dataset.span ?? 686);
+      thumb.style.top = t0 + (max > 0 ? (vp.scrollTop / max) * (span - h) : 0) + 'px';
+    };
+    const set = (s: string) => {
+      root.dataset.state = s;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.chip === s)));
+      panes.forEach((p) => (p.hidden = p.dataset.pane !== s));
+      thumb.style.height = (s === 'old' ? hOld : hNew) + 'px';
+      vp.style.background = s === 'old' ? '#fff' : '#f5f5f5';
+      vp.scrollTop = 0;
+      sync();
+    };
+    chips.forEach((c) => c.addEventListener('click', () => set(c.dataset.chip!)));
+    vp.addEventListener('scroll', sync, { passive: true });
+    set('new');
+  });
+</script>

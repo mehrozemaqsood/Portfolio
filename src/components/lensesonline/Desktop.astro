@@ -1,3 +1,10 @@
 ---
+import HeroD from './HeroD.astro';
+import BodyD from './BodyD.astro';
+import FooterLO from './FooterLO.astro';
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO lensesonline Desktop</div>
+<div class="relative h-[16976px] w-full overflow-clip bg-[#020202]">
+  <HeroD />
+  <div class="absolute left-0 top-[2106px] w-full"><BodyD /></div>
+  <div class="absolute left-0 top-[16375px] w-full"><FooterLO /></div>
+</div>

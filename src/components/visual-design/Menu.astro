@@ -1,0 +1,54 @@
+---
+// Full-screen menu opened by the header menu button (Figma: "Mobile Menu – Open 390", reached via MOVE_IN from the right).
+import Arrow from '../Arrow.astro';
+const { px = 20 } = Astro.props;
+const links = [['01', 'About Me', '/#about'], ['02', 'Selected Work', '/#work'], ['03', 'What I Can Do', '/#services'], ['04', 'Contact', '/#contact']];
+---
+<div class="vd-menu fixed inset-0 z-[70] overflow-y-auto bg-[#020202]" data-menu hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="flex flex-col items-start gap-[40px] pb-[40px] pt-[24px]" style={`padding-left:${px}px;padding-right:${px}px`}>
+    <div class="flex w-full shrink-0 items-center justify-between overflow-clip">
+      <button type="button" data-menu-close aria-label="Close menu" class="block size-[43px] shrink-0">
+        <svg width="43" height="43" viewBox="0 0 43 43" fill="none" aria-hidden="true" class="block"><rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="#808CFF"/><path d="M14.5 14.5L28.5 28.5M28.5 14.5L14.5 28.5" stroke="#B8C2FF" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="relative flex h-[43px] shrink-0 items-center gap-[10px] overflow-clip rounded-[46px] bg-[#8499f8] pl-[13px] pr-[6px]">
+        <span class="relative shrink-0 font-ral text-[14px] font-semibold leading-[16.5px] text-black whitespace-nowrap">Connect Now</span>
+        <span class="relative grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black bg-black"><Arrow c="#a8b8ff" /></span>
+      </a>
+    </div>
+    <nav class="flex w-full flex-col items-start gap-[8px] overflow-clip whitespace-nowrap font-ral font-medium leading-[normal]" aria-label="Menu">
+      {links.map(([n, t, h]) => (
+        <a href={h} data-menu-link class="flex h-[100px] w-full shrink-0 items-end gap-[16px] overflow-clip border-b border-solid border-[rgba(255,255,255,0.1)] py-[14px]">
+          <span class="shrink-0 text-[14px] text-[#808cff]">{n}</span>
+          <span class="shrink-0 text-[36px] text-white">{t}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const open = t.closest('[data-menu-open]');
+    if (open) {
+      const m = open.closest('.stage')?.querySelector<HTMLElement>('[data-menu]');
+      if (!m) return;
+      m.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      if (!reduce) m.animate([{ transform: 'translateX(100%)' }, { transform: 'none' }], { duration: 300, easing: 'ease-out' });
+      m.querySelector<HTMLElement>('[data-menu-close]')?.focus();
+      return;
+    }
+    const close = t.closest('[data-menu-close], [data-menu-link]');
+    if (close) {
+      const m = close.closest<HTMLElement>('[data-menu]')!;
+      m.hidden = true;
+      document.documentElement.style.overflow = '';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll<HTMLElement>('[data-menu]').forEach((m) => { m.hidden = true; });
+    document.documentElement.style.overflow = '';
+  });
+</script>

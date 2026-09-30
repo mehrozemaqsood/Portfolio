@@ -1,0 +1,13 @@
+---
+// Numbered cards row (01, 02 ...): Figma "Goals" / "Principles" / "Decisions" / "Outcomes".
+const { items, w, h } = Astro.props;
+---
+<div class="relative flex w-[1200px] shrink-0 items-start gap-[24px]">
+  {items.map(([n, t, b]) => (
+    <div class="relative flex shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]" style={`width:${w}px;height:${h}px`}>
+      <p class="shrink-0 font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(8,165,216,0.9)] whitespace-nowrap">{n}</p>
+      <h3 class="w-full shrink-0 font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3>
+      <p class="relative top-[1px] w-full shrink-0 font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{b}</p>
+    </div>
+  ))}
+</div>

@@ -1,3 +1,68 @@
 ---
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import SecFlow from './SecFlow.astro';
+import Footer from './FooterVT.astro';
+import Menu from './Menu.astro';
+import { tablet as secs } from './data';
+const stripes = 'background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(0,0,0,.02) 34.909px)';
+const sheen = 'background-image:linear-gradient(9.3945deg, #000 391.426px, #f5f5f5 637.414px, #838383 867.272px, #000 1294.181px)';
+const o = { pad: 40, top: 72, w: 688, ts: 63, tl: 66, tt: -1.875, rad: 9.173, bw: 0.573, sheen };
+const box = 'absolute inset-0 size-full max-w-none object-cover';
+const tile = 'relative flex-none border-solid border-[rgba(255,255,255,0.1)]';
+const hb = 'border-width:0.58px;border-radius:9.287px';
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO visual-design Tablet</div>
+<div class="relative w-full overflow-clip bg-[#020202]">
+  <Menu px={40} />
+  <section class="relative h-[572px] w-full overflow-clip" style="background-image:linear-gradient(to bottom, #020202 16.109%, #676767 64.821%, #4e4e4e 100%)" aria-label="Visual design intro">
+    <div class="absolute left-0 right-0 top-0 h-[884px]" style={stripes} aria-hidden="true"></div>
+    <header class="absolute left-[40px] top-[30px] flex w-[688px] items-center justify-between">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-0.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <span class="flex flex-none items-start gap-[4.257px]" style="transform:scaleY(.88) skewX(-28deg)">
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-white"></span>
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-white"></span>
+            <span class="block h-[24.917px] w-[6px] rounded-br-[2px] rounded-tl-[2px] bg-white"></span>
+          </span>
+        </a>
+      </div>
+      <div class="relative flex w-[204px] shrink-0 items-start justify-end gap-[10px]">
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="relative flex h-[43px] shrink-0 items-center gap-[10px] rounded-[46px] bg-white pl-[13px] pr-[6px]">
+          <span class="font-ral text-[14px] font-semibold leading-[16.5px] text-black whitespace-nowrap">Connect Now</span>
+          <span class="relative grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black bg-black"><Arrow c="#fff" /></span>
+        </a>
+        <button type="button" data-menu-open aria-label="Open menu" class="flex size-[43px] shrink-0 flex-col items-center justify-center gap-[6px] overflow-clip rounded-[22px]">
+          <span class="block h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+          <span class="block h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+        </button>
+      </div>
+    </header>
+    <h1 class="absolute top-[208px] whitespace-nowrap bg-clip-text font-ral text-[82.35px] font-semibold leading-[normal] tracking-[-3.6px] text-[transparent]" style="left:calc(50% - 286px);background-image:linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.04));-webkit-background-clip:text;background-clip:text">VISUAL DESIGN</h1>
+    <div class="absolute left-[49.98px] top-[406.64px] flex h-[171.632px] w-[140.307px] items-center justify-center"><div class={`${tile} h-[165.149px] w-[132.107px] rotate-[-2.9deg]`} style={hb}><Img f="VisualDesi_326-1838" alt="" class={box} style="border-radius:9.287px" sizes="132px" eager /></div></div>
+    <div class="absolute left-[267.17px] top-[372px] h-[234.405px] w-[227.302px] border-solid border-[rgba(255,255,255,0.1)]" style={hb}><Img f="VisualDesi_320-1823" alt="" class={box} style="border-radius:9.287px" sizes="228px" eager /></div>
+    <div class="absolute left-[576.81px] top-[404.02px] flex h-[176.868px] w-[176.869px] items-center justify-center"><div class={`${tile} size-[165.149px] rotate-[4.23deg]`} style={hb}><Img f="VisualDesi_326-1840" alt="" class={box} style="border-radius:9.287px" sizes="166px" eager /></div></div>
+    <div class="absolute left-[180.16px] top-[434.15px] flex h-[156.649px] w-[129.695px] items-center justify-center"><div class={`${tile} h-[147.387px] w-[117.989px]`} style={`${hb};transform:rotate(-4.74deg) skewX(-0.03deg)`}><Img f="VisualDesi_326-1843" alt="" class={box} style="border-radius:9.287px" sizes="118px" eager /></div></div>
+    <div class="absolute left-[464.29px] top-[430.01px] flex h-[192.39px] w-[135.365px] items-center justify-center"><div class={`${tile} h-[184.309px] w-[122.873px] rotate-[3.98deg]`} style={hb}><Img f="VisualDesi_326-1783" alt="" class={box} style="border-radius:9.287px" sizes="123px" eager /></div></div>
+    <div class="absolute left-[-49.35px] top-[447.67px] flex h-[164.376px] w-[112.494px] items-center justify-center"><div class={`${tile} h-[160.97px] w-[107.313px] rotate-[-1.86deg]`} style={hb}><Img f="VisualDesi_326-1778" alt="" class={box} style="border-radius:9.287px" sizes="108px" eager /></div></div>
+    <div class="absolute left-[695.64px] top-[471.96px] flex size-[120.913px] items-center justify-center"><div class={`${tile} size-[110.054px] rotate-[5.98deg]`} style={hb}><Img f="VisualDesi_326-1740" alt="" class={box} style="border-radius:9.287px" sizes="111px" eager /></div></div>
+  </section>
+
+  <section class="flex h-[549px] w-full flex-col items-start px-[40px] pt-[100px]" aria-label="About this work">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <p class="shrink-0 whitespace-nowrap font-ral text-[66px] font-semibold leading-[66px] tracking-[-2.625px] text-white">Visual Design</p>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="w-full shrink-0 font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5]">Brand identities, campaign posters, e-commerce visuals, social posts and covers: a selection of visual work across beauty, food, consumer and energy brands.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 flex-wrap content-start items-start justify-between overflow-clip leading-[normal] whitespace-nowrap" style="row-gap:20px">
+      {[['ROLE','Graphic Designer'],['WORK','Brand, marketing, social'],['FORMATS','Posters, listings, covers'],['PIECES','60+ designs']].map(([k, v]) => (
+        <div class="flex w-[216px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="w-full shrink-0 font-ral text-[24px] font-bold uppercase tracking-[1.3px] text-[#0083f0]">{k}</p>
+          <p class="w-full shrink-0 font-ral text-[18px] font-medium text-white">{v}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SecFlow secs={secs} o={o} />
+  <Footer />
+</div>
