@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const c = await b.newContext({viewport:{width:768,height:900},reducedMotion:'reduce'});
+const p = await c.newPage();
+await p.goto('http://localhost:4321/',{waitUntil:'networkidle'});
+await p.waitForTimeout(1500);
+const r = await p.evaluate(()=>{const i=[...document.querySelectorAll('.stage-t img')].map(i=>({s:i.currentSrc.slice(-40),c:i.complete,w:i.naturalWidth,op:getComputedStyle(i).opacity,vis:getComputedStyle(i).visibility,z:i.getBoundingClientRect().toJSON()}));return i.slice(0,6)});
+console.log(JSON.stringify(r,null,1));
+await p.screenshot({path:'/tmp/hero768.png',clip:{x:0,y:0,width:768,height:480}});
+await b.close();

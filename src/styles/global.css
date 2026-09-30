@@ -7,7 +7,7 @@
 @theme{ --font-ral:"Raleway",sans-serif; --font-utara:"Utara",sans-serif; --font-inter:"Inter",sans-serif; --font-nun:"Nunito",sans-serif; }
 html,body{margin:0;background:#020202;color:#fff;-webkit-font-smoothing:antialiased}
 body{overflow-x:hidden}
-.stage{display:none;transform-origin:top left;position:relative}
+.stage{text-rendering:geometricPrecision;display:none;transform-origin:top left;position:relative}
 /* Each Figma frame is shown 1:1 and uniformly scaled between its design width and the next breakpoint */
 @media (min-width:1024px){.stage-d{display:block;width:1440px;zoom:var(--z,1)}}
 @media (min-width:600px) and (max-width:1023.98px){.stage-t{display:block;width:768px;zoom:var(--z,1)}}
