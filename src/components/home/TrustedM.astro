@@ -1,0 +1,16 @@
+---
+import Img from '../Img.astro';
+---
+<section class="flex flex-col gap-[20px] items-center px-[20px] py-[40px] relative w-full overflow-clip bg-[#020202]">
+  <div class="flex flex-col items-start relative shrink-0 w-full"><h2 class="h-[40px] font-utara font-semibold leading-[39.6px] not-italic relative shrink-0 text-[#f5f5f5] text-[26.4px] whitespace-nowrap">Trusted by</h2></div>
+  <div class="relative h-[68px] w-[1320px] shrink-0 overflow-clip" aria-label="Logos of clients and employers">
+    <div class="marquee absolute left-0 top-0 flex items-start">
+      <div class="h-[62px] relative shrink-0 w-[1320px]"><Img f="COMPTruste_172-1280" alt="Client logos: Oro, Stichting Sportparkbeheer Beuningen, Radio Nashville, LensesOnline, Zapier, NobleChems, PrintPortal" class="absolute inset-0 size-full object-cover" sizes="1320px" /></div>
+      <div class="h-[62px] relative shrink-0 w-[1320px]" aria-hidden="true"><Img f="COMPTruste_172-1280" class="absolute inset-0 size-full object-cover" sizes="1320px" /></div>
+    </div>
+    <div class="absolute inset-0 flex items-center justify-between pointer-events-none">
+      <div class="bg-gradient-to-r from-[#020202] h-[68px] shrink-0 to-[rgba(2,2,2,0)] w-[440px]"></div>
+      <div class="bg-gradient-to-l from-[#020202] h-[68px] shrink-0 to-[rgba(2,2,2,0)] w-[440px]"></div>
+    </div>
+  </div>
+</section>
