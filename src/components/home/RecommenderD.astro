@@ -1,0 +1,86 @@
+---
+// back cards of the fan: [wrapper left, top, w, h, rotate, scale, secondLine]
+const back = [
+  { l: 78.01, t: -32.69, w: 389.423, h: 198.108, r: 11, k: 0.75, co: 'Job title' },
+  { l: 61.87, t: -28.68, w: 412.772, h: 197.239, r: 8.8, k: 0.8, co: 'Job title' },
+  { l: 45.96, t: -23.44, w: 435.148, h: 194.302, r: 6.6, k: 0.85, co: 'Company name' },
+  { l: 30.33, t: -16.93, w: 456.441, h: 189.265, r: 4.4, k: 0.9, co: 'Company name' },
+  { l: 15, t: -9.13, w: 476.547, h: 182.104, r: 2.2, k: 0.95, co: 'Company name' },
+];
+const quote = 'Add a real testimonial here: one or two sentences from a client or colleague on the outcome you delivered and what it was like to work with you.';
+---
+<section class="relative flex w-full flex-col gap-[72px] overflow-clip px-[80px] pb-[140px] pt-[100px]" style="height:752px;background-image:linear-gradient(181.75086106200428deg, rgb(0, 0, 0) 14.763%, rgb(92, 116, 218) 29.426%, rgb(49, 71, 166) 43.127%, rgb(0, 0, 0) 68.574%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+  <div class="absolute inset-0 overflow-clip" aria-hidden="true">
+    {[[360, -200, 0], [720, -520, 1.3], [1080, -340, 2.6]].map(([x, y, d]) => (
+      <>
+        <div class="absolute top-0 h-[720px] w-px" style={`left:${x}px;background-image:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.24) 22%, rgba(255,255,255,0.12) 70%, rgba(255,255,255,0) 100%)`}></div>
+        <div class="flow-streak absolute h-[180px] w-px" style={`left:${x}px;top:${y}px;--d:${d}s;background-image:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0) 100%)`}></div>
+      </>
+    ))}
+  </div>
+  <div class="relative flex w-[1314px] shrink-0 flex-col items-center">
+    <div class="flex flex-col justify-center whitespace-nowrap text-center font-utara text-[148px] font-semibold leading-[0] tracking-[-1.16px] text-white"><p class="leading-[170px]">RECOMMENDER</p></div>
+    <div class="flex w-[1208px] shrink-0 items-center justify-between font-ral text-[15px] font-medium uppercase leading-[21px] tracking-[-0.3px] text-[rgba(255,255,255,0.6)]">
+      <div class="flex w-[116px] items-center"><p class="whitespace-nowrap">What</p></div>
+      <div class="flex items-center"><p class="whitespace-nowrap">Other</p></div>
+      <p class="whitespace-nowrap">SAY</p>
+      <div class="flex items-center gap-[4px] whitespace-nowrap"><p>ABOUT</p><p>ME</p></div>
+    </div>
+  </div>
+  <div class="relative flex w-full shrink-0 flex-col items-center gap-[56px]">
+    <p class="font-ral text-[14px] font-medium uppercase leading-[20px] text-white opacity-50 whitespace-nowrap">[ DRAG TO SWIPE ]</p>
+    <div class="rec-stack relative h-[172.791px] w-[495.36px] shrink-0 touch-pan-y select-none" style="cursor:grab">
+      {back.map((c) => (
+        <div class="absolute flex items-center justify-center" style={`left:${c.l}px;top:${c.t}px;width:${c.w}px;height:${c.h}px`}>
+          <div class="flex-none" style={`transform:rotate(${c.r}deg) scale(${c.k})`}>
+            <div class="rec-card" data-co={c.co}>
+              <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p>{quote}</p></div><div class="rec-qb"></div></div></div>
+              <div class="rec-c"><div class="rec-l"><p>Job title</p><p>{c.co === 'Company name' ? 'Company name' : 'Job title'}</p></div><p class="rec-n">Client name</p></div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <div class="rec-front absolute left-0 top-0 flex h-[172.791px] w-[495.36px] items-center justify-center" style="will-change:transform">
+        <div class="rec-card">
+          <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p>{quote}</p></div><div class="rec-qb"></div></div></div>
+          <div class="rec-c"><div class="rec-l"><p>Job title</p><p>Company name</p></div><p class="rec-n">Client name</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style is:global>
+  .rec-card{display:flex;width:495.36px;height:172.8px;align-items:center;justify-content:center;font-family:Raleway,sans-serif}
+  .rec-q{display:flex;flex-direction:column;align-items:center;justify-content:center;width:322.56px;height:172.8px;padding:4.608px;border-radius:4.608px;background:#f2f0ef;flex:none}
+  .rec-qi{position:relative;flex:1 0 0;min-height:1px;width:313.344px;border-radius:2.304px;background:#f2f0ef}
+  .rec-qt{position:absolute;left:23.5px;top:12.27px;width:266.337px;height:139.041px;display:flex;flex-direction:column;justify-content:center}
+  .rec-qt p{width:266.688px;font-weight:500;font-size:10.368px;line-height:13.893px;letter-spacing:-.2074px;color:#000;margin:0}
+  .rec-qb{position:absolute;left:0;top:0;width:313.344px;height:163.584px;border:.576px solid #222;border-radius:2.304px}
+  .rec-c{display:flex;flex-direction:column;justify-content:center;gap:5.76px;width:172.8px;height:172.8px;padding:14.4px;border-radius:4.608px;background:#f2f0ef;flex:none}
+  .rec-l{display:flex;flex-direction:column;justify-content:center;height:24.192px;width:144px}
+  .rec-l p{margin:0;font-weight:500;font-size:8.64px;line-height:12.096px;letter-spacing:-.1728px;text-transform:uppercase;color:#6b6560;white-space:nowrap}
+  .rec-n{margin:0;display:flex;align-items:center;height:22.122px;font-weight:600;font-size:18.432px;line-height:22.118px;letter-spacing:-.3686px;color:#000;white-space:nowrap}
+  .flow-streak{animation:flowfall 5.2s linear infinite;animation-delay:var(--d)}
+  @keyframes flowfall{from{transform:translateY(0)}to{transform:translateY(1100px)}}
+  @media (prefers-reduced-motion:reduce){.flow-streak{animation:none}}
+</style>
+<script>
+  const st = document.querySelector<HTMLElement>('.rec-stack');
+  const fr = st?.querySelector<HTMLElement>('.rec-front');
+  if (st && fr) {
+    let x0 = 0, dx = 0, on = false;
+    const move = (d: number, anim: string) => { fr.style.transition = anim; fr.style.transform = `translateX(${d}px) rotate(${d / 18}deg)`; };
+    st.addEventListener('pointerdown', (e) => { on = true; x0 = e.clientX; st.setPointerCapture(e.pointerId); st.style.cursor = 'grabbing'; fr.style.transition = 'none'; });
+    st.addEventListener('pointermove', (e) => { if (!on) return; dx = e.clientX - x0; move(dx, 'none'); });
+    const end = () => {
+      if (!on) return; on = false; st.style.cursor = 'grab';
+      if (Math.abs(dx) > 110) {
+        const s = Math.sign(dx);
+        move(s * 700, 'transform .35s ease, opacity .35s ease'); fr.style.opacity = '0';
+        setTimeout(() => { fr.style.transition = 'none'; fr.style.transform = ''; setTimeout(() => { fr.style.transition = 'opacity .35s ease'; fr.style.opacity = '1'; }, 30); }, 360);
+      } else { fr.style.transition = 'transform .3s ease'; fr.style.transform = ''; }
+      dx = 0;
+    };
+    st.addEventListener('pointerup', end); st.addEventListener('pointercancel', end);
+  }
+</script>

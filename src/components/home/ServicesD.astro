@@ -1,0 +1,70 @@
+---
+import Img from '../Img.astro';
+const rows = [
+  { n: '01', t: 'Product Design', d: 'Dashboards, SaaS and mobile products: flows, systems and developer-ready handoff.', img: 'PortfolioH_116-16412', cap: 'BoltShift · B2B SaaS', capBg: 'rgba(110,110,110,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0)' },
+  { n: '02', t: 'Website Design', d: 'Marketing and e-commerce sites designed for clarity, speed and conversion.', img: 'PortfolioH_116-16401', cap: 'LensesOnline · E-commerce', capBg: 'rgba(2,2,2,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0.55)' },
+  { n: '03', t: 'Visual Design', d: 'Brand, layout and visual systems that make interfaces feel considered.', img: 'VisualDesi_166-1175', cap: 'Graphic Design · Brand identity', capBg: 'rgba(2,2,2,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0.55)' },
+];
+---
+<section id="services" class="relative flex h-[864px] w-full items-center justify-center px-[83px] pb-[120px] pt-[100px]">
+  <div class="relative flex w-[1274px] items-start justify-between">
+    <div class="flex w-[320px] shrink-0 flex-col items-start gap-[16px]">
+      <p class="font-ral text-[15px] font-semibold leading-[21px] tracking-[-0.3px] text-white whitespace-nowrap">WHAT I CAN DO</p>
+      <p class="font-ral text-[17px] font-normal leading-[26px] text-[rgba(255,255,255,0.7)]">End-to-end design: from research and flows to polished, developer-ready interfaces. Hover a service to see it in a real project.</p>
+    </div>
+    <div class="svc-list relative flex w-[763px] shrink-0 flex-col items-start" data-active="0">
+      {rows.map((r, i) => (
+        <button type="button" data-i={i} data-on={i===0 ? "" : undefined} class="svc-row relative flex w-full shrink-0 cursor-pointer flex-col items-start border-b border-solid border-[rgba(255,255,255,0.22)] py-[26px] text-left" aria-label={r.t}>
+          <div class="flex w-full shrink-0 items-start gap-[28px] overflow-clip">
+            <p class="svc-n font-ral text-[16px] font-medium leading-[normal] whitespace-nowrap">{r.n}</p>
+            <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+              <p class="svc-t font-ral text-[70px] font-semibold leading-[73.5px] tracking-[-2.1px] whitespace-nowrap">{r.t}</p>
+              <p class="svc-d font-ral w-[520px] text-[17px] font-normal leading-[26px]">{r.d}</p>
+            </div>
+            <div class="h-px min-w-px flex-[1_0_0]"></div>
+            <svg class="svc-a size-[28px] shrink-0" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8.167 8.167H19.834V19.834" stroke="currentColor" stroke-width="1.51667" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.167 19.834L19.834 8.167" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+      ))}
+      {rows.map((r, i) => (
+        <div data-p={i} data-on={i===0 ? "" : undefined} aria-hidden="true" class="svc-pop pointer-events-none absolute left-[-527.18px] top-[195px] flex h-[310.537px] w-[414.629px] items-center justify-center">
+          <div class="flex-none rotate-3">
+            <div class="relative h-[290px] w-[400px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.3)]" style={`box-shadow:${r.shadow}`}>
+              <Img f={r.img} class="absolute inset-0 size-full rounded-[16px] object-cover" sizes="400px" />
+              <div class="absolute left-[15px] top-[246px] flex items-start overflow-clip rounded-[46px] px-[12px] py-[6px]" style={`background:${r.capBg}`}>
+                <p class="font-ral text-[13px] font-medium leading-[normal] text-white whitespace-nowrap">{r.cap}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style is:global>
+  .svc-row .svc-n,.svc-row .svc-a{color:rgba(255,255,255,.5)}
+  .svc-row .svc-t{color:rgba(255,255,255,.5)}
+  .svc-row .svc-d{color:rgba(255,255,255,.55)}
+  .svc-row[data-on] .svc-n,.svc-row[data-on] .svc-a{color:#8499f8}
+  .svc-row[data-on] .svc-t{color:#fff}
+  .svc-row[data-on] .svc-d{color:rgba(255,255,255,.85)}
+  .svc-pop{opacity:0;transition:opacity .35s ease}
+  .svc-pop[data-on]{opacity:1}
+  @media (prefers-reduced-motion:reduce){.svc-pop{transition:none}}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('.svc-list').forEach((list) => {
+    const rows = [...list.querySelectorAll<HTMLElement>('.svc-row')];
+    const pops = [...list.querySelectorAll<HTMLElement>('.svc-pop')];
+    const set = (i: number) => {
+      rows.forEach((r, k) => (k === i ? r.setAttribute('data-on', '') : r.removeAttribute('data-on')));
+      pops.forEach((p, k) => (k === i ? p.setAttribute('data-on', '') : p.removeAttribute('data-on')));
+    };
+    rows.forEach((r, i) => {
+      r.addEventListener('mouseenter', () => set(i));
+      r.addEventListener('focus', () => set(i));
+      r.addEventListener('click', () => set(i));
+    });
+    set(0);
+  });
+</script>
