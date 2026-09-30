@@ -1,0 +1,151 @@
+---
+// LensesOnline case study, sections 05-10 (Figma "Body" frame 238:1179, from y=3864).
+import Img from '../Img.astro';
+import Head from './Head.astro';
+import BgLines from './BgLines.astro';
+const sec = 'relative flex w-full flex-col items-start gap-[32px] overflow-clip px-[120px] py-[96px]';
+const card = 'flex shrink-0 flex-col items-start gap-[16px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+const sub = 'font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#9e9ea6] whitespace-pre';
+const thumbCls = 'relative shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]';
+const thumbImg = 'pointer-events-none absolute inset-0 size-full max-w-none rounded-[10px] object-cover';
+const lab = 'font-ral text-[14px] font-medium leading-[normal] text-white';
+const chunks = [['LensesOnli_240-12088', 572], ['LensesOnli_240-12089', 56], ['LensesOnli_240-12090', 269], ['LensesOnli_255-22551', 521], ['LensesOnli_255-22552', 538.025], ['LensesOnli_255-22553', 710], ['LensesOnli_255-22554', 567], ['LensesOnli_255-22555', 766], ['LensesOnli_255-22556', 1099.097]];
+const chips = ['Home', 'Category', 'Product', 'Cart'];
+const calc = [['01', 'Two eyes, one glance', 'Right and left eye sit side by side with SPH, CYL and AXIS labelled, so entry mirrors a real prescription.'], ['02', 'Result in the same shape', 'Results reuse the layout of the input in green-tinted cards, so the shopper compares like with like.'], ['03', 'Honest by design', 'A note says the result is an estimate to confirm with an eye-care professional, and a short guide explains each term.']];
+const desk = [['Product detail', '2490'], ['Home', '3143'], ['Category', '3853'], ['Account', '4394'], ['Cart', '5101'], ['Checkout', '5874'], ['Contact', '6177'], ['Power calculator', '6553'], ['Shipping rates', '6873'], ['Blog', '7239'], ['Blog post', '7572'], ['Terms and privacy', '7907'], ['Reviews', '8294'], ['About', '8624'], ['Money-back guarantee', '9437'], ['Brand not listed', '9897'], ['Help', '10265'], ['Help article', '10596'], ['Subscription', '10948']];
+const mob = [['Home', '11620'], ['Category', '12277'], ['Product', '12997'], ['Cart', '13693'], ['Checkout', '14449'], ['Contact', '14739'], ['Power calculator', '15099'], ['Shipping rates', '15414'], ['Blog', '15768'], ['Blog post', '16088'], ['Terms and privacy', '16375'], ['Reviews', '16741'], ['About', '17060'], ['Money-back guarantee', '17813'], ['Brand not listed', '18259'], ['Help', '18601'], ['Help article', '18916'], ['Subscription', '19257']];
+const dLogin = [['Default', '1264', 277], ['Wrong password', '1300', 286], ['Email exists', '1339', 286], ['Forgot password', '1352', 145], ['Create account', '1395', 322]];
+const mLogin = [['Default', '1434', 405], ['Wrong password', '1470', 417], ['Email exists', '1508', 417], ['Forgot password', '1521', 204], ['Create account', '1564', 454]];
+const outcomes = [['01', 'Retail UX', 'Trust signals, prescription entry, filters, cart and checkout designed for a shopper who is careful about what goes in their eyes.'], ['02', 'Systems thinking', '13 components and shared patterns drive 19 desktop and 18 mobile pages, plus login, cart and pop-up states.'], ['03', 'Responsive design', 'Every page has a mobile layout with a pinned, compact navigation and the same components at phone scale.'], ['04', 'Attention to detail', 'Error states, an honest calculator disclaimer, hover-ready cards and consistent spacing throughout.']];
+---
+<section aria-label="Mobile experience" class={`${sec} h-[1276px]`} style="background-image:linear-gradient(7.2711152589653665deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%)">
+  <BgLines top={2.5} h={1306} />
+  <Head id="mobile" eyebrow="05  /  MOBILE EXPERIENCE" title="MOBILE EXPERIENCE" lead="The same system on a phone: scroll inside the device and switch pages with the chips." />
+  <div class="flex shrink-0 items-start gap-[80px]">
+    <div class="relative h-[804px] w-[417px] shrink-0 rounded-[56px] bg-[#15151a]">
+      <div class="absolute left-[12px] top-[12px] h-[780px] w-[393px] overflow-clip rounded-[44px] bg-white">
+        <div class="lo-m-vp absolute left-0 top-0 h-[780px] w-[393px] overflow-y-auto overflow-x-clip bg-white" tabindex="0" aria-label="LensesOnline home page on mobile, scrollable">
+          {chunks.map(([k, h]) => (
+            <div class="relative bg-white" style={`width:393px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div>
+          ))}
+        </div>
+        <div class="pointer-events-none absolute left-0 top-0 h-[82px] w-[393px]"><Img f="LensesOnli_240-12091" alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div>
+      </div>
+    </div>
+    <div class="flex w-[640px] shrink-0 flex-col items-start gap-[24px]">
+      <div class="flex shrink-0 items-start gap-[12px]">
+        {chips.map((c, i) => (
+          <div class={`flex shrink-0 items-start rounded-[999px] border border-solid px-[20px] py-[10px] ${i === 0 ? 'border-[rgba(255,255,255,0)] bg-[#0083f0]' : 'border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)]'}`}><p class={`font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[rgba(255,255,255,0.9)]'}`}>{c}</p></div>
+        ))}
+      </div>
+      <p class="w-[640px] font-ral text-[44px] font-semibold leading-[50px] tracking-[-1px] text-white">Home</p>
+      <p class="w-[560px] font-ral text-[18px] font-normal leading-[29px] text-[#f4f4f4]">The hero, brand shortcuts, featured lenses and articles stack into one thumb-friendly column.</p>
+      <p class="w-[560px] font-ral text-[14px] font-normal leading-[22px] text-white">Scroll inside the phone. The navigation stays pinned, as it would on the live site.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Power calculator" class={`${sec} h-[1681px] bg-[#020202]`}>
+  <Head id="calculator" eyebrow="06  /  A NEW TOOL" title="POWER CALCULATOR" lead="A small tool with a real job: turning a glasses prescription into a contact-lens power estimate." />
+  <div class="relative h-[935px] w-[1200px] shrink-0 rounded-[16px] border border-solid border-[rgba(255,255,255,0.12)]"><Img f="LensesOnli_241-1666" alt="Contact lens power calculator with prescription guide" class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[16px] object-cover" sizes="1200px" /></div>
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {calc.map(([n, t, d]) => (
+      <div class={`${card} h-[242px] w-[384px]`}>
+        <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+        <p class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</p>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section aria-label="Every page" class={`${sec} h-[2921px]`} style="background-image:linear-gradient(11.255705322937501deg, rgb(0, 0, 0) 27.897%, rgb(122, 145, 246) 45.429%, rgb(49, 71, 166) 61.811%, rgb(0, 0, 0) 92.236%)">
+  <BgLines top={1} h={2920} />
+  <Head id="every-page" eyebrow="07  /  EVERY PAGE" title="EVERY PAGE" lead="19 desktop pages and 18 mobile pages, designed from the same components." />
+  <p class={sub}>DESKTOP  /  19 PAGES</p>
+  <div class="flex w-[1200px] shrink-0 flex-wrap content-start items-start gap-x-[24px] gap-y-[32px]">
+    {desk.map(([t, k]) => (
+      <div class="flex w-[282px] shrink-0 flex-col items-start gap-[10px]">
+        <div class={`${thumbCls} h-[172px] w-[282px]`}><Img f={`LensesOnli_241-${k}`} alt={`${t} page, desktop`} class={thumbImg} sizes="282px" /></div>
+        <p class={`${lab} whitespace-nowrap`}>{t}</p>
+      </div>
+    ))}
+  </div>
+  <p class={sub}>MOBILE  /  18 PAGES</p>
+  <div class="flex w-[1200px] shrink-0 flex-wrap content-start items-start gap-x-[24px] gap-y-[32px] overflow-clip">
+    {mob.map(([t, k]) => (
+      <div class="flex w-[180px] shrink-0 flex-col items-start gap-[10px] overflow-clip">
+        <div class={`${thumbCls} h-[367px] w-[180px]`}><Img f={`LensesOnli_241-${k}`} alt={`${t} page, mobile`} class={thumbImg} sizes="180px" /></div>
+        <p class={`${lab} w-full`}>{t}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section aria-label="Overlays and states" class={`${sec} h-[2460px] bg-[#020202]`}>
+  <Head id="overlays" eyebrow="08  /  OVERLAYS AND STATES" title="OVERLAYS AND STATES" lead="Account, cart and newsletter moments are designed too: every state a shopper can land in." />
+  <p class={`${sub} whitespace-nowrap`}>DESKTOP LOGIN / STATES</p>
+  <div class="flex shrink-0 items-end gap-[24px]">
+    {dLogin.map(([t, k, h]) => (
+      <div class="flex w-[225px] shrink-0 flex-col items-start gap-[12px]">
+        <div class={`${thumbCls} w-[225px]`} style={`height:${h}px`}>
+          {t === 'Forgot password'
+            ? <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[10px]"><Img f={`LensesOnli_242-${k}`} alt={`Desktop login: ${t}`} class="absolute left-0 top-[4.86%] h-[97.18%] w-full max-w-none" sizes="225px" /></div>
+            : <Img f={`LensesOnli_242-${k}`} alt={`Desktop login: ${t}`} class={thumbImg} sizes="225px" />}
+        </div>
+        <p class={`${lab} whitespace-nowrap`}>{t}</p>
+      </div>
+    ))}
+  </div>
+  <p class={`${sub} whitespace-nowrap`}>MOBILE LOGIN / STATES</p>
+  <div class="flex shrink-0 items-end gap-[24px]">
+    {mLogin.map(([t, k, h]) => (
+      <div class="flex w-[225px] shrink-0 flex-col items-start gap-[12px]">
+        <div class={`${thumbCls} w-[225px]`} style={`height:${h}px`}><Img f={`LensesOnli_242-${k}`} alt={`Mobile login: ${t}`} class={thumbImg} sizes="225px" /></div>
+        <p class={`${lab} whitespace-nowrap`}>{t}</p>
+      </div>
+    ))}
+  </div>
+  <p class={`${sub} whitespace-nowrap`}>CART SLIDER AND NEWSLETTER POP-UP</p>
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    <div class="flex w-[340px] shrink-0 flex-col items-start gap-[12px]">
+      <div class={`${thumbCls} h-[883px] w-[340px]`}><Img f="LensesOnli_242-1697" alt="Cart slider, desktop" class={thumbImg} sizes="340px" /></div>
+      <p class={`${lab} whitespace-nowrap`}>Cart slider, desktop</p>
+    </div>
+    <div class="flex w-[260px] shrink-0 flex-col items-start gap-[12px]">
+      <div class={`${thumbCls} h-[920px] w-[260px]`}><Img f="LensesOnli_242-1760" alt="Cart slider, mobile" class={thumbImg} sizes="260px" /></div>
+      <p class={`${lab} whitespace-nowrap`}>Cart slider, mobile</p>
+    </div>
+    <div class="flex w-[536px] shrink-0 flex-col items-start gap-[12px]">
+      <div class={`${thumbCls} h-[207px] w-[536px]`}><Img f="LensesOnli_242-1765" alt="Latest news bottom pop-up" class={thumbImg} sizes="536px" /></div>
+      <p class={`${lab} whitespace-nowrap`}>Latest news bottom pop-up</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Components" class={`${sec} h-[1312px]`} style="background-image:linear-gradient(5.108105767383734deg, rgb(0, 0, 0) 27.897%, rgb(122, 145, 246) 45.429%, rgb(49, 71, 166) 61.811%, rgb(0, 0, 0) 92.236%)">
+  <BgLines top={0.5} h={2146} />
+  <Head id="components" eyebrow="09  /  COMPONENTS" title="COMPONENTS" lead="Thirteen reusable pieces carry every page, so a change in one place updates the whole store." />
+  <div class="lo-m-vp relative h-[760px] w-[1200px] shrink-0 overflow-y-auto overflow-x-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.12)] bg-white" tabindex="0" aria-label="Component board, scrollable">
+    <div class="absolute left-[-1px] top-[-1px] h-[2735.714px] w-[1200px]"><Img f="LensesOnli_242-13396" alt="Component board: navigation, product cards, buttons and more" class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="1200px" /></div>
+  </div>
+  <p class="w-[900px] font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">Footer, product card, button set, benefit bar, sub-page menu, category card, slider buttons, testimonial card, product-page card, cart cards, navigation (desktop and mobile) and featured lenses. Scroll the board to see them all.</p>
+</section>
+
+<section aria-label="Outcomes" class={`${sec} h-[814px] bg-[#020202]`}>
+  <Head id="outcomes" eyebrow="10  /  OUTCOMES" title="WHAT THIS SHOWS" lead="A complete storefront, designed as one system instead of a set of one-off screens." />
+  <p class="w-[900px] font-ral text-[17px] font-normal leading-[28px] text-white">This is a design case study, not a shipped product, so there are no live conversion or traffic figures to quote. What it demonstrates is the work itself.</p>
+  <div class="flex w-[1200px] shrink-0 items-start gap-[24px]">
+    {outcomes.map(([n, t, d]) => (
+      <div class={`${card} h-[294px] w-[282px]`}>
+        <p class="font-ral text-[32px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(89,153,255,0.9)] whitespace-nowrap">{n}</p>
+        <p class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</p>
+        <p class="w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]">{d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .lo-m-vp { scrollbar-width: none; }
+  .lo-m-vp::-webkit-scrollbar { display: none; }
+</style>
