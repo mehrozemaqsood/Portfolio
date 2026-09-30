@@ -32,7 +32,7 @@ const scaled = s !== 1 ? `transform:scale(${s});transform-origin:0 0;` : '';
       {tabs.map((t, i) => (
         <div class="lo-vp h-[714px] w-[1200px] overflow-y-auto overflow-x-clip" data-panel={i} hidden={i !== 0} tabindex="0" role="tabpanel" aria-label={`${t.n} page, scrollable`}>
           {t.c.map(([k, h]) => (
-            <Img f={k} alt="" class="block max-w-none object-cover" style={`width:1200px;height:${h}px`} sizes="1200px" eager={eager && i === 0} />
+            <div class="relative bg-white" style={`width:1200px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 block size-full max-w-none object-cover" sizes="1200px" eager={eager && i === 0} /></div>
           ))}
         </div>
       ))}

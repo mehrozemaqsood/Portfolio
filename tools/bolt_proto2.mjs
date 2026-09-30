@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const p = await b.newPage({ viewport:{width:1440,height:900}, deviceScaleFactor:1 });
+await p.goto('http://localhost:4321/boltshift',{waitUntil:'networkidle'});
+await p.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=600){scrollTo(0,y);await new Promise(r=>setTimeout(r,60))}});
+const el = p.locator('.stage-d [data-bgl]').nth(1);
+const y = await el.evaluate(e=>e.getBoundingClientRect().top+scrollY);
+await p.evaluate(v=>scrollTo(0,v+300),y); await p.waitForTimeout(600);
+await p.screenshot({path:'/tmp/bolt_stripes.png'});
+await b.close();
