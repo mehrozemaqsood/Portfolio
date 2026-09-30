@@ -55,7 +55,7 @@ const quote = 'Add a real testimonial here: one or two sentences from a client o
   .rec-qi{position:relative;flex:1 0 0;min-height:1px;width:313.344px;border-radius:2.304px;background:#f2f0ef}
   .rec-qt{position:absolute;left:23.5px;top:12.27px;width:266.337px;height:139.041px;display:flex;flex-direction:column;justify-content:center}
   .rec-qt p{width:266.688px;font-weight:500;font-size:10.368px;line-height:13.893px;letter-spacing:-.2074px;color:#000;margin:0}
-  .rec-qb{position:absolute;left:0;top:0;width:313.344px;height:163.584px;border:.576px solid #222;border-radius:2.304px}
+  .rec-qb{position:absolute;left:0;top:0;width:313.344px;height:163.584px;box-shadow:inset 0 0 0 .576px #222;border-radius:2.304px}
   .rec-c{display:flex;flex-direction:column;justify-content:center;gap:5.76px;width:172.8px;height:172.8px;padding:14.4px;border-radius:4.608px;background:#f2f0ef;flex:none}
   .rec-l{display:flex;flex-direction:column;justify-content:center;height:24.192px;width:144px}
   .rec-l p{margin:0;font-weight:500;font-size:8.64px;line-height:12.096px;letter-spacing:-.1728px;text-transform:uppercase;color:#6b6560;white-space:nowrap}
@@ -65,9 +65,9 @@ const quote = 'Add a real testimonial here: one or two sentences from a client o
   @media (prefers-reduced-motion:reduce){.flow-streak{animation:none}}
 </style>
 <script>
-  const st = document.querySelector<HTMLElement>('.rec-stack');
-  const fr = st?.querySelector<HTMLElement>('.rec-front');
-  if (st && fr) {
+  document.querySelectorAll<HTMLElement>('.rec-stack').forEach((st) => {
+  const fr = st.querySelector<HTMLElement>('.rec-front');
+  if (fr) {
     let x0 = 0, dx = 0, on = false;
     const move = (d: number, anim: string) => { fr.style.transition = anim; fr.style.transform = `translateX(${d}px) rotate(${d / 18}deg)`; };
     st.addEventListener('pointerdown', (e) => { on = true; x0 = e.clientX; st.setPointerCapture(e.pointerId); st.style.cursor = 'grabbing'; fr.style.transition = 'none'; });
@@ -83,4 +83,5 @@ const quote = 'Add a real testimonial here: one or two sentences from a client o
     };
     st.addEventListener('pointerup', end); st.addEventListener('pointercancel', end);
   }
+  });
 </script>

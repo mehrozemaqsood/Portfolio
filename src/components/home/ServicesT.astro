@@ -1,0 +1,29 @@
+---
+const rows = [
+  { n: '01', t: 'Product Design', d: 'Dashboards, SaaS and mobile products: flows, systems and developer-ready handoff.' },
+  { n: '02', t: 'Website Design', d: 'Marketing and e-commerce sites designed for clarity, speed and conversion.' },
+  { n: '03', t: 'Visual Design', d: 'Brand, layout and visual systems that make interfaces feel considered.' },
+];
+---
+<section id="services-t" class="relative flex w-full flex-col items-start bg-[#020202] px-[40px] py-[96px]">
+  <div class="flex w-full flex-col items-start gap-[48px]">
+    <div class="flex w-full flex-col items-start gap-[16px]">
+      <p class="font-ral text-[15px] font-semibold leading-[21px] tracking-[-0.3px] text-white whitespace-nowrap">WHAT I CAN DO</p>
+      <p class="w-full font-ral text-[17px] font-normal leading-[26px] text-[rgba(255,255,255,0.7)]">End-to-end design: from research and flows to polished, developer-ready interfaces. Hover a service to see it in a real project.</p>
+    </div>
+    <div class="svc-list relative flex w-full flex-col items-start" data-active="0">
+      {rows.map((r, i) => (
+        <button type="button" data-i={i} data-on={i===0 ? "" : undefined} class="svc-row relative flex w-full shrink-0 cursor-pointer flex-col items-start border-b border-solid border-[rgba(255,255,255,0.22)] py-[26px] text-left" aria-label={r.t}>
+          <div class="flex w-full shrink-0 items-start gap-[20px] overflow-clip">
+            <p class="svc-n font-ral text-[16px] font-medium leading-[normal] whitespace-nowrap">{r.n}</p>
+            <div class="flex min-w-px flex-[1_0_0] flex-col items-start gap-[10px] overflow-clip text-left">
+              <p class="svc-t w-full font-ral text-[52px] font-semibold leading-[73.5px] tracking-[-2.1px]">{r.t}</p>
+              <p class="svc-d w-full font-ral text-[17px] font-normal leading-[26px]">{r.d}</p>
+            </div>
+            <svg class="svc-a size-[28px] shrink-0" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8.167 8.167H19.834V19.834" stroke="currentColor" stroke-width="1.51667" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.167 19.834L19.834 8.167" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
