@@ -62,3 +62,8 @@ html.mo-cursor,html.mo-cursor *{cursor:none!important}
 *::-webkit-scrollbar-track{background:transparent}
 *::-webkit-scrollbar-thumb{background:rgba(140,145,165,.55);border-radius:6px}
 *::-webkit-scrollbar-thumb:hover{background:rgba(160,166,190,.85)}
+
+/* Hero "breathing" glow: one static radial layer whose opacity/scale ease in and out (compositor-only, no repaint) */
+.hero-breathe{background:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(180,196,255,.72) 0%,rgba(150,170,255,.34) 45%,rgba(150,170,255,0) 75%);opacity:.15;will-change:opacity,transform;animation:hbreath 8s cubic-bezier(.45,.05,.55,.95) infinite alternate}
+@keyframes hbreath{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1.18)}}
+@media (prefers-reduced-motion:reduce){.hero-breathe{animation:none;opacity:.5}}
