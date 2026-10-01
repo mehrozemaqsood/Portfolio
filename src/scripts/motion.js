@@ -132,13 +132,5 @@ if (!reduce) {
     addEventListener('pointerdown', () => dot.classList.add('down'));
     addEventListener('pointerup', () => dot.classList.remove('down'));
 
-    // Magnetic pill buttons
-    document.querySelectorAll('.stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button').forEach((b) => {
-      b.addEventListener('pointermove', (e) => {
-        const r = b.getBoundingClientRect();
-        b.style.translate = `${((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1)}px ${((e.clientY - r.top - r.height / 2) * 0.28).toFixed(1)}px`;
-      });
-      b.addEventListener('pointerleave', () => { b.style.translate = ''; });
-    });
   }
 }
