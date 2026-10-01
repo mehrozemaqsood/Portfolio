@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '@fontsource/raleway/400.css';
 import '@fontsource/raleway/500.css';
 import '@fontsource/raleway/600.css';
@@ -28,6 +29,7 @@ document.documentElement.style.setProperty('--z',(w/d)+'');
 addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',(w/d)+'')})})();
 </script>
 <Analytics />
+<SpeedInsights />
 </head>
 <body><slot /><script>import '../scripts/motion.js';</script></body>
 </html>
