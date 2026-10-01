@@ -22,12 +22,7 @@ const { title = 'Mehroze Maqsood', description = 'UI/UX and product designer por
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="preload" href="/fonts/Utara-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
-<script is:inline>
-// scale the active Figma frame (1440 / 768 / 390) to the viewport width, before first paint
-(function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;
-document.documentElement.style.setProperty('--z',(w/d)+'');
-addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',(w/d)+'')})})();
-</script>
+<script is:inline src="/scale.js"></script>
 <Analytics />
 <SpeedInsights />
 <link rel="icon" href="/favicon.ico?v=4" sizes="48x48" />
@@ -35,5 +30,5 @@ addEventListener('resize',function(){var w=document.documentElement.clientWidth,
 <link rel="icon" href="/favicon-32.png?v=4" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
 </head>
-<body><slot /><script>import '../scripts/motion.js';</script></body>
+<body><slot /><script>import '../scripts/protect.js';import '../scripts/motion.js';</script></body>
 </html>

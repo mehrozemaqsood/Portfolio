@@ -24,8 +24,10 @@ const big = m ? m.variants[m.variants.length - 1] : 0;
     dlg = document.createElement('dialog');
     dlg.className = 'vd-lb';
     dlg.setAttribute('aria-label', 'Image viewer');
-    dlg.innerHTML = '<button type="button" class="vd-lb-x" aria-label="Close">&times;</button><img alt="" />';
-    imgEl = dlg.querySelector('img')!;
+    const x = document.createElement('button');
+    x.type = 'button'; x.className = 'vd-lb-x'; x.setAttribute('aria-label', 'Close'); x.textContent = '\u00d7';
+    imgEl = document.createElement('img'); imgEl.alt = '';
+    dlg.append(x, imgEl);
     dlg.addEventListener('click', (e) => { if (e.target !== imgEl) dlg!.close(); });
     dlg.addEventListener('close', () => { imgEl.removeAttribute('src'); last?.focus(); });
     dlg.addEventListener('keydown', (e) => {

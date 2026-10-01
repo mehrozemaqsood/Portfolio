@@ -3,3 +3,11 @@ dist
 .astro
 opt.log
 src/assets/raw/
+
+.env
+.env.*
+.vercel
+*.log
+.DS_Store
+*.pem
+*.key
