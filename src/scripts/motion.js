@@ -86,6 +86,28 @@ if (!reduce) {
     addEventListener('scroll', () => { if (!run) { cur = tgt = scrollY; } }, { passive: true });
     window.__moTo = (y) => { if (!run) cur = scrollY; tgt = Math.max(0, Math.min(max(), y)); if (!run) { run = true; requestAnimationFrame(step); } };
   }
+  // Duration-based glide (ease-in-out, length scales with distance) used by Back to Top and in-page links.
+  // Any wheel/touch/key input hands control straight back to the user.
+  let gid = 0;
+  const glide = (to) => {
+    const from = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    to = Math.max(0, Math.min(max, to));
+    const d = Math.abs(to - from);
+    if (d < 2) return;
+    const dur = Math.min(3400, Math.max(1100, 700 + d * 0.22));
+    const id = ++gid, t0 = performance.now();
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const stop = () => { gid++; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((ev) => addEventListener(ev, stop, { once: true, passive: true, capture: true }));
+    const tick = (now) => {
+      if (id !== gid) return;
+      const t = Math.min(1, (now - t0) / dur);
+      scrollTo({ top: from + (to - from) * ease(t), behavior: 'instant' });
+      if (t < 1) requestAnimationFrame(tick);
+      else ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((ev) => removeEventListener(ev, stop, true));
+    };
+    requestAnimationFrame(tick);
+  };
   // Back-to-top and in-page links glide instead of jumping
   document.addEventListener('click', (e) => {
     const a = e.target.closest && e.target.closest('a[href^="#"],[data-top]');
@@ -98,7 +120,7 @@ if (!reduce) {
     if (y === null) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     e.preventDefault();
-    if (window.__moTo) window.__moTo(y); else scrollTo({ top: y, behavior: 'smooth' });
+    glide(y);
   }, true);
 
   // Cursor: small difference-blend dot that swells over links and buttons
