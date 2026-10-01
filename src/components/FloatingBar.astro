@@ -1,14 +1,21 @@
 ---
 // Floating pill bar used on case-study pages. Figma: Homepage 142x52 | Connect now 156x52 | Back to top 52x52.
 // `v` = "d" (desktop 1440 frame) | "t" (tablet) | "m" (mobile). Positions are measured from the Figma instances.
-const { v = 'd' } = Astro.props;
+const { v = 'd', first = 'home' } = Astro.props;
 const pos = { d: 'left:calc(50% - 194px);bottom:26px', t: 'left:calc(50% - 187px);bottom:32px', m: 'left:calc(50% - 187px);bottom:32px' }[v];
 ---
 <div class="fb fixed z-50 flex items-start" style={`${pos};gap:8px`} data-fb>
+{first === 'cv' ? (
+  <a href="/Mehroze_UIUX_CV.pdf" target="_blank" rel="noopener" class="flex h-[52px] w-[142px] items-center justify-center gap-[8px] rounded-[26px] border border-solid border-[rgba(255,255,255,0.32)] bg-[rgba(255,255,255,0.14)] pl-[22px] pr-[18px] backdrop-blur-[12px]" style="filter:drop-shadow(0px 10px 15px rgba(0,0,0,0.35))">
+    <span class="font-ral text-[15px] font-semibold leading-[normal] text-white whitespace-nowrap">View CV</span>
+    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M0.707 13L12.707 1M12.707 10V1H3.707" stroke="#fff" stroke-width="2"/></svg>
+  </a>
+) : (
   <a href="/" class="flex h-[52px] w-[142px] items-center justify-center gap-[8px] rounded-[26px] border border-solid border-[rgba(255,255,255,0.32)] bg-[rgba(255,255,255,0.14)] pl-[18px] pr-[22px] backdrop-blur-[12px]" style="filter:drop-shadow(0px 10px 15px rgba(0,0,0,0.35))">
     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 7H1M7 13L1 7L7 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span class="font-ral text-[15px] font-semibold leading-[normal] text-white whitespace-nowrap">Homepage</span>
   </a>
+)}
   <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[52px] w-[156px] items-center justify-center gap-[8px] rounded-[26px] border border-solid border-[rgba(141,140,140,0.32)] bg-white pl-[18px] pr-[22px] backdrop-blur-[12px]" style="filter:drop-shadow(0px 10px 15px rgba(0,0,0,0.35))">
     <span class="font-ral text-[15px] font-semibold leading-[normal] text-[#020202] whitespace-nowrap">Connect now</span>
     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M0.707 13L12.707 1M12.707 10V1H3.707" stroke="#020202" stroke-width="2"/></svg>
