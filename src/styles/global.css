@@ -63,7 +63,13 @@ html.mo-cursor,html.mo-cursor *{cursor:none!important}
 *::-webkit-scrollbar-thumb{background:rgba(140,145,165,.55);border-radius:6px}
 *::-webkit-scrollbar-thumb:hover{background:rgba(160,166,190,.85)}
 
-/* Hero "breathing" glow: one static radial layer whose opacity/scale ease in and out (compositor-only, no repaint) */
-.hero-breathe{background:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(180,196,255,.72) 0%,rgba(150,170,255,.34) 45%,rgba(150,170,255,0) 75%);opacity:.15;will-change:opacity,transform;animation:hbreath 8s cubic-bezier(.45,.05,.55,.95) infinite alternate}
-@keyframes hbreath{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1.18)}}
-@media (prefers-reduced-motion:reduce){.hero-breathe{animation:none;opacity:.5}}
+/* Hero wave glow: three soft light bands drift and swell at different speeds so the gradient rolls like a slow wave.
+   Only transform is animated on pre-painted layers (compositor-only, no repaint). */
+.hw{position:absolute;display:block;left:-300px;width:2040px;height:520px;border-radius:50%;will-change:transform;pointer-events:none}
+.hw1{top:300px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(190,204,255,.85) 0%,rgba(160,178,255,.4) 50%,rgba(150,170,255,0) 100%);animation:hw1 9s ease-in-out infinite alternate}
+.hw2{top:120px;height:420px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(14,22,96,.7) 0%,rgba(14,22,96,.3) 50%,rgba(14,22,96,0) 100%);animation:hw2 13s ease-in-out infinite alternate}
+.hw3{top:430px;height:460px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(210,220,255,.75) 0%,rgba(175,190,255,.32) 50%,rgba(170,186,255,0) 100%);animation:hw3 11s ease-in-out infinite alternate}
+@keyframes hw1{0%{transform:translate3d(-320px,110px,0) scale(1,.75)}50%{transform:translate3d(0,-90px,0) scale(1.12,1.25)}100%{transform:translate3d(320px,100px,0) scale(1,.8)}}
+@keyframes hw2{0%{transform:translate3d(340px,-60px,0) scale(1,1.15)}50%{transform:translate3d(0,110px,0) scale(1.15,.75)}100%{transform:translate3d(-340px,-50px,0) scale(1,1.1)}}
+@keyframes hw3{0%{transform:translate3d(-260px,-110px,0) scale(1.1,.8)}50%{transform:translate3d(80px,70px,0) scale(1,1.25)}100%{transform:translate3d(280px,-100px,0) scale(1.15,.85)}}
+@media (prefers-reduced-motion:reduce){.hw{animation:none}}
