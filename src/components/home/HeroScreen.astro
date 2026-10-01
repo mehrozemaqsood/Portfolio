@@ -1,0 +1,54 @@
+---
+// Animated browsing inside the hero monitor. The monitor photo (R2_14-790) is untouched; this overlays the real
+// LensesOnline home page, perspective-matched to the screen quad (homography fitted to the photo), and scrolls it
+// after a 1.5s static hold. Chunks live in a <template> so nothing downloads until the page has loaded.
+import Img from '../Img.astro';
+const m3d = 'matrix3d(0.4298810965,0.01897473192,0,7.010280509e-05,0.004292844515,0.4219874933,0,1.024416296e-06,0,0,1,0,87.30700579,31.28177122,0,1)';
+const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.083], ['R2_I239-7709-239-7634', 554.167], ['R2_I239-7709-255-22521', 565.021], ['R2_I239-7709-255-22522', 1180.833], ['R2_I239-7709-255-22523', 614.167], ['R2_I239-7709-255-22524', 496.25], ['R2_I239-7709-255-22525', 531.25]];
+---
+<div class="ms absolute left-[393.1px] top-[238px] h-[469.625px] w-[556.002px] pointer-events-none" aria-hidden="true">
+  <div class="ms-vp absolute left-0 top-0 overflow-hidden bg-[#1a1fb8]" style={`width:1200px;height:715px;transform-origin:0 0;transform:${m3d};opacity:0`}>
+    <div class="ms-sc" style="will-change:transform"></div>
+  </div>
+  <template class="ms-tpl">
+    {chunks.map(([k, h]) => (<div class="relative" style={`width:1200px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 block size-full max-w-none object-cover" sizes="480px" /></div>))}
+  </template>
+</div>
+<script>
+  const root = document.querySelector<HTMLElement>('.stage-d .ms');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches || /[?&]still\b/.test(location.search);
+  if (root && !calm) {
+    const vp = root.querySelector<HTMLElement>('.ms-vp')!, sc = root.querySelector<HTMLElement>('.ms-sc')!;
+    const tpl = root.querySelector<HTMLTemplateElement>('.ms-tpl')!;
+    const start = () => {
+      const frag = tpl.content.cloneNode(true) as DocumentFragment;
+      frag.querySelectorAll('img').forEach((i) => { i.loading = 'eager'; i.setAttribute('fetchpriority', 'low'); });
+      sc.appendChild(frag);
+      const imgs = [...sc.querySelectorAll('img')];
+      const total = 715 + 257.083 + 554.167 + 565.021 + 1180.833 + 614.167 + 496.25 + 531.25;
+      const end = total - 715;
+      Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : Promise.resolve()))).then(() => {
+        const wait = Math.max(0, 1500 - performance.now());
+        setTimeout(() => {
+          vp.style.transition = 'opacity .6s ease'; vp.style.opacity = '1';
+          // browse like a person: glide to a section, rest a beat, glide on; ends on the last section and stays there
+          const stops = [0, 640, 1380, 2300, 3260, 3800, end];
+          const dur = [3600, 3200, 3800, 3800, 3000, 3400];
+          const hold = 900, ease = 'cubic-bezier(.45,0,.2,1)';
+          const T = dur.reduce((s, d) => s + d + hold, 0) - hold;
+          // WAAPI easing on a keyframe shapes the segment that STARTS at it: glides ease, holds stay put
+          const kf: Keyframe[] = [];
+          let t = 0;
+          dur.forEach((d, i) => {
+            kf.push({ transform: `translate3d(0,${-stops[i]}px,0)`, offset: t / T, easing: ease });
+            t += d;
+            kf.push({ transform: `translate3d(0,${-stops[i + 1]}px,0)`, offset: t / T, easing: 'linear' });
+            if (i < dur.length - 1) t += hold;
+          });
+          sc.animate(kf, { duration: T, fill: 'forwards', easing: 'linear' });
+        }, wait);
+      });
+    };
+    if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  }
+</script>
