@@ -47,3 +47,17 @@ html.mo-cursor,html.mo-cursor *{cursor:none!important}
 @keyframes vt-out{to{transform:scale(.94);opacity:.5}}
 @keyframes vt-in{from{transform:translateY(100%)}}
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+/* Floating bar: darken whatever is behind the glass pills so white text stays readable over bright content */
+[data-fb] > a:first-child,[data-fb] [data-top]{-webkit-backdrop-filter:blur(12px) brightness(.4)!important;backdrop-filter:blur(12px) brightness(.4)!important}
+[data-fb] > a:first-child span,[data-fb] [data-top] svg{text-shadow:0 1px 3px rgba(0,0,0,.45)}
+
+/* Gallery wall: some exported tiles carry a 1px white edge; overscale slightly inside the clipped cell to crop it */
+.gw img{transform:scale(1.035);transform-origin:center}
+
+/* Sleek scrollbars for inner scroll areas */
+*{scrollbar-width:thin;scrollbar-color:rgba(140,145,165,.55) transparent}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:rgba(140,145,165,.55);border-radius:6px}
+*::-webkit-scrollbar-thumb:hover{background:rgba(160,166,190,.85)}
