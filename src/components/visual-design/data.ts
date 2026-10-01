@@ -64,3 +64,24 @@ export const tablet: SecT[] = [
     tiles: [[V('326-1876'),0,0,W,FH],...pairs([V('326-1877'),V('326-1878'),V('326-1879'),V('326-1880')],400.76),[V('326-1881'),0,807.827,W,FH]] },
   { eyebrow: '08  /  BOOK COVER', title: 'BOOK COVER', h: 789, gh: 387, gy: 330, sh: 80, statement: desktop[7].statement, tiles: [[V('326-1887'),0,0,W,FH]] },
 ];
+
+// Mobile (390) gallery sections: same images/order as the tablet, laid out 2-up from the Figma coordinates.
+const M = 169, M2 = 181;
+const mp = (keys: string[], y0: number, h: number, step: number) => keys.map((k, i): T => [k, i % 2 ? M2 : 0, y0 + Math.floor(i / 2) * step, M, h]);
+export const mobile: SecT[] = [
+  { id: 'brand-identity', eyebrow: '01  /  BRAND IDENTITY', title: 'GOURMET', h: 1622, gh: 1074, gy: 492, sh: 280, statement: desktop[0].statement,
+    tiles: [1737,1738,1739,1740,1741,1742,1743,1744,1745,1746,1747,1748].map((n, i): T => [V('326-' + n), i % 2 ? M2 : 0, Math.floor(i / 2) * 181, M, M]) },
+  { id: 'e-commerce', eyebrow: '02  /  E-COMMERCE VISUALS', title: 'BAYSIDE', h: 924.394, gh: 416.394, gy: 452, sh: 240, statement: desktop[1].statement,
+    tiles: [[V('326-1790'),0,0,M,95.0625],[V('326-1793'),M2,0,M,95.134],[V('326-1792'),0,107.0625,M,95.134],[V('326-1794'),M2,107.134,M,95.134],[V('326-1795'),0,214.197,M,95.134],[V('326-1796'),M2,214.269,M,95.0625],[V('326-1797'),0,321.331,M,95.0625]] },
+  { eyebrow: '03  /  BRAND IDENTITY', title: 'WURX MEDIA', h: 1178.806, gh: 630.806, gy: 492, sh: 280, lines: 'plain', statement: desktop[2].statement,
+    tiles: [[V('320-1842'),0,0,M,95.203],[V('326-1721'),M2,0,M,95.134],[V('326-1722'),M2,107.134,M,95.134],[V('326-1723'),0,107.203,M,95.134],[V('326-1724'),M2,214.269,M,95.134],[V('326-1725'),0,214.338,M,95.134],[V('326-1726'),M2,321.403,M,95.134],[V('326-1727'),0,321.472,M,95.134],[V('326-1728'),M2,428.537,M,95.134],[V('326-1729'),0,428.606,M,95.134],[V('320-1844'),M2,535.672,M,95.134],[V('326-1731'),0,535.741,M,95.0625]] },
+  { id: 'social-media', eyebrow: '04  /  SOCIAL MEDIA', title: 'SOCIAL POSTS', h: 1485.5, gh: 977.5, gy: 452, sh: 240, lines: 'sheen', statement: desktop[3].statement,
+    tiles: [[V('326-1838'),0,0,M,211.25],[V('320-1823'),M2,0,M,M],[V('326-1840'),M2,181,M,M],[V('326-1841'),0,223.25,M,M],[V('326-1842'),M2,362,M,211.25],[V('326-1843'),0,404.25,M,211.25],[V('326-1844'),M2,585.25,M,M],[V('326-1845'),0,627.5,M,M],[V('326-1846'),M2,766.25,M,211.25]] },
+  { eyebrow: '05  /  CAMPAIGN POSTERS', title: 'CAMPAIGN POSTERS', h: 1553, gh: 1050, gy: 447, sh: 240, lines: 'plain', ts: 36.796, tl: 38.548, tt: -1.0951, statement: desktop[4].statement,
+    tiles: ['1778','1779','1780','1781','1782','1783','1784'].map((n, i): T => [V('326-' + n), i % 2 ? M2 : 0, Math.floor(i / 2) * 265.5, M, 253.5]) },
+  { eyebrow: '06  /  E-COMMERCE VISUALS', title: 'KAWALA', h: 817.331, gh: 309.331, gy: 452, sh: 240, lines: 'plain', statement: desktop[5].statement,
+    tiles: [[V('326-1827'),0,0,M,95.0625],[V('326-1828'),M2,0,M,95.134],[V('326-1829'),0,107.0625,M,95.134],[V('326-1830'),M2,107.134,M,95.134],[V('326-1831'),0,214.197,M,95.134],[V('326-1832'),M2,214.269,M,95.0625]] },
+  { id: 'growth-stories', eyebrow: '07  /  GROWTH STORIES', title: 'CASE STUDY COVERS', h: 771.331, gh: 309.331, gy: 406, sh: 200, lines: 'plain', ts: 35.723, tl: 37.424, tt: -1.0632, statement: desktop[6].statement,
+    tiles: [[V('326-1876'),0,0,M,95.0625],[V('326-1877'),M2,0,M,95.134],[V('326-1878'),0,107.0625,M,95.134],[V('326-1879'),M2,107.134,M,95.134],[V('326-1880'),0,214.2,M,95.134],[V('326-1881'),M2,214.27,M,95.0625]] },
+  { eyebrow: '08  /  BOOK COVER', title: 'BOOK COVER', h: 523.0625, gh: 95.0625, gy: 372, sh: 160, statement: desktop[7].statement, tiles: [[V('326-1887'),0,0,M,95.0625]] },
+];

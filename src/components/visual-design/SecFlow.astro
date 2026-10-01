@@ -2,12 +2,12 @@
 // Gallery sections for the tablet / mobile frames (text flows, gallery is absolutely laid out from the Figma coordinates).
 import Tile from './Tile.astro';
 const { secs, o } = Astro.props;
-const stripes = `background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(0,0,0,.02) 65.4545px)`;
+const stripesFor = (p: number) => `background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0, rgba(0,0,0,.02) ${p}px)`;
 const altOf = (t: string, i: number) => `${t.toLowerCase().replace(/\b\w/g, (c: string) => c.toUpperCase())} design ${i + 1}`;
 ---
 {secs.map((s: any) => (
   <section class="relative w-full overflow-clip bg-[#020202]" style={`height:${s.h}px;${s.lines === 'sheen' ? o.sheen : ''}`} aria-label={s.title}>
-    {s.lines && <div class="absolute left-0 right-0 top-0" style={`${stripes};height:${s.lines === 'sheen' ? 2920 : 884}px`} aria-hidden="true"></div>}
+    {s.lines && <div class="absolute left-0 right-0 top-0" style={`${stripesFor(s.lines === 'sheen' ? 65.4545 : (o.lw ?? 65.4545))};height:${s.lines === 'sheen' ? 2920 : 884}px`} aria-hidden="true"></div>}
     <p id={s.id} class="absolute whitespace-pre font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0]" style={`left:${o.pad}px;top:${o.top}px`}>{s.eyebrow}</p>
     <h2 class="absolute whitespace-nowrap font-ral font-semibold text-white" style={`left:${o.pad}px;top:${o.top + 48}px;font-size:${s.ts ?? o.ts}px;line-height:${s.tl ?? o.tl}px;letter-spacing:${s.tt ?? o.tt}px`}>{s.title}</h2>
     <p class="absolute font-ral text-[30px] font-semibold leading-[40px] text-white" style={`left:${o.pad}px;top:${o.top + 48 + o.tl + 32}px;width:${o.w}px;height:${s.sh}px`}>{s.statement}</p>
