@@ -1,6 +1,5 @@
 <svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Close Button">
-<rect x="0.5" y="0.5" width="42" height="42" rx="21" stroke="#808CFF"/>
 <path id="Vector" d="M14.5 14.5L28.5 28.5M28.5 14.5L14.5 28.5" stroke="#B8C2FF" stroke-width="1.5" stroke-linecap="round"/>
 </g>
 </svg>
