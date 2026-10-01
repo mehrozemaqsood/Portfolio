@@ -140,7 +140,7 @@ const ovBg = 'linear-gradient(28.293523382608548deg, rgb(0, 0, 0) 37.573%, rgb(8
       <p class={lead} style={Hh(160)}>A sports park foundation should feel as reliable as the grounds it looks after.</p>
       <p class={body} style={Hh(224)}>Stichting Sportparkbeheer Beuningen manages Sportpark De Ooigraaf for its users, the municipality and local partners. The old website held the right information but buried it in text and tabs. The redesign keeps the official house style and turns it into a homepage that sends visitors to the right place.</p>
       <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
-        {goals.map(([n, t, d, h]) => (<div class={card} style={Hh(242)}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd} style={Hh(h)}>{d}</p></div>))}
+        {goals.map(([n, t, d, h], i) => (<div class={card} style={Hh(242)}><p class={num} style={i === 0 ? 'color:#00c0ff' : undefined}>{n}</p><h3 class={ct}>{t}</h3><p class={cd} style={i === 0 ? `${Hh(h)};color:#fff` : Hh(h)}>{d}</p></div>))}
       </div>
     </section>
 
@@ -178,7 +178,7 @@ const ovBg = 'linear-gradient(28.293523382608548deg, rgb(0, 0, 0) 37.573%, rgb(8
       <h2 class={title}>PRINCIPLES</h2>
       <p class={lead} style={Hh(160)}>Four rules from the brief kept the homepage clear, local and consistent.</p>
       <div class="flex w-full shrink-0 flex-col items-start gap-[16px]">
-        {principles.map(([n, t, d, h]) => (<div class={card}><p class={num}>{n}</p><h3 class="h-[15px] whitespace-nowrap font-ral text-[11px] font-semibold leading-[15px] text-white">{t}</h3><p class={cd} style={Hh(h)}>{d}</p></div>))}
+        {principles.map(([n, t, d, h]) => (<div class={card}><p class={num}>{n}</p><h3 class={`${ct} whitespace-nowrap`}>{t}</h3><p class={cd} style={Hh(h)}>{d}</p></div>))}
       </div>
     </section>
 
@@ -262,7 +262,7 @@ const ovBg = 'linear-gradient(28.293523382608548deg, rgb(0, 0, 0) 37.573%, rgb(8
       <p class={lead} style={Hh(120)}>A text-heavy association site becomes a clear routing page.</p>
       <p class={body} style={Hh(140)}>This is a design case study, not a shipped product, so there are no live figures. It shows how structure, hierarchy and the existing house style change how a local foundation is understood.</p>
       <div class="flex w-full shrink-0 flex-col items-start gap-[16px]">
-        {outcomes.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class="h-[15px] whitespace-nowrap font-ral text-[11px] font-semibold leading-[15px] text-white">{t}</h3><p class={cd} style={Hh(78)}>{d}</p></div>))}
+        {outcomes.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={`${ct} whitespace-nowrap`}>{t}</h3><p class={cd} style={Hh(78)}>{d}</p></div>))}
       </div>
     </section>
   </div>
