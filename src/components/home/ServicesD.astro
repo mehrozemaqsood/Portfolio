@@ -55,6 +55,7 @@ const rows = [
   document.querySelectorAll<HTMLElement>('.svc-list').forEach((list) => {
     const rows = [...list.querySelectorAll<HTMLElement>('.svc-row')];
     const pops = [...list.querySelectorAll<HTMLElement>('.svc-pop')];
+    if (!pops.length) return;
     const set = (i: number) => {
       rows.forEach((r, k) => (k === i ? r.setAttribute('data-on', '') : r.removeAttribute('data-on')));
       pops.forEach((p, k) => (k === i ? p.setAttribute('data-on', '') : p.removeAttribute('data-on')));

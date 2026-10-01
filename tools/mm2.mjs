@@ -1,0 +1,15 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const p=await b.newPage({viewport:{width:390,height:800}});
+await p.goto('http://localhost:4321/?still');await p.waitForTimeout(1000);
+await p.locator('#menu-open-m').click();await p.waitForTimeout(1200);
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.menu-link')].filter(a=>a.offsetParent).map(a=>{const s=a.querySelectorAll('span')[1];return s.textContent+' '+s.scrollWidth+'/'+a.clientWidth+' right '+Math.round(s.getBoundingClientRect().right)})));
+await p.screenshot({path:'/tmp/menu.png'});
+await p.keyboard.press('Escape');
+const a=p.locator('a[href="/visual-design"].project-card:visible').first();await a.scrollIntoViewIfNeeded().catch(()=>{});
+await p.evaluate(()=>document.querySelector('#work-m').scrollIntoView());await p.waitForTimeout(500);
+await p.locator('a[href="/visual-design"].project-card').last().scrollIntoViewIfNeeded();await p.waitForTimeout(1500);
+await p.locator('a[href="/visual-design"].project-card').last().screenshot({path:'/tmp/vdm.png'});
+await p.locator('#services-m').scrollIntoViewIfNeeded();await p.waitForTimeout(800);
+await p.locator('#services-m').screenshot({path:'/tmp/svm.png'});
+await b.close();
