@@ -70,24 +70,31 @@ if (!reduce) {
     const dot = document.createElement('div');
     dot.className = 'mo-cur';
     dot.setAttribute('aria-hidden', 'true');
+    const lab = document.createElement('span');
+    dot.appendChild(lab);
     document.body.appendChild(dot);
     root.classList.add('mo-cursor');
-    let x = -50, y = -50, cx = x, cy = y, s = 16, ts = 16, raf = 0;
+    document.querySelectorAll('.project-card,.svc-row[data-href]').forEach((e) => e.setAttribute('data-cursor', 'VIEW'));
+    document.querySelectorAll('.rec-stack').forEach((e) => e.setAttribute('data-cursor', 'DRAG'));
+    let x = -50, y = -50, cx = x, cy = y, raf = 0, cur = '';
     const loop = () => {
-      cx += (x - cx) * 0.22; cy += (y - cy) * 0.22; s += (ts - s) * 0.18;
-      dot.style.width = dot.style.height = s.toFixed(2) + 'px';
-      dot.style.transform = `translate3d(${(cx - s / 2).toFixed(2)}px,${(cy - s / 2).toFixed(2)}px,0)`;
-      raf = Math.abs(x - cx) + Math.abs(y - cy) + Math.abs(ts - s) > 0.02 ? requestAnimationFrame(loop) : 0;
+      cx += (x - cx) * 0.28; cy += (y - cy) * 0.28;
+      dot.style.transform = `translate3d(${cx.toFixed(2)}px,${cy.toFixed(2)}px,0) translate(-50%,-50%)`;
+      raf = Math.abs(x - cx) + Math.abs(y - cy) > 0.05 ? requestAnimationFrame(loop) : 0;
     };
     const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
-    addEventListener('pointermove', (e) => {
-      x = e.clientX; y = e.clientY; dot.style.opacity = '1';
-      ts = e.target.closest && e.target.closest('a,button,[role=button]') ? 72 : 16;
-      kick();
-    }, { passive: true });
+    const state = (t) => {
+      const c = t && t.closest ? t.closest('[data-cursor]') : null;
+      const l = c ? c.getAttribute('data-cursor') : '';
+      const h = !l && t && t.closest && t.closest('a,button,[role=button]');
+      if (l !== cur) { cur = l; lab.textContent = l; }
+      dot.classList.toggle('lbl', !!l);
+      dot.classList.toggle('hov', !!h);
+    };
+    addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; dot.style.opacity = '1'; state(e.target); kick(); }, { passive: true });
     document.addEventListener('pointerleave', () => { dot.style.opacity = '0'; });
-    addEventListener('pointerdown', () => { ts = 11; kick(); });
-    addEventListener('pointerup', (e) => { ts = e.target.closest && e.target.closest('a,button') ? 72 : 16; kick(); });
+    addEventListener('pointerdown', () => dot.classList.add('down'));
+    addEventListener('pointerup', () => dot.classList.remove('down'));
 
     // Magnetic pill buttons
     document.querySelectorAll('.stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button').forEach((b) => {

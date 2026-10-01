@@ -34,7 +34,12 @@ html.mo [data-rv=img].in img{scale:1}
 .stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button{transition:translate .45s var(--ease)}
 .stage footer a:not([class*="rounded"]){background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease),color .3s}
 .stage footer a:not([class*="rounded"]):hover{background-size:100% 1px;color:#fff}
-.mo-cur{position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483000;opacity:0;transition:opacity .25s;will-change:transform}
+.mo-cur{position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483000;opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .25s,width .45s var(--ease),height .45s var(--ease),border-radius .45s var(--ease);will-change:transform}
+.mo-cur span{font:700 13px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.04em;color:#020202;opacity:0;transition:opacity .2s;white-space:nowrap}
+.mo-cur.hov{width:72px;height:72px}
+.mo-cur.down{width:11px;height:11px}
+.mo-cur.lbl{width:76px;height:46px;border-radius:24px;mix-blend-mode:normal}
+.mo-cur.lbl span{opacity:1}
 html.mo-cursor,html.mo-cursor *{cursor:none!important}
 /* Cross-page fade between case studies (progressive enhancement) */
 @view-transition{navigation:auto}
