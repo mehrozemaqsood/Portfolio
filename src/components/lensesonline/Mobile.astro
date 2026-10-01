@@ -1,3 +1,311 @@
 ---
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import BgLines from './BgLines.astro';
+import BrowserMock from './BrowserMock.astro';
+
+const meta = [['ROLE', 'UI/UX Designer'], ['TIMELINE', 'Redesign Project'], ['TOOLS', 'Figma'], ['CLIENT', 'LensesOnline (NZ)']];
+const stats = [['19', 'Desktop pages', 'Every core shopping page'], ['19', 'Mobile pages', 'A layout for each page'], ['13', 'Components', 'Cards, navigation, buttons'], ['13', 'Overlay screens', 'Login, cart slider, pop-up'], ['2', 'Breakpoints', 'Desktop and mobile']];
+const goals = [['01', 'Build trust early', 'Delivery, guarantee and reviews sit in the layout itself, so the shopper is reassured before they are asked for anything.'], ['02', 'Make prescriptions easy', 'The most demanding step of buying lenses becomes a clear, guided form instead of a wall of dropdowns.'], ['03', 'Speed up reorders', 'Accounts, subscriptions and a cart slider keep repeat purchases to a few taps.']];
+const brief = [['The brief', 'Redesign the LensesOnline storefront end to end, keeping the products and the shopping journey but replacing the interface and its patterns.'], ['My role', 'UI/UX designer. I audited the old site, defined the page structure, designed every screen, built the component library and drew the mobile layouts.'], ['Scope', 'Home, category, product, cart, checkout, account, calculator, help, blog, reviews and more: 18+ page types in Figma.']];
+const before = [
+  ['Home', 'BEFORE  /  HOME', 110, 'LensesOnli_269-1534', 'h-full left-0 top-0 w-[100.77%]', 'Three stacked strips before any content', 'A promo bar, a header and a rating strip come before the hero, and the hero itself is a rotating slider of photos that say little about the brand.'],
+  ['Product cards', 'BEFORE  /  PRODUCT CARDS', 172, 'LensesOnli_269-1536', 'h-[198.66%] left-[-62.58%] top-[-68.36%] w-[200.26%]', 'Uneven cards, repeated buttons', 'Product images come in different sizes and the same "Enter Prescription" button repeats on every card, so nothing stands out.'],
+  ['Category', 'BEFORE  /  CATEGORY', 137, 'LensesOnli_269-1536', 'h-[155.67%] left-[-30%] top-[-17.23%] w-[156.8%]', 'A text list instead of filters', 'Browsing relied on a long sidebar of plain text links, with no visual way to narrow down by brand, type or price.'],
+  ['Product form', 'BEFORE  /  PRODUCT FORM', 166, 'LensesOnli_269-1540', 'h-[155.67%] left-[-30%] top-[-55.67%] w-[156.8%]', 'Six dropdowns and a quantity of 0', 'The prescription form opens as six "Choose Options" dropdowns with a quantity of 0 for each eye, so nothing is pre-filled.'],
+];
+const principles = [['01', 'Trust is part of the layout', 'Delivery, guarantee and review signals are placed where doubt appears, not hidden in the footer.'], ['02', 'Prescription first', 'Lenses are useless without the right prescription, so that step gets the clearest, calmest form.'], ['03', 'Calm, consistent components', 'One button, card and nav system replaces one-off styles, so pages feel related.'], ['04', 'One system, two breakpoints', 'Every desktop page has a mobile layout built from the same components.']];
+const chunks = [['LensesOnli_240-12088', 572], ['LensesOnli_240-12089', 56], ['LensesOnli_240-12090', 269], ['LensesOnli_255-22551', 521], ['LensesOnli_255-22552', 538.025], ['LensesOnli_255-22553', 710], ['LensesOnli_255-22554', 567], ['LensesOnli_255-22555', 766], ['LensesOnli_255-22556', 1099.097]];
+const calc = [['01', 'Two eyes, one glance', 'Right and left eye sit side by side with SPH, CYL and AXIS labelled, so entry mirrors a real prescription.'], ['02', 'Result in the same shape', 'Results reuse the layout of the input in green-tinted cards, so the shopper compares like with like.'], ['03', 'Honest by design', 'A note says the result is an estimate to confirm with an eye-care professional, and a short guide explains each term.']];
+const desk = [['Product detail', '2490'], ['Home', '3143'], ['Category', '3853'], ['Account', '4394'], ['Cart', '5101'], ['Checkout', '5874'], ['Contact', '6177'], ['Power calculator', '6553'], ['Shipping rates', '6873'], ['Blog', '7239'], ['Blog post', '7572'], ['Terms and privacy', '7907'], ['Reviews', '8294'], ['About', '8624'], ['Money-back guarantee', '9437'], ['Brand not listed', '9897'], ['Help', '10265'], ['Help article', '10596'], ['Subscription', '10948']];
+const mob = [['Home', '11620'], ['Category', '12277'], ['Product', '12997'], ['Cart', '13693'], ['Checkout', '14449'], ['Contact', '14739'], ['Power calculator', '15099'], ['Shipping rates', '15414'], ['Blog', '15768'], ['Blog post', '16088'], ['Terms and privacy', '16375'], ['Reviews', '16741'], ['About', '17060'], ['Money-back guarantee', '17813'], ['Brand not listed', '18259'], ['Help', '18601'], ['Help article', '18916'], ['Subscription', '19257']];
+const dLogin = [['Default', '1264', 277], ['Wrong password', '1300', 286], ['Email exists', '1339', 286], ['Forgot password', '1352', 145], ['Create account', '1395', 322]];
+const mLogin = [['Default', '1434', 405], ['Wrong password', '1470', 417], ['Email exists', '1508', 417], ['Forgot password', '1521', 204], ['Create account', '1564', 454]];
+const outcomes = [['01', 'Retail UX', 'Trust signals, prescription entry, filters, cart and checkout designed for a shopper who is careful about what goes in their eyes.'], ['02', 'Systems thinking', '13 components and shared patterns drive 19 desktop and 18 mobile pages, plus login, cart and pop-up states.'], ['03', 'Responsive design', 'Every page has a mobile layout with a pinned, compact navigation and the same components at phone scale.'], ['04', 'Attention to detail', 'Error states, an honest calculator disclaimer, hover-ready cards and consistent spacing throughout.']];
+
+const sec = 'relative flex w-full flex-col items-start gap-[32px] px-[20px] py-[56px]';
+const eyebrow = 'w-full whitespace-nowrap font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#0083f0]';
+const lead = 'w-full font-ral text-[23.4px] font-semibold leading-[31.2px] text-white';
+const body = 'w-full font-ral text-[17px] font-normal leading-[28px] text-white';
+const card = 'flex w-full shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-[19px] py-[24px]';
+const num = 'h-[29px] w-full font-ral text-[24.96px] font-semibold leading-[28.08px] tracking-[-1.56px] text-[rgba(89,153,255,0.9)]';
+const ct = 'h-[26px] w-full font-ral text-[18.7px] font-semibold leading-[25.5px] text-white';
+const cd = 'w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]';
+const sub = 'w-full font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#9e9ea6]';
+const lab = 'w-full font-ral text-[14px] font-medium leading-[normal] text-white';
+const thumb = 'relative w-full shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]';
+const thumbImg = 'pointer-events-none absolute inset-0 size-full max-w-none rounded-[10px] object-cover';
+const noBar = '[scrollbar-width:none] [&::-webkit-scrollbar]:hidden';
+const lk = 'block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]';
+const Hh = (n) => `height:${n}px`;
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO lensesonline Mobile</div>
+<div class="relative h-[24473.6px] w-full overflow-clip bg-[#020202]">
+  <!-- Hero art (Var2) -->
+  <section aria-label="LensesOnline hero art" class="absolute left-0 top-0 h-[360px] w-full overflow-clip" style="background-image:linear-gradient(2.713744127407793deg, rgb(122, 145, 246) 28.782%, rgb(49, 71, 166) 54.697%, rgb(0, 0, 0) 90.241%)">
+    <BgLines top={0} h={884} sw={390} w={17.7273} />
+    <header class="absolute left-[20px] top-[24px] flex h-[43px] w-[350px] items-center justify-between">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <div class="flex-none -skew-x-[28deg] scale-y-[0.88]">
+            <div class="relative flex cursor-pointer items-start gap-[4.257px]">
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="flex shrink-0 items-start justify-end gap-[10px]">
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-[#8499f8] pl-[13px] pr-[6px]">
+          <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-black text-left whitespace-nowrap">Connect Now</p>
+          <span class="grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black" style="background-image:linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%), linear-gradient(90deg, rgb(168, 184, 255) 0%, rgb(168, 184, 255) 100%)"><Arrow /></span>
+        </a>
+        <button type="button" aria-label="Menu" class="flex size-[43px] shrink-0 flex-col items-center justify-center gap-[6px] overflow-clip rounded-[22px]">
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-[#b8c2ff]"></span>
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-[#b8c2ff]"></span>
+        </button>
+      </div>
+    </header>
+    <p aria-hidden="true" class="absolute left-[195px] top-[108px] -translate-x-1/2 bg-clip-text font-utara text-[48.034px] font-semibold not-italic leading-[normal] tracking-[-0.3258px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.2141426803027855deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(172.04049320124147deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%);-webkit-background-clip:text;background-clip:text">E-COMMERCE</p>
+    <div class="absolute left-0 top-[341.17px] h-[54.593px] w-[390px] rounded-tl-[14.198px] rounded-tr-[14.198px] bg-[#050505]"></div>
+    <div class="absolute left-[45.26px] top-[312.14px] h-[43.667px] w-[299.641px]"><Img f="PortfolioH_124-1789" class="absolute inset-0 size-full max-w-none object-bottom" sizes="300px" eager /></div>
+    <div class="absolute left-[45.33px] top-[141px] h-[214.802px] w-[254.31px]"><Img f="R2_124-1791" alt="LensesOnline homepage on a desktop monitor" class="absolute inset-0 size-full max-w-none" sizes="255px" eager /></div>
+    <div class="absolute left-[192.25px] top-[158.58px] flex h-[5.663px] w-[10.251px] items-center justify-center">
+      <div class="flex-none rotate-[1.01deg]"><div class="relative h-[5.484px] w-[10.156px]"><div class="pointer-events-none absolute inset-0 overflow-hidden"><Img f="PortfolioH_124-1792" class="absolute left-[-0.49%] top-[-7.41%] h-[107.41%] w-[100.99%] max-w-none" sizes="11px" /></div></div></div>
+    </div>
+    <div class="absolute left-[299.57px] top-[162.21px] flex h-[131.626px] w-[1.456px] items-center justify-center"><div class="h-[1.456px] w-[131.626px] flex-none -rotate-90 bg-gradient-to-l from-[#141611] to-[#020204]"></div></div>
+    <div class="absolute left-[84.15px] top-[155.35px] flex h-[140.776px] w-[1.871px] items-center justify-center"><div class="h-[1.871px] w-[140.776px] flex-none -rotate-90 rounded-bl-[1.183px] rounded-tl-[1.183px] bg-gradient-to-l from-[#262528] to-[#020204]"></div></div>
+    <div class="absolute left-[82.31px] top-[154.34px] flex h-[142.156px] w-[2.079px] items-center justify-center"><div class="h-[142.152px] w-[1.731px] flex-none rotate-[-0.14deg] rounded-bl-[0.592px] rounded-tl-[0.592px] bg-gradient-to-b from-[#414344] to-[#4a4b50]"></div></div>
+  </section>
+
+  <!-- Hero -->
+  <section aria-label="LensesOnline introduction" class="absolute left-0 top-[301px] flex h-[815.3px] w-full flex-col items-start px-[20px] pb-[56px] pt-[48px]">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <h1 class="h-[46px] w-full font-ral text-[45.76px] font-semibold leading-[45.76px] tracking-[-1.82px] text-white">LensesOnline</h1>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="h-[149px] w-full font-ral text-[18.7px] font-normal leading-[29.75px] tracking-[-0.34px] text-[#f5f5f5]">A full UI redesign of an online contact-lens retailer — rebuilding a dated, cluttered storefront into a clean, trustworthy shopping experience across 18+ page types.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[20px] gap-y-[28px] overflow-clip leading-[normal]">
+      {meta.map(([k, v]) => (
+        <div class="flex w-[165px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="w-full font-ral text-[20.4px] font-bold uppercase tracking-[1.105px] text-[#0083f0]">{k}</p>
+          <p class="w-full font-ral text-[18px] font-medium text-white">{v}</p>
+        </div>
+      ))}
+    </div>
+    <div class="h-[56px] w-px shrink-0"></div>
+    <BrowserMock s={0.2916667} eager />
+  </section>
+
+  <!-- Body -->
+  <div class="absolute left-0 top-[1116.3px] w-full">
+    <section aria-label="At a glance" class="flex w-full flex-wrap content-start items-start gap-x-[20px] gap-y-[32px] bg-[#020202] px-[20px] py-[40px]">
+      {stats.map(([n, t, d], i) => (
+        <div class="flex w-[165px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="h-[36px] w-full font-ral text-[33.28px] font-semibold leading-[35.36px] tracking-[-1.04px] text-white">{n}</p>
+          <p class="h-[21px] w-full font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+          <p class={`w-full font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6] ${i === 4 ? 'h-[16px]' : 'h-[32px]'}`}>{d}</p>
+        </div>
+      ))}
+    </section>
+
+    <section id="overview-m" aria-label="Overview" class={sec} style="background-image:linear-gradient(25.467177340742396deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
+      <p class={eyebrow}>{'01  /  OVERVIEW'}</p>
+      <h2 class="w-full font-ral text-[43.68px] font-semibold leading-[45.76px] tracking-[-1.3px] text-white">OVERVIEW</h2>
+      <p class={lead} style={Hh(125)}>An online contact-lens shop should feel as calm and trustworthy as an optician, not like a clearance flyer.</p>
+      <p class={body}>LensesOnline is a New Zealand contact-lens retailer. The existing storefront stacked promotional strips, uneven product cards and long text lists. I redesigned the whole experience as one UI system: 19 desktop pages and 18 mobile pages, built from 13 reusable components.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {goals.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section aria-label="Brief and role" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'02  /  BRIEF AND ROLE'}</p>
+      <h2 class="w-full font-ral text-[43.68px] font-semibold leading-[45.76px] tracking-[-1.3px] text-white">BRIEF AND ROLE</h2>
+      <p class={lead} style={Hh(125)}>The brief: make a dated, cluttered storefront feel modern and safe to buy from, on desktop and mobile.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {brief.map(([t, d]) => (<div class={card}><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+      <p class="w-full font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">This is a design project. Screens use placeholder content where needed, and no live performance figures are claimed.</p>
+    </section>
+
+    <section aria-label="The starting point" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'03  /  THE STARTING POINT'}</p>
+      <h2 class="w-full font-ral text-[35.55px] font-semibold leading-[37.243px] tracking-[-1.058px] text-white">THE STARTING POINT</h2>
+      <p class={lead} style={Hh(94)}>The old site worked, but almost<br />every page asked the shopper<br />to do extra work.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {before.map(([n, chip, cw, k, pos, t, d]) => (
+          <div class="flex w-full shrink-0 flex-col items-start gap-[16px]">
+            <div class="relative flex h-[280px] w-full shrink-0 flex-col items-center justify-center overflow-clip rounded-[16px] border border-dashed border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.03)]">
+              <div class="absolute left-[-1px] top-[-1px] h-[280px] w-[588px] rounded-[16px]"><div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px]"><Img f={k} alt={`Old site: ${n}`} class={`absolute max-w-none ${pos}`} sizes="588px" /></div></div>
+              <div class="absolute left-[5px] top-[5px] h-[21px] rounded-[5px] bg-[rgba(2,2,2,0.88)]" style={`width:${cw}px`}></div>
+              <p class="absolute left-[11px] top-[10px] font-ral text-[9px] font-bold leading-[normal] tracking-[1.5px] text-[#9e9ea6] whitespace-pre">{chip}</p>
+            </div>
+            {n === 'Home' ? <h3 class={ct} style="height:51px">Three stacked strips before any<br />content</h3> : <h3 class={ct}>{t}</h3>}
+            <p class={cd}>{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-label="Principles" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'04  /  PRINCIPLES'}</p>
+      <h2 class="w-full font-ral text-[43.68px] font-semibold leading-[45.76px] tracking-[-1.3px] text-white">PRINCIPLES</h2>
+      <p class={lead} style={Hh(94)}>Four rules kept every screen consistent, from the home page to the last checkout step.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {principles.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="mobile-m" aria-label="Mobile experience" class={sec} style="background-image:linear-gradient(20.85774244928882deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%)">
+      <BgLines top={2.5} h={1306} />
+      <p class={eyebrow}>{'05  /  MOBILE EXPERIENCE'}</p>
+      <h2 class="w-full whitespace-nowrap font-ral text-[36.476px] font-semibold leading-[38.213px] tracking-[-1.0856px] text-white">MOBILE EXPERIENCE</h2>
+      <p class={lead} style={Hh(94)}>The same system on a phone: scroll inside the device and switch pages with the chips.</p>
+      <div class="relative h-[675px] w-full shrink-0 overflow-clip">
+        <div class="absolute left-0 top-0" style="zoom:0.8393">
+          <div class="relative h-[804px] w-[417px] shrink-0 rounded-[56px] bg-[#15151a]">
+            <div class="absolute left-[12px] top-[12px] h-[780px] w-[393px] overflow-clip rounded-[44px] bg-white">
+              <div class={`lo-m-vp absolute left-0 top-0 h-[780px] w-[393px] overflow-y-auto overflow-x-clip bg-white ${noBar}`} tabindex="0" aria-label="LensesOnline home page on mobile, scrollable">
+                {chunks.map(([k, h]) => (<div class="relative bg-white" style={`width:393px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="330px" /></div>))}
+              </div>
+              <div class="pointer-events-none absolute left-0 top-0 h-[82px] w-[393px]"><Img f="LensesOnli_240-12091" alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="330px" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Power calculator" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'06  /  A NEW TOOL'}</p>
+      <h2 class="w-full whitespace-nowrap font-ral text-[34.917px] font-semibold leading-[36.58px] tracking-[-1.0392px] text-white">POWER CALCULATOR</h2>
+      <p class={lead} style={Hh(125)}>A small tool with a real job:<br />turning a glasses prescription<br />into a contact-lens power<br />estimate.</p>
+      <div class="relative h-[272.708px] w-[350px] shrink-0 rounded-[4.667px] border-[0.292px] border-solid border-[rgba(255,255,255,0.12)]"><Img f="LensesOnli_241-1666" alt="Contact lens power calculator with prescription guide" class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[4.667px] object-cover" sizes="350px" /></div>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {calc.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="every-page-m" aria-label="Every page" class={sec} style="background-image:linear-gradient(53.94899934053827deg, rgb(0, 0, 0) 27.897%, rgb(122, 145, 246) 45.429%, rgb(49, 71, 166) 61.811%, rgb(0, 0, 0) 92.236%)">
+      <BgLines top={1} h={2920} />
+      <p class={eyebrow}>{'07  /  EVERY PAGE'}</p>
+      <h2 class="w-full font-ral text-[43.68px] font-semibold leading-[45.76px] tracking-[-1.3px] text-white">EVERY PAGE</h2>
+      <p class={lead} style={Hh(94)}>19 desktop pages and 18<br />mobile pages, designed from<br />the same components.</p>
+      <p class={sub}>{'DESKTOP  /  19 PAGES'}</p>
+      <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[12px] gap-y-[20px]">
+        {desk.map(([t, k]) => (
+          <div class="flex w-[169px] shrink-0 flex-col items-start gap-[10px]">
+            <div class={`${thumb} h-[103px]`}><Img f={`LensesOnli_241-${k}`} alt={`${t} page, desktop`} class={thumbImg} sizes="169px" /></div>
+            <p class={lab}>{t}</p>
+          </div>
+        ))}
+      </div>
+      <p class={sub}>{'MOBILE  /  18 PAGES'}</p>
+      <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[12px] gap-y-[20px] overflow-clip">
+        {mob.map(([t, k]) => (
+          <div class="flex w-[169px] shrink-0 flex-col items-start gap-[10px] overflow-clip">
+            <div class={`${thumb} h-[345px]`}><Img f={`LensesOnli_241-${k}`} alt={`${t} page, mobile`} class={thumbImg} sizes="169px" /></div>
+            <p class={lab}>{t}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-label="Overlays and states" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'08  /  OVERLAYS AND STATES'}</p>
+      <h2 class="w-full whitespace-nowrap font-ral text-[32.486px] font-semibold leading-[34.033px] tracking-[-0.9669px] text-white">OVERLAYS AND STATES</h2>
+      <p class={lead} style={Hh(125)}>Account, cart and newsletter<br />moments are designed too:<br />every state a shopper can land<br />in.</p>
+      <p class={sub}>DESKTOP LOGIN / STATES</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {dLogin.map(([t, k, h]) => (
+          <div class="flex w-full shrink-0 flex-col items-start gap-[12px]">
+            <div class="relative w-[225px] shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]" style={Hh(h)}>
+              {t === 'Forgot password'
+                ? <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[10px]"><Img f={`LensesOnli_242-${k}`} alt={`Desktop login: ${t}`} class="absolute left-0 top-[4.86%] h-[97.18%] w-full max-w-none" sizes="225px" /></div>
+                : <Img f={`LensesOnli_242-${k}`} alt={`Desktop login: ${t}`} class={thumbImg} sizes="225px" />}
+            </div>
+            <p class={lab}>{t}</p>
+          </div>
+        ))}
+      </div>
+      <p class={sub}>MOBILE LOGIN / STATES</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {mLogin.map(([t, k, h]) => (
+          <div class="flex w-full shrink-0 flex-col items-start gap-[12px]">
+            <div class="relative w-[225px] shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]" style={Hh(h)}><Img f={`LensesOnli_242-${k}`} alt={`Mobile login: ${t}`} class={thumbImg} sizes="225px" /></div>
+            <p class={lab}>{t}</p>
+          </div>
+        ))}
+      </div>
+      <p class={sub}>CART SLIDER AND NEWSLETTER POP-UP</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        <div class="flex w-full shrink-0 flex-col items-start gap-[12px]">
+          <div class="relative h-[883px] w-[340px] shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]"><Img f="LensesOnli_242-1697" alt="Cart slider, desktop" class={thumbImg} sizes="340px" /></div>
+          <p class={lab}>Cart slider, desktop</p>
+        </div>
+        <div class="flex w-full shrink-0 flex-col items-start gap-[12px]">
+          <div class="relative h-[920px] w-[260px] shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.12)]"><Img f="LensesOnli_242-1760" alt="Cart slider, mobile" class={thumbImg} sizes="260px" /></div>
+          <p class={lab}>Cart slider, mobile</p>
+        </div>
+        <div class="flex w-full shrink-0 flex-col items-start gap-[12px]">
+          <div class="relative h-[135.168px] w-[350px] shrink-0 rounded-[6.53px] border-[0.653px] border-solid border-[rgba(255,255,255,0.12)]"><Img f="LensesOnli_242-1765" alt="Latest news bottom pop-up" class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[6.53px] object-cover" sizes="350px" /></div>
+          <p class={lab}>Latest news bottom pop-up</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Components" class={`${sec} overflow-clip`} style="background-image:linear-gradient(10.512946028665624deg, rgb(0, 0, 0) 27.897%, rgb(122, 145, 246) 45.429%, rgb(49, 71, 166) 61.811%, rgb(0, 0, 0) 92.236%)">
+      <BgLines top={0.5} h={2146} />
+      <p class={eyebrow}>{'09  /  COMPONENTS'}</p>
+      <h2 class="w-full font-ral text-[43.68px] font-semibold leading-[45.76px] tracking-[-1.3px] text-white">COMPONENTS</h2>
+      <p class={lead} style={Hh(94)}>Thirteen reusable pieces carry every page, so a change in one place updates the whole store.</p>
+      <div class={`lo-m-vp relative h-[221.667px] w-[350px] shrink-0 overflow-y-auto overflow-x-clip rounded-[4.667px] border-[0.292px] border-solid border-[rgba(255,255,255,0.12)] bg-white ${noBar}`} tabindex="0" aria-label="Component board, scrollable">
+        <div class="absolute left-[-0.29px] top-[-0.29px] h-[797.917px] w-[350px]"><Img f="LensesOnli_242-13396" alt="Component board: navigation, product cards, buttons and more" class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="350px" /></div>
+      </div>
+      <p class="w-full font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">Footer, product card, button set, benefit bar, sub-page menu, category card, slider buttons, testimonial card, product-page card, cart cards, navigation (desktop and mobile) and featured lenses. Scroll the board to see them all.</p>
+    </section>
+
+    <section id="outcomes-m" aria-label="Outcomes" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'10  /  OUTCOMES'}</p>
+      <h2 class="w-full font-ral text-[38.838px] font-semibold leading-[40.687px] tracking-[-1.1559px] text-white">WHAT THIS SHOWS</h2>
+      <p class={lead} style={Hh(125)}>A complete storefront,<br />designed as one system<br />instead of a set of one-off<br />screens.</p>
+      <p class={body}>This is a design case study, not a shipped product, so there are no live conversion or traffic figures to quote. What it demonstrates is the work itself.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {outcomes.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute left-0 top-[23798.9px] h-[674.727px] w-full overflow-clip" style="background-image:linear-gradient(41.27547200622653deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
+    <BgLines top={0} h={601} />
+    <p class="absolute left-1/2 top-[72px] -translate-x-1/2 bg-clip-text font-utara text-[36.237px] font-semibold not-italic leading-[normal] tracking-[-0.3336px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.16214003011057798deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(173.95684007902116deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">Let’s build something!</p>
+    <div class="absolute left-[20px] top-[173.73px] flex w-[350px] flex-col items-start gap-[40px] overflow-clip">
+      <div class="flex w-full shrink-0 flex-col items-start overflow-clip">
+        <p class="w-full font-ral text-[18px] font-normal leading-[30px] text-[rgba(255,255,255,0.75)]">Open to full-time UI/UX &amp; product design roles and select freelance projects. Send a brief and I'll get back to you.</p>
+      </div>
+      <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[40px] gap-y-[32px] overflow-clip whitespace-nowrap">
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal] text-left">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Explore</p>
+          <a href="/#about-m" class={lk}>About Me</a>
+          <a href="/#work-m" class={lk}>Selected Works</a>
+          <a href="/#services-m" class={lk}>What I Do</a>
+          <a href="/#contact-m" class={lk}>Contact</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal]">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Connect</p>
+          <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class={lk}>LinkedIn</a>
+          <a href="https://www.behance.net/mehrozemaqsood" target="_blank" rel="noopener" class={lk}>Behance</a>
+          <a href="mailto:mehrozemaqsood8@gmail.com" class={lk}>Email</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip">
+          <p class="font-ral text-[12px] font-bold uppercase leading-[normal] tracking-[2px] text-[#96a3f9]">Get in touch</p>
+          <p class="font-ral text-[16px] font-medium leading-[normal] text-[rgba(255,255,255,0.85)]">Lahore, Pakistan</p>
+          <a href="https://wa.me/923246319870" target="_blank" rel="noopener" class="block font-[Arial,Helvetica,sans-serif] text-[16px] not-italic leading-[0] text-[rgba(255,255,255,0.85)]"><span class="block leading-[normal]">+92 324 6319870</span></a>
+          <p class="font-ral text-[16px] font-medium leading-[0] text-[rgba(255,255,255,0.85)]"><span class="leading-[normal]">Replies within </span><span class="font-[Arial,Helvetica,sans-serif] font-normal not-italic leading-[normal]">24</span><span class="leading-[normal]">h</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-[20px] top-[641.73px] h-px w-[350px] bg-white"></div>
+  </footer>
+</div>
