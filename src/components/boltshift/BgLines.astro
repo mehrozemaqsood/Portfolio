@@ -1,10 +1,10 @@
 ---
 // Figma "Bg Lines": vertical 2% stripes (white at left edge -> black at right edge), laid out from the right edge.
 // The rightmost stripe is solid white@2%. `w` = stripe width; `last` = width of an extra leftmost stripe with its own gradient (Responsive only).
-const { top = 0, h = 884, w = 65.4545, last = 0, cls = '' } = Astro.props;
+const { top = 0, h = 884, w = 65.4545, last = 0, cls = '', sw = 1440 } = Astro.props;
 const wi = `${w}px`;
 ---
-<div aria-hidden="true" data-bgl class={`pointer-events-none absolute left-0 w-[1440px] overflow-clip ${cls}`} style={`top:${top}px;height:${h}px;z-index:-1`}>
+<div aria-hidden="true" data-bgl class={`pointer-events-none absolute left-0 overflow-clip ${cls}`} style={`width:${sw}px;top:${top}px;height:${h}px;z-index:-1`}>
   <div class="absolute bottom-0 right-0 top-0" style={`width:${wi};background:rgba(255,255,255,.02)`}></div>
   <div class="absolute bottom-0 top-0" style={`left:${last}px;right:${wi};background-image:repeating-linear-gradient(270deg, rgba(0,0,0,.02) 0, rgba(255,255,255,.02) ${wi})`}></div>
   {last > 0 && <div class="absolute bottom-0 left-0 top-0" style={`width:${last}px;background-image:linear-gradient(270deg, rgba(0,0,0,.02), rgba(255,255,255,.02))`}></div>}
