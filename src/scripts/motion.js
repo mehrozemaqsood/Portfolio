@@ -84,7 +84,22 @@ if (!reduce) {
       if (!run) { run = true; requestAnimationFrame(step); }
     }, { passive: false });
     addEventListener('scroll', () => { if (!run) { cur = tgt = scrollY; } }, { passive: true });
+    window.__moTo = (y) => { if (!run) cur = scrollY; tgt = Math.max(0, Math.min(max(), y)); if (!run) { run = true; requestAnimationFrame(step); } };
   }
+  // Back-to-top and in-page links glide instead of jumping
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"],[data-top]');
+    if (!a || e.defaultPrevented) return;
+    const h = a.getAttribute('href');
+    let y = null;
+    if (a.hasAttribute('data-top') || h === '#top') y = 0;
+    else if (!h || h === '#') return;
+    else { const el = document.getElementById(h.slice(1)) || document.querySelector(h); if (el && !el.closest('[hidden]')) y = el.getBoundingClientRect().top + scrollY; }
+    if (y === null) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    if (window.__moTo) window.__moTo(y); else scrollTo({ top: y, behavior: 'smooth' });
+  }, true);
 
   // Cursor: small difference-blend dot that swells over links and buttons
   if (matchMedia('(hover:hover) and (pointer:fine)').matches) {

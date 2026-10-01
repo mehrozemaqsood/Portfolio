@@ -14,7 +14,7 @@ import Img from '../Img.astro';
     </div>
   </div>
 </section>
-<style>
+<style is:global>
   .marquee{animation:marq 40s linear infinite;will-change:transform}
   @keyframes marq{to{transform:translateX(-1320px)}}
   @media (prefers-reduced-motion:reduce){.marquee{animation:none}}

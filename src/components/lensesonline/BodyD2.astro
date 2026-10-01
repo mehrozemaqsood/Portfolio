@@ -24,22 +24,25 @@ const outcomes = [['01', 'Retail UX', 'Trust signals, prescription entry, filter
   <div class="flex shrink-0 items-start gap-[80px]">
     <div class="relative h-[804px] w-[417px] shrink-0 rounded-[56px] bg-[#15151a]">
       <div class="absolute left-[12px] top-[12px] h-[780px] w-[393px] overflow-clip rounded-[44px] bg-white">
-        <div class="lo-m-vp absolute left-0 top-0 h-[780px] w-[393px] overflow-y-auto overflow-x-clip bg-white" tabindex="0" aria-label="LensesOnline home page on mobile, scrollable">
+        <div class="lo-m-vp absolute left-0 top-0 h-[780px] w-[393px] overflow-y-auto overflow-x-clip bg-white" data-mp="0" tabindex="0" aria-label="LensesOnline home page on mobile, scrollable">
           {chunks.map(([k, h]) => (
             <div class="relative bg-white" style={`width:393px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div>
           ))}
         </div>
-        <div class="pointer-events-none absolute left-0 top-0 h-[82px] w-[393px]"><Img f="LensesOnli_240-12091" alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div>
+        {[['LensesOnli_241-12277'], ['LensesOnli_241-12997'], ['LensesOnli_241-13693']].map(([k], j) => (
+          <div class="lo-m-vp absolute left-0 top-0 h-[780px] w-[393px] overflow-y-auto overflow-x-clip bg-white" data-mp={j + 1} hidden tabindex="0" aria-label={`${chips[j + 1]} page on mobile`}><div class="relative bg-white" style="width:393px;height:801.4px"><Img f={k} alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div></div>
+        ))}
+        <div data-mt-nav class="pointer-events-none absolute left-0 top-0 h-[82px] w-[393px]"><Img f="LensesOnli_240-12091" alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="393px" /></div>
       </div>
     </div>
     <div class="flex w-[640px] shrink-0 flex-col items-start gap-[24px]">
-      <div class="flex shrink-0 items-start gap-[12px]">
+      <div class="flex shrink-0 items-start gap-[12px]" role="tablist" aria-label="Mobile pages" data-mtabs>
         {chips.map((c, i) => (
-          <div class={`flex shrink-0 items-start rounded-[999px] border border-solid px-[20px] py-[10px] ${i === 0 ? 'border-[rgba(255,255,255,0)] bg-[#0083f0]' : 'border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)]'}`}><p class={`font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap ${i === 0 ? 'text-white' : 'text-[rgba(255,255,255,0.9)]'}`}>{c}</p></div>
+          <button type="button" role="tab" data-mt={i} aria-selected={i === 0 ? 'true' : 'false'} class="flex shrink-0 cursor-pointer items-start rounded-[999px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)] px-[20px] py-[10px] aria-selected:border-[rgba(255,255,255,0)] aria-selected:bg-[#0083f0]"><span class="font-ral text-[15px] font-semibold leading-[normal] whitespace-nowrap text-[rgba(255,255,255,0.9)]">{c}</span></button>
         ))}
       </div>
-      <p class="w-[640px] font-ral text-[44px] font-semibold leading-[50px] tracking-[-1px] text-white">Home</p>
-      <p class="w-[560px] font-ral text-[18px] font-normal leading-[29px] text-[#f4f4f4]">The hero, brand shortcuts, featured lenses and articles stack into one thumb-friendly column.</p>
+      <p data-mt-title class="w-[640px] font-ral text-[44px] font-semibold leading-[50px] tracking-[-1px] text-white">Home</p>
+      <p data-mt-lead class="w-[560px] font-ral text-[18px] font-normal leading-[29px] text-[#f4f4f4]">The hero, brand shortcuts, featured lenses and articles stack into one thumb-friendly column.</p>
       <p class="w-[560px] font-ral text-[14px] font-normal leading-[22px] text-white">Scroll inside the phone. The navigation stays pinned, as it would on the live site.</p>
     </div>
   </div>
@@ -149,3 +152,26 @@ const outcomes = [['01', 'Retail UX', 'Trust signals, prescription entry, filter
   .lo-m-vp { scrollbar-width: none; }
   .lo-m-vp::-webkit-scrollbar { display: none; }
 </style>
+
+<script>
+  const info = [
+    ['Home', 'The hero, brand shortcuts, featured lenses and articles stack into one thumb-friendly column.'],
+    ['Category', 'Filters, sorting and product cards reflow into a clean two-up grid that is easy to scan with one thumb.'],
+    ['Product', 'Brand, power options and the add-to-cart action stay close together, so choosing lenses takes a few taps.'],
+    ['Cart', 'Items, delivery and totals are summarised in one calm column, ready for a quick checkout.'],
+  ];
+  document.querySelectorAll<HTMLElement>('[data-mtabs]').forEach((bar) => {
+    const sec = bar.closest('section') as HTMLElement;
+    const tabs = [...bar.querySelectorAll<HTMLElement>('[data-mt]')];
+    const panels = [...sec.querySelectorAll<HTMLElement>('[data-mp]')];
+    const nav = sec.querySelector<HTMLElement>('[data-mt-nav]');
+    const title = sec.querySelector('[data-mt-title]'), lead = sec.querySelector('[data-mt-lead]');
+    tabs.forEach((t, i) => t.addEventListener('click', () => {
+      tabs.forEach((x, j) => x.setAttribute('aria-selected', String(j === i)));
+      panels.forEach((p, j) => { p.hidden = j !== i; if (j === i) p.scrollTop = 0; });
+      if (nav) nav.hidden = i !== 0;
+      if (title) title.textContent = info[i][0];
+      if (lead) lead.textContent = info[i][1];
+    }));
+  });
+</script>
