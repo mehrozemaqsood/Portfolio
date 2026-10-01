@@ -3,9 +3,10 @@ import Base from '../layouts/Base.astro';
 import Desktop from '../components/stichting-sportpark/Desktop.astro';
 import Tablet from '../components/stichting-sportpark/Tablet.astro';
 import Mobile from '../components/stichting-sportpark/Mobile.astro';
+import FloatingBar from '../components/FloatingBar.astro';
 ---
 <Base title="Stichting — Mehroze Maqsood">
   <main class="stage stage-d mx-auto"><Desktop /></main>
-  <main class="stage stage-t mx-auto"><Tablet /></main>
-  <main class="stage stage-m mx-auto"><Mobile /></main>
+  <main class="stage stage-t mx-auto"><Tablet /><FloatingBar v="t" /></main>
+  <main class="stage stage-m mx-auto"><Mobile /><FloatingBar v="m" /></main>
 </Base>

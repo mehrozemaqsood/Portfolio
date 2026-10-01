@@ -1,0 +1,54 @@
+---
+import Img from '../Img.astro';
+import SiteSwitch from './SiteSwitch.astro';
+const chunks = [
+  ['COMPSticht_284-1722',13.33,13.33,1173.333,641.789],
+  ['StichtingS_284-1723',13.33,655.12,1173.333,793.099],
+  ['COMPSticht_284-1724',13.33,1448.22,1173.333,670.833],
+  ['COMPSticht_284-1725',13.33,2119.05,1173.333,511.5],
+  ['COMPSticht_284-1726',13.33,2630.55,1173.333,1231.432],
+  ['COMPSticht_284-1727',13.33,3861.99,1173.333,612.333],
+  ['COMPSticht_284-1728',13.33,4474.32,1173.333,722.5],
+];
+---
+<SiteSwitch />
+  <div class="flex flex-col gap-[20px] items-start shrink-0" data-site-switch data-state="new">
+    <div class="flex gap-[12px] items-start">
+      <button type="button" data-chip="new" aria-pressed="true" class="border border-solid content-stretch flex items-start px-[20px] py-[10px] rounded-[999px] shrink-0 cursor-pointer">
+        <span class="font-ral font-semibold leading-[normal] text-[15px] whitespace-nowrap">New homepage</span>
+      </button>
+      <button type="button" data-chip="old" aria-pressed="false" class="border border-solid content-stretch flex items-start px-[20px] py-[10px] rounded-[999px] shrink-0 cursor-pointer">
+        <span class="font-ral font-semibold leading-[normal] text-[15px] whitespace-nowrap">Old site</span>
+      </button>
+    </div>
+    <div class="bg-[#15151a] flex flex-col items-start overflow-clip relative rounded-[16px] shrink-0 w-[1200px]">
+      <div data-bar class="flex gap-[8px] h-[44px] items-center px-[16px] relative shrink-0 w-[1200px]">
+        <img src="/icons/stichting/dot-red.svg" width="12" height="12" alt="" class="size-[12px] shrink-0" />
+        <img src="/icons/stichting/dot-yellow.svg" width="12" height="12" alt="" class="size-[12px] shrink-0" />
+        <img src="/icons/stichting/dot-green.svg" width="12" height="12" alt="" class="size-[12px] shrink-0" />
+        <div data-url class="flex items-start px-[16px] py-[5px] rounded-[999px] shrink-0">
+          <p class="font-ral font-normal leading-[normal] shrink-0 text-[#666673] text-[13px] whitespace-nowrap">sportparkbeheerbeuningen.nl</p>
+        </div>
+      </div>
+      <div data-viewport class="stv h-[714px] overflow-x-clip overflow-y-auto relative shrink-0 w-[1200px]">
+        <div data-pane="new" class="relative h-[5197px] w-[1200px] bg-[#f5f5f5]">
+          {chunks.map(([k,l,t,w,h]) => (
+            <div class="absolute bg-[#f5f5f5] overflow-clip" style={`left:${l}px;top:${t}px;width:${w}px;height:${h}px`}>
+              <Img f={k} class="absolute max-w-none object-cover size-full" sizes="1173px" />
+            </div>
+          ))}
+        </div>
+        <div data-pane="old" hidden class="relative h-[2353.125px] w-[1200px] bg-white">
+          <div class="absolute bg-white overflow-clip left-0 top-0 h-[2353.125px] w-[1200px]"><Img f="StichtingS_284-1748" class="absolute max-w-none object-cover size-full" sizes="1200px" /></div>
+        </div>
+      </div>
+      <div class="absolute h-[714px] left-0 top-[44px] w-[1200px] pointer-events-none">
+        <div class="absolute backdrop-blur-[5px] bg-[rgba(15,15,20,0.55)] border border-[rgba(255,255,255,0.14)] border-solid h-[690px] left-[1182px] rounded-[5px] top-[12px] w-[10px]"></div>
+        <div data-thumb data-h-new="94" data-h-old="177" data-top="14" data-span="686" class="absolute bg-[rgba(255,255,255,0.92)] h-[94px] left-[1184px] rounded-[3px] top-[14px] w-[6px]"></div>
+        <div class="absolute backdrop-blur-[6px] bg-[rgba(10,10,15,0.72)] border border-[rgba(255,255,255,0.18)] border-solid flex gap-[8px] items-center justify-center left-[525px] overflow-clip pl-[16px] pr-[14px] py-[9px] rounded-[20px] shadow-[0px_6px_16px_0px_rgba(0,0,0,0.35)] top-[661px]">
+          <p class="font-ral font-medium leading-[normal] shrink-0 text-[13px] text-white whitespace-nowrap">Scroll to explore</p>
+          <div class="h-[5px] relative shrink-0 w-[10px]"><div class="absolute inset-[-18%_-9%]"><img src="/icons/stichting/chevron.svg" alt="" class="block max-w-none size-full" /></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
