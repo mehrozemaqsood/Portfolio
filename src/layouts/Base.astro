@@ -23,8 +23,8 @@ const { title = 'Mehroze Maqsood — UI/UX & Product Designer', description = 'U
 <script is:inline>
 // scale the active Figma frame (1440 / 768 / 390) to the viewport width, before first paint
 (function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;
-document.documentElement.style.setProperty('--z',Math.min(w/d,d===1440?1:9)+'');
-addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',Math.min(w/d,d===1440?1:9)+'')})})();
+document.documentElement.style.setProperty('--z',(w/d)+'');
+addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',(w/d)+'')})})();
 </script>
 </head>
 <body><slot /><script>import '../scripts/motion.js';</script></body>
