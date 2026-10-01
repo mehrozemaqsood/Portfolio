@@ -42,10 +42,11 @@ html.mo [data-rv=img].in img{scale:1}
 html.mo-cursor,html.mo-cursor *{cursor:none!important}
 /* Cross-page fade between case studies (progressive enhancement) */
 @view-transition{navigation:auto}
-::view-transition-old(root){animation:vt-out .9s var(--ease) both;z-index:1}
-::view-transition-new(root){animation:vt-in .9s var(--ease) both;z-index:2;box-shadow:0 -30px 60px rgba(0,0,0,.5)}
-@keyframes vt-out{to{transform:scale(.94);opacity:.5}}
-@keyframes vt-in{from{transform:translateY(100%)}}
+::view-transition-group(root){animation-duration:1.15s;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+::view-transition-old(root){animation:vt-out 1.15s cubic-bezier(.65,0,.35,1) both;z-index:1;will-change:transform,opacity}
+::view-transition-new(root){animation:vt-in 1.15s cubic-bezier(.65,0,.35,1) both;z-index:2;will-change:transform}
+@keyframes vt-out{to{transform:translate3d(0,-12vh,0);opacity:.45}}
+@keyframes vt-in{from{transform:translate3d(0,100vh,0)}}
 @media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
 
 /* Floating bar: darken whatever is behind the glass pills so white text stays readable over bright content */

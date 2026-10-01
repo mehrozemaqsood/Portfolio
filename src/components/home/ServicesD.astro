@@ -3,7 +3,7 @@ import Img from '../Img.astro';
 const rows = [
   { n: '01', t: 'Product Design', d: 'Dashboards, SaaS and mobile products: flows, systems and developer-ready handoff.', img: 'PortfolioH_116-16412', cap: 'BoltShift · B2B SaaS', capBg: 'rgba(110,110,110,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0)' },
   { n: '02', t: 'Website Design', d: 'Marketing and e-commerce sites designed for clarity, speed and conversion.', img: 'PortfolioH_116-16401', cap: 'LensesOnline · E-commerce', capBg: 'rgba(2,2,2,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0.55)' },
-  { n: '03', t: 'Visual Design', d: 'Brand, layout and visual systems that make interfaces feel considered.', img: 'VisualDesi_166-1175', bg: 'linear-gradient(180deg,#0a0c18 0%,#141a34 24%,#2c386a 52%,#606b99 78%,#818cb9 100%)', pad: 'p-[34px]', cap: 'Graphic Design · Brand identity', capBg: 'rgba(2,2,2,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0.55)' },
+  { n: '03', t: 'Visual Design', d: 'Brand, layout and visual systems that make interfaces feel considered.', img: 'VisualDesi_166-1175', bg: 'linear-gradient(135deg,#c2551b 0%,#8a3a1a 100%)', crop: 'transform:scale(1.5);transform-origin:50% 50%;', cap: 'Graphic Design · Brand identity', capBg: 'rgba(2,2,2,0.75)', shadow: '0px 24px 48px 0px rgba(0,0,0,0.55)' },
 ];
 ---
 <section id="services" class="relative flex h-[864px] w-full items-center justify-center px-[83px] pb-[120px] pt-[100px]">
@@ -30,7 +30,7 @@ const rows = [
         <div data-p={i} data-on={i===0 ? "" : undefined} aria-hidden="true" class="svc-pop pointer-events-none absolute left-[-527.18px] top-[195px] flex h-[310.537px] w-[414.629px] items-center justify-center">
           <div class="flex-none rotate-3">
             <div class="relative h-[290px] w-[400px] overflow-clip rounded-[16px] border border-solid border-[rgba(255,255,255,0.3)]" style={`box-shadow:${r.shadow};${r.bg ? `background:${r.bg}` : ''}`}>
-              <Img f={r.img} class={`absolute inset-0 size-full rounded-[16px] ${r.pad ? 'object-contain ' + r.pad : 'object-cover'}`} sizes="400px" />
+              <Img f={r.img} class="absolute inset-0 size-full rounded-[16px] object-cover" style={r.crop} sizes="400px" />
               <div class="absolute left-[15px] top-[246px] flex items-start overflow-clip rounded-[46px] px-[12px] py-[6px]" style={`background:${r.capBg}`}>
                 <p class="font-ral text-[13px] font-medium leading-[normal] text-white whitespace-nowrap">{r.cap}</p>
               </div>
