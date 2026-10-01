@@ -66,7 +66,10 @@ const nav = { l: k(3104), d: k(3172) };
   document.querySelectorAll<HTMLElement>('[data-zp]').forEach((root) => {
     root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((b) =>
       b.addEventListener('click', () => {
+        const same = root.dataset.theme === b.dataset.set;
         root.dataset.theme = b.dataset.set;
+        const v = root.querySelector<HTMLElement>('.zpvp');
+        if (!same && v && !matchMedia('(prefers-reduced-motion: reduce)').matches) v.animate([{ transform: 'translateY(14%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 700, easing: 'cubic-bezier(.16,1,.3,1)' });
         root.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       }));
   });

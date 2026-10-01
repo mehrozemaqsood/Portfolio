@@ -38,6 +38,27 @@ if (!reduce) {
   req();
 
 
+  // Sections rise into place like cards as they enter from the bottom (case-study bodies).
+  const secs = [...document.querySelectorAll('.stage [style*="isolation"] > section')].map((el) => ({ el, y: 0 }));
+  if (secs.length) {
+    let st = false;
+    const run = () => {
+      st = false;
+      const vh = innerHeight;
+      secs.forEach((o) => {
+        if (o.el.offsetParent === null) return;
+        const top = o.el.getBoundingClientRect().top - o.y * (parseFloat(getComputedStyle(root).getPropertyValue('--z')) || 1);
+        const p = Math.max(0, Math.min(1, (vh - top) / (vh * 0.6)));
+        const y = p >= 1 ? 0 : Math.round((1 - (1 - Math.pow(1 - p, 3))) * 90);
+        if (y !== o.y) { o.y = y; o.el.style.translate = y ? `0 ${y}px` : ''; }
+      });
+    };
+    const q = () => { if (!st) { st = true; requestAnimationFrame(run); } };
+    addEventListener('scroll', q, { passive: true });
+    addEventListener('resize', q);
+    q();
+  }
+
   // Smooth (inertial) wheel scrolling. Nested scroll areas (phone/browser mockups) keep native scrolling.
   if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
     let cur = scrollY, tgt = scrollY, run = false;
