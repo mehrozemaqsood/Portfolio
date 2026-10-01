@@ -3,12 +3,12 @@
 // LensesOnline home page, perspective-matched to the screen quad (homography fitted to the photo), and scrolls it
 // after a 1.5s static hold. Chunks live in a <template> so nothing downloads until the page has loaded.
 import Img from '../Img.astro';
-const { left = 393.1, top = 238, k = 1, stage = 'd' } = Astro.props;
+const { left = 393.1, top = 238, k = 1, stage = 'd', inset = 0 } = Astro.props;
 const m3d = 'matrix3d(0.4298810965,0.01897473192,0,7.010280509e-05,0.004292844515,0.4219874933,0,1.024416296e-06,0,0,1,0,87.30700579,31.28177122,0,1)';
 const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.083], ['R2_I239-7709-239-7634', 554.167], ['R2_I239-7709-255-22521', 565.021], ['R2_I239-7709-255-22522', 1180.833], ['R2_I239-7709-255-22523', 614.167], ['R2_I239-7709-255-22524', 496.25], ['R2_I239-7709-255-22525', 531.25]];
 ---
 <div class="ms absolute h-[469.625px] w-[556.002px] pointer-events-none" style={`left:${left}px;top:${top}px;transform-origin:0 0;${k !== 1 ? `transform:scale(${k});` : ''}`} data-stage={stage} aria-hidden="true">
-  <div class="ms-vp absolute left-0 top-0 overflow-hidden bg-[#05050a]" style={`width:1201.5px;height:719px;transform-origin:0 0;transform:${m3d};opacity:0`}>
+  <div class="ms-vp absolute left-0 top-0 overflow-hidden bg-[#05050a]" style={`width:1201.5px;height:719px;transform-origin:0 0;transform:${m3d};opacity:0;${inset ? `clip-path:inset(0 ${inset}px 0 0);` : ''}`}>
     <div class="overflow-hidden" style="height:715px;width:1201.5px"><div class="ms-sc" style="will-change:transform;width:1201.5px"></div></div>
   </div>
   <template class="ms-tpl">
