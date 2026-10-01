@@ -31,11 +31,11 @@ const back = [
     <p class="font-ral text-[14px] font-medium uppercase leading-[20px] text-white opacity-50 whitespace-nowrap">[ DRAG TO SWIPE ]</p>
     <div class="rec-stack relative h-[198.71px] w-[569.664px] shrink-0 touch-pan-y select-none" style="cursor:grab" data-deck={JSON.stringify(deck)}>
       {back.map((c, b) => (
-        <div class="rec-back absolute flex items-center justify-center" data-pos={5 - b} style={`left:${c.l}px;top:${c.t}px;width:${c.w}px;height:${c.h}px`}>
+        <div class="rec-back absolute flex items-center justify-center" data-pos={5 - b} style={`${5 - b >= deck.length ? 'visibility:hidden;' : ''}left:${c.l}px;top:${c.t}px;width:${c.w}px;height:${c.h}px`}>
           <div class="flex-none" style={`transform:rotate(${c.r}deg) scale(${c.k})`}>
             <div class="rec-card" style="zoom:1.15">
-              <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p data-f="q">{deck[5 - b].q}</p></div><div class="rec-qb"></div></div></div>
-              <div class="rec-c"><div class="rec-l"><p data-f="r">{deck[5 - b].r}</p><p data-f="c">{deck[5 - b].c}</p></div><p class="rec-n" data-f="n">{deck[5 - b].n}</p></div>
+              <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p data-f="q">{(deck[5 - b] ?? deck[0]).q}</p></div><div class="rec-qb"></div></div></div>
+              <div class="rec-c"><div class="rec-l"><p data-f="r">{(deck[5 - b] ?? deck[0]).r}</p><p data-f="c">{(deck[5 - b] ?? deck[0]).c}</p></div><p class="rec-n" data-f="n">{(deck[5 - b] ?? deck[0]).n}</p></div>
             </div>
           </div>
         </div>

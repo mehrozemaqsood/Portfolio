@@ -1,10 +1,8 @@
-// Placeholder testimonials for the swipe stack (dummy copy: replace with real quotes before launch).
-// Each quote is kept to ~130 characters so it fits the card at every size.
+// Testimonials for the swipe stack. Each quote is kept to ~130-160 characters so it fits the card at every size.
 export const testimonials = [
-  { q: 'Mehroze turned a cluttered storefront into something our customers trust. Checkout questions dropped within weeks.', n: 'Sarah Whitmore', r: 'Head of E-commerce', c: 'LensesOnline' },
-  { q: 'He asked the right questions before opening Figma, and the dashboard flows he delivered were ready for engineering.', n: 'Daniel Reyes', r: 'Product Lead', c: 'BoltShift' },
-  { q: 'The new homepage finally explains what we do. Members find facilities faster and the handoff was spotless.', n: 'Pieter van Dijk', r: 'Board Member', c: 'Stichting Sportpark' },
-  { q: 'His brand work felt warm and modern at once. The packaging system saved us weeks of back-and-forth.', n: 'Amira Khan', r: 'Founder', c: 'Gourmet Bakers & Sweets' },
-  { q: 'Fast, thoughtful and precise. Our social posts and campaign posters finally look like one brand.', n: 'Jordan Blake', r: 'Marketing Manager', c: 'Wurx Media' },
-  { q: 'Clear communicator with a great eye for detail. Every asset arrived on time and in the exact formats we needed.', n: 'Olivia Brennan', r: 'Creative Director', c: 'Bayside' },
+  { q: 'I really enjoyed working with Mehroze. I genuinely saw potential in him, and I believe he has what it takes. Wish him all the best.', n: 'Umar Islam', r: 'Lead UI/UX Designer', c: 'Zeeframes Pvt Ltd' },
+  { q: 'Mehroze built our brand identity from scratch. The logo, colours and visuals feel cohesive and finally look like us.', n: 'Rajil Wasif', r: 'CEO & Founder', c: 'Wurx Media' },
+  { q: 'His designs are really visually appealing and creative, and he consistently delivers them at the highest level.', n: 'Shahbaz Haider', r: 'Marketing Manager', c: 'Aexon X Huawei' },
+  { q: 'From pitch decks to campaign visuals, Mehroze handles it all with care. Deadlines are met and the work always feels consistent.', n: 'Usman Qamar', r: 'Co-Founder', c: 'Wurx Media' },
+  { q: 'Working across time zones was effortless. Clear updates, thoughtful design, and every file delivered exactly as briefed.', n: 'Olivia Brennan', r: 'Creative Director', c: 'Bayside' },
 ];
