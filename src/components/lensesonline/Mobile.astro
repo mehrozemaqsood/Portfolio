@@ -39,7 +39,7 @@ const noBar = '[scrollbar-width:none] [&::-webkit-scrollbar]:hidden';
 const lk = 'block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]';
 const Hh = (n) => `height:${n}px`;
 ---
-<div class="relative h-[24473.6px] w-full overflow-clip bg-[#020202]">
+<div class="relative h-[24493.4px] w-full overflow-clip bg-[#020202]">
   <!-- Hero art (Var2) -->
   <section aria-label="LensesOnline hero art" class="absolute left-0 top-0 h-[360px] w-full overflow-clip" style="background-image:linear-gradient(2.713744127407793deg, rgb(122, 145, 246) 28.782%, rgb(49, 71, 166) 54.697%, rgb(0, 0, 0) 90.241%)">
     <BgLines top={0} h={884} sw={390} w={17.7273} />
@@ -67,7 +67,7 @@ const Hh = (n) => `height:${n}px`;
       </div>
     </header>
     <p aria-hidden="true" class="absolute left-[195px] top-[108px] -translate-x-1/2 bg-clip-text font-utara text-[48.034px] font-semibold not-italic leading-[normal] tracking-[-0.3258px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.2141426803027855deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(172.04049320124147deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%);-webkit-background-clip:text;background-clip:text">E-COMMERCE</p>
-    <div class="absolute left-0 top-[341.17px] h-[54.593px] w-[390px] rounded-tl-[14.198px] rounded-tr-[14.198px] bg-[#050505]"></div>
+    <div class="absolute left-0 top-[341.17px] h-[54.593px] w-[390px] bg-[#050505]"></div>
     <div class="absolute left-[45.26px] top-[312.14px] h-[43.667px] w-[299.641px]"><Img f="PortfolioH_124-1789" class="absolute inset-0 size-full max-w-none object-bottom" sizes="300px" eager /></div>
     <div class="absolute left-[45.33px] top-[141px] h-[214.802px] w-[254.31px]"><Img f="R2_124-1791" alt="LensesOnline homepage on a desktop monitor" class="absolute inset-0 size-full max-w-none" sizes="255px" eager /></div>
     <div class="absolute left-[192.25px] top-[158.58px] flex h-[5.663px] w-[10.251px] items-center justify-center">
@@ -94,11 +94,11 @@ const Hh = (n) => `height:${n}px`;
       ))}
     </div>
     <div class="h-[56px] w-px shrink-0"></div>
-    <BrowserMock s={0.2916667} eager />
+    <BrowserMock s={0.2916667} cs={0.8} eager />
   </section>
 
   <!-- Body -->
-  <div class="absolute left-0 top-[1116.3px] w-full">
+  <div class="absolute left-0 top-[1136.1px] w-full">
     <section aria-label="At a glance" class="flex w-full flex-wrap content-start items-start gap-x-[20px] gap-y-[32px] bg-[#020202] px-[20px] py-[40px]">
       {stats.map(([n, t, d], i) => (
         <div class="flex w-[165px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
@@ -115,7 +115,7 @@ const Hh = (n) => `height:${n}px`;
       <p class={lead} style={Hh(125)}>An online contact-lens shop should feel as calm and trustworthy as an optician, not like a clearance flyer.</p>
       <p class={body}>LensesOnline is a New Zealand contact-lens retailer. The existing storefront stacked promotional strips, uneven product cards and long text lists. I redesigned the whole experience as one UI system: 19 desktop pages and 18 mobile pages, built from 13 reusable components.</p>
       <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
-        {goals.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+        {goals.map(([n, t, d]) => (<div class={card}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd} style={n === '01' ? 'color:#c2c2c2' : undefined}>{d}</p></div>))}
       </div>
     </section>
 
@@ -277,7 +277,7 @@ const Hh = (n) => `height:${n}px`;
   </div>
 
   <!-- Footer -->
-  <footer class="absolute left-0 top-[23798.9px] h-[674.727px] w-full overflow-clip" style="background-image:linear-gradient(41.27547200622653deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
+  <footer class="absolute left-0 top-[23818.7px] h-[674.727px] w-full overflow-clip" style="background-image:linear-gradient(41.27547200622653deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
     <BgLines top={0} h={601} />
     <p class="absolute left-1/2 top-[72px] -translate-x-1/2 bg-clip-text font-utara text-[36.237px] font-semibold not-italic leading-[normal] tracking-[-0.3336px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.16214003011057798deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(173.95684007902116deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">Let’s build something!</p>
     <div class="absolute left-[20px] top-[173.73px] flex w-[350px] flex-col items-start gap-[40px] overflow-clip">

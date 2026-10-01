@@ -2,7 +2,7 @@
 // Figma "LensesOnline Desktop" instance: tab chips + browser window with a scrollable viewport of page "chunks".
 // Drawn at its native 1200px width and uniformly scaled with `s` for tablet/mobile (radius stays 16px like Figma).
 import Img from '../Img.astro';
-const { s = 1, eager = false } = Astro.props;
+const { s = 1, eager = false, cs = 0 } = Astro.props;
 const tabs = [
   { n: 'Home', c: [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.083], ['R2_I239-7709-239-7634', 554.167], ['R2_I239-7709-255-22521', 565.021], ['R2_I239-7709-255-22522', 1180.833], ['R2_I239-7709-255-22523', 614.167], ['R2_I239-7709-255-22524', 496.25], ['R2_I239-7709-255-22525', 531.25]] },
   { n: 'Category', c: [['LensesOnli_239-7653', 108.333], ['LensesOnli_239-7654', 216.667], ['LensesOnli_255-22526', 1374.667], ['LensesOnli_255-22527', 536.667], ['LensesOnli_255-22528', 531.25]] },
@@ -10,11 +10,13 @@ const tabs = [
   { n: 'Calculator', c: [['LensesOnli_239-7694', 108.333], ['LensesOnli_239-7695', 173.333], ['LensesOnli_255-22533', 600.833], ['LensesOnli_255-22534', 280], ['LensesOnli_255-22535', 748.333], ['LensesOnli_255-22536', 531.25]] },
 ];
 const rad = 16 / s;
+const cx = cs ? cs / s : 1;
+const extra = cs ? 39 * (cs - s) : 0;
 const scaled = s !== 1 ? `transform:scale(${s});transform-origin:0 0;` : '';
 ---
-<div class="relative shrink-0" style={`width:${1200 * s}px;height:${818 * s}px`}>
+<div class="relative shrink-0" style={`width:${1200 * s}px;height:${818 * s + extra}px`}>
 <div class="lo-tabs absolute left-0 top-0 flex w-[1200px] flex-col items-start gap-[20px]" style={scaled} data-lo-tabs>
-  <div class="flex items-start gap-[12px]" role="tablist" aria-label="LensesOnline pages">
+  <div class="flex items-start gap-[12px]" style={cs ? `transform:scale(${cx});transform-origin:0 0;margin-bottom:${39 * (cx - 1)}px` : undefined} role="tablist" aria-label="LensesOnline pages">
     {tabs.map((t, i) => (
       <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={i} class="flex cursor-pointer items-start rounded-[999px] border border-solid border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.06)] px-[20px] py-[10px] aria-selected:border-[rgba(255,255,255,0)] aria-selected:bg-[#0083f0]">
         <span class="font-ral text-[15px] font-semibold leading-[normal] text-[#9e9ea6] whitespace-nowrap" data-lbl>{t.n}</span>
