@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '@fontsource/raleway/400.css';
 import '@fontsource/raleway/500.css';
 import '@fontsource/raleway/600.css';
@@ -26,6 +27,7 @@ const { title = 'Mehroze Maqsood — UI/UX & Product Designer', description = 'U
 document.documentElement.style.setProperty('--z',(w/d)+'');
 addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',(w/d)+'')})})();
 </script>
+<Analytics />
 </head>
 <body><slot /><script>import '../scripts/motion.js';</script></body>
 </html>
