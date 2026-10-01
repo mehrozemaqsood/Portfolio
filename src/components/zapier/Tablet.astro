@@ -1,3 +1,322 @@
 ---
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import BgLines from '../boltshift/BgLines.astro';
+import BrowserD from './BrowserD.astro';
+import PhoneD from './PhoneD.astro';
+import { k } from './keys';
+
+const glance = [
+  ['2', 'Themes', 'Light and dark'], ['2', 'Breakpoints', 'Desktop and mobile'], ['12', 'Page sections', 'Hero to closing CTA'],
+  ['4', 'Animated carousels', 'Looping marquee rows'], ['1', 'Landing page', 'One long scroll'],
+];
+const meta = [['ROLE', 'UI/UX Designer'], ['TIMELINE', 'Concept Project'], ['TOOLS', 'Figma'], ['CLIENT', 'Zapier (concept)']];
+const goals = [
+  ['01', 'One clear promise', 'The hero states “Your tools. Your rules. Any AI.” and puts two sign-up paths and three proof numbers directly under it.', '#ffbd9f'],
+  ['02', 'Show, don’t describe', 'Integration tiles, an MCP and SDK diagram and product screens explain the platform visually before any long copy.'],
+  ['03', 'Proof and control', 'Customer results, a large task counter and a governance and security section answer the question “can we trust it?”'],
+];
+const brief = [
+  ['The brief', 'Design a landing page that explains Zapier’s AI automation, its MCP and SDK offering and its enterprise governance, in the existing Zapier look, with light and dark themes.', 130],
+  ['My role', 'UI/UX designer. I designed the desktop landing page in both themes, the mobile layout and the animated carousels.', 104],
+  ['Scope', 'Desktop landing page in light and dark, a mobile version of both, and looping carousel components.', 78],
+];
+const flow = [
+  ['PAGE  /  HERO', 108, 2972, 'h-[113.85%] left-0 top-0 w-full', '#fffefb', 'Promise first', 'A headline, two sign-up buttons and three usage numbers open the page, with a tile picker for Claude, ChatGPT, Cursor and more below.', 104],
+  ['PAGE  /  FEATURES', 164, 2970, 'h-[277.76%] left-0 top-[-18.05%] w-full', '#fffefb', 'A system, not a tool list', '“Every team has AI. Now they need a System.” opens a grid of feature cards with product previews and clear calls to action.', 78],
+  ['PAGE  /  DIAGRAM', 106, 2969, 'h-[249.05%] left-0 top-[-10.19%] w-full', '#fffefb', 'One diagram, one connection', 'Zapier MCP and SDK are shown as one secure connection for every AI surface, followed by four short proof points.', 78],
+  ['PAGE  /  RESULTS', 130, 2965, 'h-[285.83%] left-0 top-0 w-full', '#0f0f0f', 'Results as a number', 'A large task counter, a growth chart and four short claims replace paragraphs of copy in the dark results band.', 78],
+];
+const principles = [
+  ['01', 'One clear promise', 'The first screen says what Zapier does in one line and offers two ways to start.'],
+  ['02', 'Show, don’t describe', 'Tiles, diagrams and product screens carry the story, so the paragraphs can stay short.'],
+  ['03', 'Proof in the flow', 'Numbers, a customer story and real templates sit between the claims, not on a separate page.'],
+  ['04', 'Two themes, one system', 'Light and dark share the same layout, spacing and components. Only the colour tokens change.'],
+];
+const decisions = [
+  ['01', 'Same structure', 'Dark mode keeps every section, its order and its spacing from the light page.'],
+  ['02', 'Orange stays the accent', 'Buttons, key words and numbers keep the Zapier orange, so the brand reads the same in both themes.'],
+  ['03', 'Surfaces change', 'Cream backgrounds become near-black, and cards, dividers and diagrams are re-toned to match.'],
+];
+const wall = [[1786, false, 'Light  /  Features'], [1789, true, 'Dark  /  Features'], [1792, false, 'Light  /  Diagram'], [1795, true, 'Dark  /  Diagram']];
+const photos = [
+  [1803, false, 'Toolkit'], [1806, false, 'Customer story'], [1809, true, 'Results counter'], [1812, true, 'Webinar promo'],
+  [1815, false, 'Real outcomes'], [1818, false, 'Governance'], [1821, false, 'Security'],
+];
+const palette = [
+  ['Orange', '#FF4F00', 'Accent', 20], ['Ink', '#201515', 'Text and dark sections', 32], ['Cream', '#F8F4F0', 'Page background', 16],
+  ['Paper', '#FFFEFB', 'Cards and hero', 16], ['Stone', '#ECEAE3', 'Lines and fills', 16], ['Olive', '#32372C', 'Feature band', 16],
+];
+const outcomes = [
+  ['01', 'Information design', 'Twelve sections move from promise to proof to security without long copy.'],
+  ['02', 'Design systems', 'One set of tokens drives light and dark, so the two themes stay in step.'],
+  ['03', 'Responsive design', 'A single-column mobile layout keeps the same order in both themes.'],
+  ['04', 'Motion', 'Looping carousels add life to logo and use-case rows without hiding content.'],
+];
+
+const sec = 'relative flex w-full flex-col items-start gap-[32px] px-[40px] py-[72px]';
+const eyebrow = 'min-w-full w-[min-content] whitespace-pre-wrap font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#ff4f00]';
+const title = 'whitespace-nowrap font-ral text-[63px] font-semibold leading-[66px] tracking-[-1.875px] text-white';
+const lead = 'w-full font-ral text-[30px] font-semibold leading-[40px] text-white';
+const body = 'w-full font-ral text-[17px] font-normal leading-[28px] text-white';
+const card = 'flex w-full shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+const num = 'w-full font-ral text-[27px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(255,79,0,0.9)]';
+const ct = 'w-full font-ral text-[22px] font-semibold leading-[30px] text-white';
+const cd = 'w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]';
+const sm = 'flex shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+const smt = 'w-[112.5px] font-ral text-[16.5px] font-semibold leading-[22.5px] text-white';
+const Hh = (n) => `height:${n}px`;
+const lk = 'block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]';
+const g1 = (a) => `linear-gradient(${a}deg, rgb(0, 0, 0) 29.532%, rgb(255, 126, 67) 43.987%, rgb(166, 51, 0) 57.428%, rgb(0, 0, 0) 82.454%)`;
+const g2 = (a) => `linear-gradient(${a}deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%)`;
+const thumb = 'relative h-[131.745px] w-[216px] shrink-0 overflow-clip rounded-[7.66px] border-[0.766px] border-solid border-[rgba(255,255,255,0.12)]';
+const wallc = 'flex w-full shrink-0 flex-wrap content-start items-start gap-[20px]';
+const sec2 = (cls='') => `${sec} ${cls}`;
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO zapier Tablet</div>
+<div class="relative h-[14946.865px] w-full overflow-clip bg-[#020202]">
+  <section aria-label="Zapier hero art" class="absolute left-0 top-0 h-[770px] w-full overflow-clip bg-black">
+    <div class="absolute left-[-43px] top-[130px] h-[640px] w-[854.917px]"><Img f="PortfolioH_137-2431" alt="" class="absolute inset-0 size-full max-w-none object-cover" sizes="855px" eager /></div>
+    <header class="absolute left-[40px] top-[30px] flex h-[43px] w-[688px] items-center justify-between">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <div class="flex-none -skew-x-[28deg] scale-y-[0.88]">
+            <div class="relative flex cursor-pointer items-start gap-[4.257px]">
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="flex w-[204px] shrink-0 items-start justify-end gap-[10px]">
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-white pl-[13px] pr-[6px]">
+          <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-black text-left whitespace-nowrap">Connect Now</p>
+          <span class="grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black bg-black"><Arrow c="#ffffff" /></span>
+        </a>
+        <button type="button" aria-label="Menu" class="flex size-[43px] shrink-0 flex-col items-center justify-center gap-[6px] overflow-clip rounded-[22px]">
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+        </button>
+      </div>
+    </header>
+    <p aria-hidden="true" class="absolute left-[384px] top-[118px] -translate-x-1/2 bg-clip-text font-utara text-[172.148px] font-semibold not-italic leading-[normal] tracking-[-1.1678px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(2.3804231996128067deg, rgb(255, 255, 255) 27.446%, rgb(166, 166, 166) 47.541%, rgb(2, 2, 2) 85.498%), linear-gradient(181.25560779324613deg, rgb(2, 2, 2) 8.6024%, rgb(61, 151, 181) 53.887%, rgb(0, 167, 222) 95.891%), linear-gradient(0.44768054412331537deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(163.70589927650008deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">ZAPIER</p>
+    <div class="pointer-events-none absolute left-[-43px] top-[130px] h-[640px] w-[854.917px]"><Img f="ZapierCase_137-2520" alt="Zapier landing page on a laptop" class="absolute inset-0 size-full max-w-none object-cover" sizes="855px" eager /></div>
+  </section>
+
+  <section aria-label="Project summary" class="absolute left-0 top-[711px] flex h-[1040.667px] w-full flex-col items-start px-[40px] py-[100px]">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <h1 class="h-[66px] whitespace-nowrap font-ral text-[66px] font-semibold leading-[66px] tracking-[-2.625px] text-white">Zapier</h1>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="w-full font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5]">A landing page concept for Zapier’s AI story: one clear promise, real proof and a governed path from first automation to enterprise scale, designed in light and dark, on desktop and mobile.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 items-start justify-between overflow-clip leading-[normal]">
+      {meta.map(([a, b]) => (
+        <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="font-ral text-[24px] font-bold uppercase tracking-[1.3px] text-[#ff4f00]">{a}</p>
+          <p class="font-ral text-[18px] font-medium text-white">{b}</p>
+        </div>
+      ))}
+    </div>
+    <div class="h-[56px] w-px shrink-0"></div>
+    <div class="h-[468.667px] w-[688px] shrink-0 overflow-clip"><BrowserD s={0.5733333} /></div>
+  </section>
+
+  <div class="absolute left-0 top-[1751.667px] w-full" style="isolation:isolate">
+    <section aria-label="At a glance" class="flex w-full flex-wrap content-start items-start justify-between gap-y-[24px] bg-[#020202] px-[40px] py-[48px] whitespace-nowrap">
+      {glance.slice(0, 3).map(([n, t, s]) => (
+        <div class="flex w-[213px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+          <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+          <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{s}</p>
+        </div>
+      ))}
+      <div class="flex w-[688px] shrink-0 items-center gap-[20px]">
+        {glance.slice(3).map(([n, t, s]) => (
+          <div class="flex w-[213px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+            <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+            <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+            <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{s}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="overview-t" aria-label="Overview" class={sec} style={`background-image:linear-gradient(13.616597463920769deg, rgb(0, 0, 0) 37.573%, rgb(255, 79, 0) 51.637%, rgb(121, 38, 0) 64.714%, rgb(0, 0, 0) 89.063%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)`}>
+      <p class={eyebrow}>{'01  /  OVERVIEW'}</p>
+      <h2 class={title}>OVERVIEW</h2>
+      <p class={lead}>An AI automation page should sell control, not just capability.</p>
+      <p class={body}>Zapier’s page has to speak to builders who want MCP and SDK access and to leaders who need governance. This concept sets out one long page that leads with a single promise, shows the product doing real work, and closes with security and scale.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {goals.map(([n, t, d, c]) => (<div class={card} style={Hh(242)}><p class={num} style={c ? `color:${c}` : undefined}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section aria-label="Brief and role" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'02  /  BRIEF AND ROLE'}</p>
+      <h2 class={title}>BRIEF AND ROLE</h2>
+      <p class={lead}>The brief: present Zapier’s AI platform to builders and to business leaders on one page.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {brief.map(([t, d]) => (<div class={card} style={Hh(216)}><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+      <p class="w-full font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">This is a design case study. Product names, copy and numbers come from Zapier’s public messaging.</p>
+    </section>
+
+    <section aria-label="The page flow" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'03  /  THE PAGE FLOW'}</p>
+      <h2 class={title}>THE PAGE FLOW</h2>
+      <p class={lead}>One long page, ordered from promise to proof to trust.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {[flow.slice(0, 2), flow.slice(2)].map((row) => (
+          <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+            {row.map(([lab, cw, n, ic, bg, t, d]) => (
+              <div class="flex w-full shrink-0 flex-col items-start gap-[16px]">
+                <div class="relative flex h-[280px] w-full shrink-0 flex-col items-center justify-center overflow-clip rounded-[16px] border border-dashed border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.03)]">
+                  <div class="absolute left-[-1px] top-[-1px] h-[280px] w-[588px] rounded-[16px]">
+                    <div class="pointer-events-none absolute inset-0 rounded-[16px]" style={`background:${bg}`}></div>
+                    <div class="absolute inset-0 overflow-hidden rounded-[16px]"><Img f={k(n)} class={`absolute max-w-none ${ic}`} sizes="588px" alt="" /></div>
+                  </div>
+                  <div class="absolute left-[5px] top-[5px] h-[21px] rounded-[5px] bg-[rgba(2,2,2,0.88)]" style={`width:${cw}px`}></div>
+                  <p class="absolute left-[11px] top-[10px] font-ral text-[9px] font-bold leading-[normal] tracking-[1.5px] text-[#9e9ea6] whitespace-pre">{lab}</p>
+                </div>
+                <h3 class={ct}>{t}</h3>
+                <p class={cd}>{d}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="principles-t" aria-label="Principles" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'04  /  PRINCIPLES'}</p>
+      <h2 class={title}>PRINCIPLES</h2>
+      <p class={lead}>Four rules kept a dense AI product page clear and easy to scan.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[20px]">
+        {principles.map(([n, t, d]) => (<div class={`${sm} w-full`}><p class={num}>{n}</p><h3 class={smt}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="mobile-t" aria-label="Mobile experience" class={`${sec} overflow-clip`} style={`background-image:linear-gradient(11.733191823293367deg, rgb(0, 0, 0) 29.532%, rgb(255, 126, 67) 43.987%, rgb(166, 51, 0) 57.428%, rgb(0, 0, 0) 82.454%), linear-gradient(9.457585702574775deg, rgb(0, 0, 0) 37.573%, rgb(122, 145, 246) 51.604%, rgb(49, 71, 166) 64.714%, rgb(0, 0, 0) 89.063%)`}>
+      <BgLines top={2.5} h={1306} w={68.5714} />
+      <p class={eyebrow}>{'05  /  MOBILE EXPERIENCE'}</p>
+      <h2 class={title}>MOBILE EXPERIENCE</h2>
+      <p class={lead}>The same page in one column: scroll inside the phone and switch between light and dark.</p>
+      <div class="h-[486.501px] w-[688px] shrink-0 overflow-clip"><div style="zoom:0.605"><PhoneD /></div></div>
+    </section>
+
+    <section id="dark-mode-t" aria-label="Dark mode" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'06  /  DARK MODE'}</p>
+      <h2 class={title}>DARK MODE</h2>
+      <p class={lead}>Every section has a dark twin: the same layout with different tokens.</p>
+      <div class="relative h-[464.973px] w-[688px] shrink-0 rounded-[9.173px] border-[0.573px] border-solid border-[rgba(255,255,255,0.12)] bg-[#0f0f0f]">
+        <div class="absolute inset-0 overflow-hidden rounded-[9.173px]"><Img f="ZapierCase_289-1742" alt="Dark mode version of the Zapier landing page hero" class="absolute left-[-12.33%] top-0 h-full w-[124.66%] max-w-none" sizes="860px" /></div>
+      </div>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {decisions.map(([n, t, d]) => (<div class={card} style={Hh(242)}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="light-dark-t" aria-label="Light and dark" class={`${sec} overflow-clip`} style={`background-image:${g1(9.885328344818646)}, ${g2(5.440185344959119)}`}>
+      <BgLines top={1} h={2920} />
+      <p class={eyebrow}>{'07  /  LIGHT AND DARK'}</p>
+      <h2 class={title}>LIGHT AND DARK</h2>
+      <p class={lead}>The same sections in both themes, side by side.</p>
+      <p class={eyebrow.replace('text-[#ff4f00]', 'text-[#f5f5f5]')}>{'DESKTOP  /  LIGHT AND DARK'}</p>
+      <div class={wallc}>
+        {wall.map(([n, dk, lab]) => (
+          <div class="flex w-[216px] shrink-0 flex-col items-start gap-[10px]">
+            <div class={thumb} style={`background:${dk ? '#0f0f0f' : '#fffefb'}`}><Img f={k(n)} class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[7.66px] object-cover" sizes="216px" alt="" /></div>
+            <p class="w-full whitespace-pre font-ral text-[14px] font-medium leading-[normal] text-white">{lab}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="every-section-t" aria-label="Every section" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'08  /  EVERY SECTION'}</p>
+      <h2 class={title}>EVERY SECTION</h2>
+      <p class={lead}>From the toolkit to the closing call to action, each block has one job.</p>
+      <div class={wallc}>
+        {photos.map(([n, dk, lab]) => (
+          <div class="flex w-[216px] shrink-0 flex-col items-start gap-[10px]">
+            <div class={thumb} style={`background:${dk ? '#0f0f0f' : '#fffefb'}`}><Img f={k(n)} class="pointer-events-none absolute inset-0 size-full max-w-none object-cover" sizes="216px" alt="" /></div>
+            <p class="w-full whitespace-nowrap font-ral text-[14px] font-medium leading-[normal] text-white">{lab}</p>
+          </div>
+        ))}
+        <div class="flex w-[216px] shrink-0 flex-col items-start gap-[10px]">
+          <div class={`${thumb} bg-[#0f0f0f]`}><Img f="ZapierCase_289-2961" class="pointer-events-none absolute inset-0 size-full max-w-none object-contain" sizes="216px" alt="" /></div>
+          <p class="w-full whitespace-nowrap font-ral text-[14px] font-medium leading-[normal] text-white">Closing CTA</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="brand-style-t" aria-label="Brand style" class={`${sec} overflow-clip`} style={`background-image:${g1(16.12768047219825)}, ${g2(8.979936115612816)}`}>
+      <BgLines top={0.5} h={2146} />
+      <p class={eyebrow}>{'09  /  BRAND STYLE'}</p>
+      <h2 class={title}>BRAND STYLE</h2>
+      <p class={lead}>Zapier orange on warm neutrals, with a near-black ground for dark mode.</p>
+      <div class={`${wallc} overflow-clip`}>
+        {palette.map(([n, hex, d], i) => (
+          <div class={`flex flex-col items-start gap-[10px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[16px] ${i < 3 ? 'w-[216px] shrink-0' : 'min-w-px flex-[1_0_0]'}`}>
+            <div class="h-[120px] w-full shrink-0 rounded-[10px] border border-solid border-[rgba(255,255,255,0.15)]" style={`background:${hex}`}></div>
+            <p class="w-full font-ral text-[20px] font-semibold leading-[normal] text-white">{n}</p>
+            <p class="w-full font-ral text-[14px] font-medium leading-[normal] text-[#d9d9e0]">{hex}</p>
+            <p class="w-full font-ral text-[14px] font-normal leading-[normal] text-[#d9d9e0]">{d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[32px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-[40px] py-[32px] leading-[normal]">
+        <p class="w-[454.5px] font-inter text-[105px] font-semibold not-italic text-white" aria-hidden="true">Aa</p>
+        <div class="flex w-full shrink-0 flex-col items-start gap-[10px] overflow-clip">
+          <p class="w-full font-ral text-[27px] font-semibold text-white">Inter</p>
+          <p class="w-full font-ral text-[16px] font-normal text-[#9e9ea6]">Body text, navigation, buttons and labels. Headlines on the page use Degular Display, with Serrif for customer quotes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="outcomes-t" aria-label="Outcomes" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'10  /  OUTCOMES'}</p>
+      <h2 class={title}>WHAT THIS SHOWS</h2>
+      <p class={lead}>A dense AI product page becomes one clear story in two themes.</p>
+      <p class={body}>This is a design case study of a Zapier landing page, not a shipped product. It shows how a complex offer can be structured, themed and adapted to mobile.</p>
+      <div class={wallc}>
+        {outcomes.map(([n, t, d], i) => i === 3
+          ? (<div class={`${sm} w-full`} style={Hh(294)}><p class={num}>{n}</p><h3 class="w-full font-ral text-[22px] font-semibold leading-[30px] text-white">{t}</h3><p class={cd}>{d}</p></div>)
+          : (<div class={`${sm} w-[216px]`} style={Hh(294)}><p class={num}>{n}</p><h3 class={smt}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute left-0 top-[14403.865px] h-[543px] w-full overflow-clip" style="background-image:linear-gradient(19.733808665158477deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
+    <BgLines top={0} h={601} />
+    <p class="absolute top-[90px] left-1/2 -translate-x-1/2 bg-clip-text font-utara text-[71.231px] font-semibold not-italic leading-[normal] tracking-[-0.6558px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.16214002090967483deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(173.95684041941473deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">Let’s build something!</p>
+    <div class="absolute left-[40px] top-[215.89px] flex w-[688px] flex-col items-center gap-[40px] overflow-clip">
+      <div class="flex w-full shrink-0 flex-col items-start overflow-clip">
+        <p class="w-full font-ral text-[18px] font-normal leading-[30px] text-[rgba(255,255,255,0.75)]">Open to full-time UI/UX &amp; product design roles and select freelance projects. Send a brief and I'll get back to you.</p>
+      </div>
+      <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[40px] gap-y-[32px] overflow-clip whitespace-nowrap">
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal] text-left">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Explore</p>
+          <a href="/#about-t" class={lk}>About Me</a>
+          <a href="/#work-t" class={lk}>Selected Works</a>
+          <a href="/#services-t" class={lk}>What I Do</a>
+          <a href="/#contact-t" class={lk}>Contact</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal]">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Connect</p>
+          <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class={lk}>LinkedIn</a>
+          <a href="https://www.behance.net/mehrozemaqsood" target="_blank" rel="noopener" class={lk}>Behance</a>
+          <a href="mailto:mehrozemaqsood8@gmail.com" class={lk}>Email</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip">
+          <p class="font-ral text-[12px] font-bold uppercase leading-[normal] tracking-[2px] text-[#96a3f9]">Get in touch</p>
+          <p class="font-ral text-[16px] font-medium leading-[normal] text-[rgba(255,255,255,0.85)]">Lahore, Pakistan</p>
+          <a href="https://wa.me/923246319870" target="_blank" rel="noopener" class="block font-[Arial,Helvetica,sans-serif] text-[16px] not-italic leading-[0] text-[rgba(255,255,255,0.85)]"><span class="block leading-[normal]">+92 324 6319870</span></a>
+          <p class="font-ral text-[16px] font-medium leading-[0] text-[rgba(255,255,255,0.85)]"><span class="leading-[normal]">Replies within </span><span class="font-[Arial,Helvetica,sans-serif] font-normal not-italic leading-[normal]">24</span><span class="leading-[normal]">h</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-[40px] top-[509.89px] h-px w-[688px] bg-white"></div>
+  </footer>
+</div>
