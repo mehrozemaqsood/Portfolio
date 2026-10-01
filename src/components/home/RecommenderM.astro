@@ -29,7 +29,7 @@ const back = [
   </div>
   <div class="relative flex w-full shrink-0 flex-col items-center gap-[32px]">
     <p class="font-ral text-[14px] font-medium uppercase leading-[20px] text-white opacity-50 whitespace-nowrap">[ DRAG TO SWIPE ]</p>
-    <div class="rec-stack rec-stack-m relative h-[270px] w-[350px] shrink-0 touch-pan-y select-none" style="cursor:grab" data-deck={JSON.stringify(deck)}>
+    <div class="rec-stack rec-stack-m relative h-[270px] w-[350px] shrink-0 touch-pan-y select-none" style="cursor:grab;zoom:0.7" data-deck={JSON.stringify(deck)}>
       {back.map((c, b) => (
         <div class="rec-back absolute flex items-center justify-center" data-pos={5 - b} style={`${5 - b >= deck.length ? 'visibility:hidden;' : ''}left:${c.l}px;top:${c.t}px;width:${c.w}px;height:${c.h}px`}>
           <div class="flex-none" style={`transform:rotate(${c.r}deg) scale(${c.k})`}>
@@ -54,7 +54,7 @@ const back = [
   .rec-stack-m .rec-q{width:100%;height:auto;flex:1 1 0;min-height:0;padding:0;border-radius:0}
   .rec-stack-m .rec-qi{position:static;flex:1 1 0;width:100%;min-height:0;border-radius:0;display:flex}
   .rec-stack-m .rec-qt{position:static;width:100%;height:100%;padding:22px 22px 10px;justify-content:center}
-  .rec-stack-m .rec-qt p{width:auto;font-size:15.5px;line-height:22px;letter-spacing:-.15px}
+  .rec-stack-m .rec-qt p{width:auto;font-size:17px;line-height:24px;letter-spacing:-.15px}
   .rec-stack-m .rec-qb{display:none}
   .rec-stack-m .rec-c{width:100%;height:auto;flex:none;flex-direction:column-reverse;align-items:flex-start;justify-content:flex-start;gap:3px;padding:14px 22px 18px;border-radius:0;border-top:1px solid rgba(0,0,0,.14)}
   .rec-stack-m .rec-l{height:auto;width:auto;flex-direction:column}
