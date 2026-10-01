@@ -71,7 +71,7 @@ const quote = 'Add a real testimonial here: one or two sentences from a client o
     let x0 = 0, dx = 0, on = false;
     const move = (d: number, anim: string) => { fr.style.transition = anim; fr.style.transform = `translateX(${d}px) rotate(${d / 18}deg)`; };
     st.addEventListener('pointerdown', (e) => { on = true; x0 = e.clientX; st.setPointerCapture(e.pointerId); st.style.cursor = 'grabbing'; fr.style.transition = 'none'; });
-    st.addEventListener('pointermove', (e) => { if (!on) return; dx = e.clientX - x0; move(dx, 'none'); });
+    st.addEventListener('pointermove', (e) => { if (!on) return; dx = (e.clientX - x0) / (st.getBoundingClientRect().width / st.offsetWidth || 1); move(dx, 'none'); });
     const end = () => {
       if (!on) return; on = false; st.style.cursor = 'grab';
       if (Math.abs(dx) > 110) {
