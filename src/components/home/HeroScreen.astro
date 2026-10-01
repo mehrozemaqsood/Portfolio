@@ -7,11 +7,11 @@ const m3d = 'matrix3d(0.4298810965,0.01897473192,0,7.010280509e-05,0.00429284451
 const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.083], ['R2_I239-7709-239-7634', 554.167], ['R2_I239-7709-255-22521', 565.021], ['R2_I239-7709-255-22522', 1180.833], ['R2_I239-7709-255-22523', 614.167], ['R2_I239-7709-255-22524', 496.25], ['R2_I239-7709-255-22525', 531.25]];
 ---
 <div class="ms absolute left-[393.1px] top-[238px] h-[469.625px] w-[556.002px] pointer-events-none" aria-hidden="true">
-  <div class="ms-vp absolute left-0 top-0 overflow-hidden bg-[#1a1fb8]" style={`width:1200px;height:715px;transform-origin:0 0;transform:${m3d};opacity:0`}>
-    <div class="ms-sc" style="will-change:transform"></div>
+  <div class="ms-vp absolute left-0 top-0 overflow-hidden bg-[#1a1fb8]" style={`width:1210px;height:715px;transform-origin:0 0;transform:${m3d};opacity:0`}>
+    <div class="ms-sc" style="will-change:transform;width:1210px"></div>
   </div>
   <template class="ms-tpl">
-    {chunks.map(([k, h]) => (<div class="relative" style={`width:1200px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 block size-full max-w-none object-cover" sizes="480px" /></div>))}
+    {chunks.map(([k, h]) => (<div class="relative" style={`width:1210px;height:${h}px`}><Img f={k} alt="" class="absolute inset-0 block size-full max-w-none object-cover" sizes="480px" /></div>))}
   </template>
 </div>
 <script>
@@ -31,11 +31,14 @@ const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.08
         const wait = Math.max(0, 1500 - performance.now());
         setTimeout(() => {
           vp.style.transition = 'opacity .6s ease'; vp.style.opacity = '1';
-          // browse like a person: glide to a section, rest a beat, glide on; ends on the last section and stays there
-          const stops = [0, 640, 1380, 2300, 3260, 3800, end];
-          const dur = [3600, 3200, 3800, 3800, 3000, 3400];
+          const patch = document.querySelector<HTMLElement>('[data-ms-patch]'); if (patch) { patch.style.transition = 'opacity .6s ease'; patch.style.opacity = '0'; }
+          // browse like a person: glide to a section, rest a beat, glide on; at the bottom turn around and browse back up, forever
+          const fwd = [0, 640, 1380, 2300, 3260, 3800, end];
+          const stops = [...fwd, ...fwd.slice(0, -1).reverse()];
+          const d0 = [3600, 3200, 3800, 3800, 3000, 3400];
+          const dur = [...d0, ...d0.slice().reverse()];
           const hold = 900, ease = 'cubic-bezier(.45,0,.2,1)';
-          const T = dur.reduce((s, d) => s + d + hold, 0) - hold;
+          const T = dur.reduce((s, d) => s + d + hold, 0);
           // WAAPI easing on a keyframe shapes the segment that STARTS at it: glides ease, holds stay put
           const kf: Keyframe[] = [];
           let t = 0;
@@ -43,9 +46,10 @@ const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.08
             kf.push({ transform: `translate3d(0,${-stops[i]}px,0)`, offset: t / T, easing: ease });
             t += d;
             kf.push({ transform: `translate3d(0,${-stops[i + 1]}px,0)`, offset: t / T, easing: 'linear' });
-            if (i < dur.length - 1) t += hold;
+            t += hold;
           });
-          sc.animate(kf, { duration: T, fill: 'forwards', easing: 'linear' });
+          kf.push({ transform: 'translate3d(0,0,0)', offset: 1 });
+          sc.animate(kf, { duration: T, iterations: Infinity, easing: 'linear' });
         }, wait);
       });
     };

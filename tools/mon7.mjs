@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const c = await b.newContext({viewport:{width:1440,height:900},deviceScaleFactor:3});
+const p = await c.newPage();
+await p.goto('http://localhost:4321/?still'); await p.waitForTimeout(1500);
+const r=await p.evaluate(()=>{const e=document.querySelector('.stage-d .ms').getBoundingClientRect();return {x:e.x,y:e.y,w:e.width,h:e.height}});console.log(r);
+const BR={x:860,y:520,width:110,height:80},TP={x:680,y:240,width:100,height:70};
+await p.screenshot({path:'/tmp/br_st.png',clip:BR});
+await p.screenshot({path:'/tmp/tp_st.png',clip:TP});
+await p.goto('http://localhost:4321/'); await p.waitForTimeout(32000);
+await p.screenshot({path:'/tmp/br_an.png',clip:BR});
+await p.screenshot({path:'/tmp/tp_an.png',clip:TP});
+await b.close();
