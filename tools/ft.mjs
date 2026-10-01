@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const p = await (await b.newContext({viewport:{width:1440,height:900}})).newPage();
+await p.goto('http://localhost:4321/?still'); await p.waitForTimeout(800);
+await p.evaluate(()=>window.scrollTo(0,document.body.scrollHeight)); await p.waitForTimeout(1200);
+const a=p.locator('.stage-d footer a[href="#top"]'); const bb=await a.boundingBox();
+await p.mouse.move(bb.x-6,bb.y+bb.height/2); await p.mouse.move(bb.x+8,bb.y+bb.height/2,{steps:8}); await p.waitForTimeout(700);
+await p.screenshot({path:'/tmp/ft.png',clip:{x:bb.x-60,y:bb.y-30,width:300,height:100}});
+await p.goto('http://localhost:4321/visual-design'); await p.waitForTimeout(1500);
+await p.screenshot({path:'/tmp/vh.png',clip:{x:0,y:0,width:1440,height:110}});
+await b.close();

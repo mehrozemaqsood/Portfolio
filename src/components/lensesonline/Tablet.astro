@@ -22,7 +22,6 @@ const mob = [['Home', '11620'], ['Category', '12277'], ['Product', '12997'], ['C
 const dLogin = [['Default', '1264', 277], ['Wrong password', '1300', 286], ['Email exists', '1339', 286], ['Forgot password', '1352', 145], ['Create account', '1395', 322]];
 const mLogin = [['Default', '1434', 405], ['Wrong password', '1470', 417], ['Email exists', '1508', 417], ['Forgot password', '1521', 204], ['Create account', '1564', 454]];
 const outcomes = [['01', 'Retail UX', 'Trust signals, prescription entry, filters, cart and checkout designed for a shopper who is careful about what goes in their eyes.'], ['02', 'Systems thinking', '13 components and shared patterns drive 19 desktop and 18 mobile pages, plus login, cart and pop-up states.'], ['03', 'Responsive design', 'Every page has a mobile layout with a pinned, compact navigation and the same components at phone scale.'], ['04', 'Attention to detail', 'Error states, an honest calculator disclaimer, hover-ready cards and consistent spacing throughout.']];
-const nav = [['Overview', '#overview-t'], ['Principles', '#principles-t'], ['Every Page', '#every-page-t'], ['Outcomes', '#outcomes-t']];
 const pchunks = [['LensesOnli_240-12088', 346.118], ['LensesOnli_240-12089', 33.886], ['LensesOnli_240-12090', 162.772], ['LensesOnli_255-22551', 315.258], ['LensesOnli_255-22552', 325.559], ['LensesOnli_255-22553', 429.622], ['LensesOnli_255-22554', 343.092], ['LensesOnli_255-22555', 463.507], ['LensesOnli_255-22556', 665.065]];
 const chips = ['Home', 'Category', 'Product', 'Cart'];
 
@@ -61,8 +60,12 @@ const ol = (arr) => arr;
           </div>
         </a>
       </div>
-      <nav class="flex shrink-0 items-center gap-[31px]">
-        {nav.map(([t, h]) => (<a href={h} class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">{t}</p></a>))}
+      <nav class="flex shrink-0 items-center gap-[12px]">
+        <a href="/boltshift" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">BoltShift</p></a>
+        <a href="/lensesonline" aria-current="page" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-white whitespace-nowrap">LensesOnline</p></a>
+        <a href="/stichting-sportpark" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Stichting</p></a>
+        <a href="/zapier" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Zapier</p></a>
+        <a href="/visual-design" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Visual Design</p></a>
       </nav>
       <div class="flex shrink-0 items-start justify-end gap-[12px]">
         <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-[#8499f8] pl-[13px] pr-[6px]">

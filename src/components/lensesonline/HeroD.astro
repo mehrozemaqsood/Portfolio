@@ -3,7 +3,6 @@ import Img from '../Img.astro';
 import Arrow from '../Arrow.astro';
 import BgLines from './BgLines.astro';
 import BrowserMock from './BrowserMock.astro';
-const nav = [['Overview', '#overview'], ['Principles', '#principles'], ['Every Page', '#every-page'], ['Outcomes', '#outcomes']];
 const meta = [['ROLE', 'UI/UX Designer'], ['TIMELINE', 'Redesign Project'], ['TOOLS', 'Figma'], ['CLIENT', 'LensesOnline (NZ)']];
 ---
 <section aria-label="LensesOnline hero art" class="absolute left-0 top-0 h-[788px] w-full overflow-clip" style="background-image:linear-gradient(1.6095533985933344deg, rgb(122, 145, 246) 28.782%, rgb(49, 71, 166) 54.697%, rgb(0, 0, 0) 90.241%)">
@@ -21,8 +20,12 @@ const meta = [['ROLE', 'UI/UX Designer'], ['TIMELINE', 'Redesign Project'], ['TO
       </a>
     </div>
     <nav class="flex shrink-0 cursor-pointer items-center gap-[31px]">
-      {nav.map(([t, h]) => <a href={h} class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] text-left whitespace-nowrap">{t}</p></a>)}
-    </nav>
+        <a href="/boltshift" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">BoltShift</p></a>
+        <a href="/lensesonline" aria-current="page" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-white whitespace-nowrap">LensesOnline</p></a>
+        <a href="/stichting-sportpark" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Stichting Sportpark</p></a>
+        <a href="/zapier" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Zapier</p></a>
+        <a href="/visual-design" class="flex shrink-0 flex-col items-start opacity-95"><p class="font-ral text-[12px] font-medium leading-[18px] text-[#d1dce8] whitespace-nowrap">Visual Design</p></a>
+      </nav>
     <div class="flex min-w-px flex-[1_0_0] items-start justify-end gap-[12px]">
       <a href="/Mehroze_UIUX_CV.pdf" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 items-center gap-[10px] rounded-[46px] border border-solid border-[#8499f8] px-[16px]">
         <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-[#8499f8] whitespace-nowrap">View CV</p>
