@@ -29,24 +29,26 @@ import Img from '../Img.astro';
   </div>
   <div class="absolute left-0 top-[654px] h-[270px] w-[1440px] pointer-events-none" style="background-image:linear-gradient(to bottom, rgba(2,2,2,0) 0%, rgba(2,2,2,0.5) 28.507%, #020202 69.845%)"></div>
 </section>
-<style>
+<style is:global>
   .gw-col{transform:translate3d(0,var(--y,0px),0);will-change:transform}
 </style>
 <script>
   const gw = document.querySelectorAll<HTMLElement>('.gw');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const delay = [0.3, 0.15, 0, 0.15, 0.3];      // centre column leads, outer columns follow (V shape)
-  const from = [900, 700, 520, 700, 900];        // px each column starts below its resting place
+  const from = [1100, 850, 620, 850, 1100];      // px (at the 924px desktop wall) each column starts below its resting place
   const ease = (t: number) => 1 - Math.pow(1 - t, 3);
   function update() {
     gw.forEach((sec) => {
       if (getComputedStyle(sec).display === 'none') return;
       const r = sec.getBoundingClientRect(), vh = innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.85)));
+      // runs from the wall entering the screen until it is mostly scrolled past, so the motion lasts the whole scroll
+      const p = Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.95 + r.height * 0.25)));
+      const k = sec.dataset.s ? +sec.dataset.s : 1;
       sec.querySelectorAll<HTMLElement>('.gw-col').forEach((col) => {
         const c = +col.dataset.col!;
         const l = Math.min(1, Math.max(0, (p - delay[c]) / (1 - 0.3)));
-        col.style.setProperty('--y', reduce ? '0px' : `${((1 - ease(l)) * from[c]).toFixed(1)}px`);
+        col.style.setProperty('--y', reduce ? '0px' : `${((1 - ease(l)) * from[c] * k).toFixed(1)}px`);
       });
     });
   }
