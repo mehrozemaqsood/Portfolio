@@ -34,7 +34,7 @@ html.mo [data-rv=img].in img{scale:1}
 .stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button{transition:translate .45s var(--ease)}
 .stage footer a:not([class*="rounded"]){background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease),color .3s}
 .stage footer a:not([class*="rounded"]):hover{background-size:100% 1px;color:#fff}
-.mo-cur{position:fixed;left:0;top:0;width:12px;height:12px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483000;opacity:0;transition:opacity .25s;will-change:transform}
+.mo-cur{position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483000;opacity:0;transition:opacity .25s;will-change:transform}
 html.mo-cursor,html.mo-cursor *{cursor:none!important}
 /* Cross-page fade between case studies (progressive enhancement) */
 @view-transition{navigation:auto}

@@ -14,7 +14,7 @@ const rows = [
     </div>
     <div class="svc-list relative flex w-[763px] shrink-0 flex-col items-start" data-active="0">
       {rows.map((r, i) => (
-        <button type="button" data-i={i} data-on={i===0 ? "" : undefined} class="svc-row relative flex w-full shrink-0 cursor-pointer flex-col items-start border-b border-solid border-[rgba(255,255,255,0.22)] py-[26px] text-left" aria-label={r.t}>
+        <button type="button" data-i={i} data-on={i===0 ? "" : undefined} class="svc-row relative flex w-full shrink-0 cursor-pointer flex-col items-start border-b border-solid border-[rgba(255,255,255,0.22)] py-[26px] text-left" aria-label={r.t} data-href={r.t === 'Visual Design' ? '/visual-design' : undefined}>
           <div class="flex w-full shrink-0 items-start gap-[28px] overflow-clip">
             <p class="svc-n font-ral text-[16px] font-medium leading-[normal] whitespace-nowrap">{r.n}</p>
             <div class="flex shrink-0 flex-col items-start gap-[8px] overflow-clip">
@@ -63,7 +63,7 @@ const rows = [
     rows.forEach((r, i) => {
       r.addEventListener('mouseenter', () => set(i));
       r.addEventListener('focus', () => set(i));
-      r.addEventListener('click', () => set(i));
+      r.addEventListener('click', () => { set(i); if (r.dataset.href) location.href = r.dataset.href; });
     });
     set(0);
   });

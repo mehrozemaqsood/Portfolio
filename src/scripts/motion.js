@@ -6,7 +6,8 @@ if (!reduce) {
   root.classList.add('mo');
   const SKIP = 'a,button,header,nav,[tabindex],[data-fb],[data-nomotion],.zp,.gw,svg';
   const sel = 'h1,h2,h3,p,figure,[data-rv-card]';
-  const nodes = [...document.querySelectorAll('.stage ' + sel.split(',').join(',.stage '))].filter((e) => !e.closest(SKIP) && !(e.matches('p') && e.getAttribute('aria-hidden') === 'true' && false));
+  const home = location.pathname === '/';
+  const nodes = [...document.querySelectorAll('.stage ' + sel.split(',').join(',.stage '))].filter((e) => !e.closest(SKIP) && !(home && e.closest('.stage > :first-child')) && !String(e.className).includes('font-utara'));
   const big = (e) => e.matches('h1,h2') || (e.matches('p') && e.className.includes('font-utara'));
   nodes.forEach((e) => {
     e.setAttribute('data-rv', e.matches('figure') ? 'img' : big(e) ? 'big' : 'txt');
@@ -43,21 +44,22 @@ if (!reduce) {
     dot.setAttribute('aria-hidden', 'true');
     document.body.appendChild(dot);
     root.classList.add('mo-cursor');
-    let x = -50, y = -50, cx = x, cy = y, s = 1, ts = 1, raf = 0;
+    let x = -50, y = -50, cx = x, cy = y, s = 16, ts = 16, raf = 0;
     const loop = () => {
       cx += (x - cx) * 0.22; cy += (y - cy) * 0.22; s += (ts - s) * 0.18;
-      dot.style.transform = `translate3d(${cx}px,${cy}px,0) translate(-50%,-50%) scale(${s})`;
+      dot.style.width = dot.style.height = s.toFixed(2) + 'px';
+      dot.style.transform = `translate3d(${(cx - s / 2).toFixed(2)}px,${(cy - s / 2).toFixed(2)}px,0)`;
       raf = Math.abs(x - cx) + Math.abs(y - cy) + Math.abs(ts - s) > 0.02 ? requestAnimationFrame(loop) : 0;
     };
     const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
     addEventListener('pointermove', (e) => {
       x = e.clientX; y = e.clientY; dot.style.opacity = '1';
-      ts = e.target.closest && e.target.closest('a,button,[role=button]') ? 4.2 : 1;
+      ts = e.target.closest && e.target.closest('a,button,[role=button]') ? 72 : 16;
       kick();
     }, { passive: true });
     document.addEventListener('pointerleave', () => { dot.style.opacity = '0'; });
-    addEventListener('pointerdown', () => { ts = 0.7; kick(); });
-    addEventListener('pointerup', (e) => { ts = e.target.closest && e.target.closest('a,button') ? 4.2 : 1; kick(); });
+    addEventListener('pointerdown', () => { ts = 11; kick(); });
+    addEventListener('pointerup', (e) => { ts = e.target.closest && e.target.closest('a,button') ? 72 : 16; kick(); });
 
     // Magnetic pill buttons
     document.querySelectorAll('.stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button').forEach((b) => {
