@@ -19,3 +19,27 @@ body{overflow-x:hidden}
 
 /* Figma "Bg Lines" glass stripes always sit behind content */
 :has(> [data-bgl]) { isolation: isolate; }
+
+/* ---- Motion layer (see src/scripts/motion.js). Rest state is untouched. ---- */
+:root{--ease:cubic-bezier(.16,1,.3,1)}
+html.mo [data-rv]{opacity:0;transition:opacity .9s var(--ease) var(--rv-d,0ms),translate 1.2s var(--ease) var(--rv-d,0ms),clip-path 1.2s var(--ease) var(--rv-d,0ms)}
+html.mo [data-rv=txt]{translate:0 24px}
+html.mo [data-rv=big]{translate:0 56px}
+html.mo [data-rv=img]{translate:0 40px;clip-path:inset(0 0 100% 0)}
+html.mo [data-rv].in{opacity:1;translate:0 0;clip-path:inset(0 0 0 0)}
+html.mo [data-rv=img] img{scale:1.12;transition:scale 1.6s var(--ease) var(--rv-d,0ms)}
+html.mo [data-rv=img].in img{scale:1}
+.stage figure img{transition:scale .9s var(--ease)}
+.stage figure:hover img{scale:1.05}
+.stage a[class*="rounded-[46px]"],[data-fb] a,[data-fb] button{transition:translate .45s var(--ease)}
+.stage footer a:not([class*="rounded"]){background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s var(--ease),color .3s}
+.stage footer a:not([class*="rounded"]):hover{background-size:100% 1px;color:#fff}
+.mo-cur{position:fixed;left:0;top:0;width:12px;height:12px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483000;opacity:0;transition:opacity .25s;will-change:transform}
+html.mo-cursor,html.mo-cursor *{cursor:none!important}
+/* Cross-page fade between case studies (progressive enhancement) */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .35s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(root){animation:vt-in .6s var(--ease) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}

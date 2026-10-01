@@ -27,5 +27,5 @@ document.documentElement.style.setProperty('--z',Math.min(w/d,d===1440?1:9)+'');
 addEventListener('resize',function(){var w=document.documentElement.clientWidth,d=w>=1024?1440:w>=600?768:390;document.documentElement.style.setProperty('--z',Math.min(w/d,d===1440?1:9)+'')})})();
 </script>
 </head>
-<body><slot /></body>
+<body><slot /><script>import '../scripts/motion.js';</script></body>
 </html>
