@@ -37,6 +37,34 @@ if (!reduce) {
   addEventListener('resize', req);
   req();
 
+
+  // Smooth (inertial) wheel scrolling. Nested scroll areas (phone/browser mockups) keep native scrolling.
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    let cur = scrollY, tgt = scrollY, run = false;
+    const max = () => document.documentElement.scrollHeight - innerHeight;
+    const inner = (el) => {
+      for (; el && el !== document.body && el !== root; el = el.parentElement) {
+        const o = getComputedStyle(el).overflowY;
+        if ((o === 'auto' || o === 'scroll') && el.scrollHeight > el.clientHeight + 1) return true;
+      }
+      return false;
+    };
+    const step = () => {
+      cur += (tgt - cur) * 0.085;
+      if (Math.abs(tgt - cur) < 0.4) { cur = tgt; run = false; }
+      scrollTo(0, cur);
+      if (run) requestAnimationFrame(step);
+    };
+    addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.defaultPrevented || inner(e.target)) return;
+      e.preventDefault();
+      if (!run) { cur = tgt = scrollY; }
+      tgt = Math.max(0, Math.min(max(), tgt + e.deltaY * (e.deltaMode === 1 ? 32 : 1)));
+      if (!run) { run = true; requestAnimationFrame(step); }
+    }, { passive: false });
+    addEventListener('scroll', () => { if (!run) { cur = tgt = scrollY; } }, { passive: true });
+  }
+
   // Cursor: small difference-blend dot that swells over links and buttons
   if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
     const dot = document.createElement('div');
