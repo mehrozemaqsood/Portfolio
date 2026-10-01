@@ -10,10 +10,12 @@ const chunks = [
   ['COMPSticht_284-1727',13.33,3861.99,1173.333,612.333],
   ['COMPSticht_284-1728',13.33,4474.32,1173.333,722.5],
 ];
+const { cs = 0, s = 1 } = Astro.props;
+const cx = cs ? cs / s : 1;
 ---
 <SiteSwitch />
   <div class="flex flex-col gap-[20px] items-start shrink-0" data-site-switch data-state="new">
-    <div class="flex gap-[12px] items-start">
+    <div class="flex gap-[12px] items-start" style={cs ? `transform:scale(${cx});transform-origin:0 0;margin-bottom:${39 * (cx - 1)}px` : undefined}>
       <button type="button" data-chip="new" aria-pressed="true" class="border border-solid content-stretch flex items-start px-[20px] py-[10px] rounded-[999px] shrink-0 cursor-pointer">
         <span class="font-ral font-semibold leading-[normal] text-[15px] whitespace-nowrap">New homepage</span>
       </button>
