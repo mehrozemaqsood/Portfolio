@@ -1,3 +1,323 @@
 ---
+import '@fontsource/nunito/800.css';
+import Img from '../Img.astro';
+import Arrow from '../Arrow.astro';
+import BgLines from '../boltshift/BgLines.astro';
+import SiteWidget from './SiteWidget.astro';
+import PhoneWidget from './PhoneWidget.astro';
+
+const glance = [
+  ['1', 'Approved homepage', 'Signed off by the client'],
+  ['1', 'Mobile layout', 'Same sections, one column'],
+  ['3', 'Design versions', 'V1, V2 and V3 explored'],
+  ['5', 'Main sections', 'Sportpark to Contact'],
+  ['5', 'House colours', 'Red and blue lead'],
+];
+const meta = [['ROLE', 'UI/UX Designer', 21], ['TIMELINE', 'Redesign Project', 21], ['TOOLS', 'Figma', 21], ['CLIENT', 'Stichting Sportparkbeheer (NL)', 63]];
+const goals = [
+  ['01', 'Show the role', 'One screen explains what the foundation does, which park it manages and who it works with.', 78],
+  ['02', 'Route, don’t dump', 'Focus cards, previews and short sections lead visitors on to Sportpark, Gebruikers, Stichting, Media and Contact.', 104],
+  ['03', 'Feel local and active', 'Real photography, the red and blue house colours and a warm tone stay professional without feeling municipal.', 78],
+];
+const brief = [
+  ['The brief', 'Design a renewed website that presents the foundation as a reliable, locally involved manager of the sports park, with a compact structure: Sportpark, Gebruikers, Stichting, Media and Contact.', 156],
+  ['My role', 'UI/UX designer. I designed the homepage and its mobile layout in Figma, explored three versions, and applied the Nunito house style with red and blue leading.', 130],
+  ['Scope', 'Homepage on desktop and mobile. The brief also describes the Sportpark, Gebruikers, Stichting, Media and Contact pages.', 104],
+];
+const finds = [
+  ['HERO', 108, '0', 'A photo with no message', 'The hero is a wide aerial photo with no headline or call to action, so visitors do not learn what the foundation does.', 78],
+  ['INTRODUCTION', 164, '-72.21%', 'A wall of text beside a video', 'The introduction is one long paragraph next to a video, followed by a block about a single club, which makes the foundation look like a football association.', 104],
+  ['TABS', 106, '-125.82%', 'Content hidden behind tabs', 'Informatie, Gebruikers, Bestuur, Verleden & Heden and Publiciteit sit behind pill tabs, so nothing is visible until it is clicked.', 78],
+  ['CONTACT', 130, '-283.37%', 'A plain form and a thin footer', 'Contact is a basic form on a grey page, and the footer offers little more than two logos and legal links.', 78],
+];
+const principles = [
+  ['01', 'Professional, not municipal', 'Clear hierarchy, white space and consistent cards keep the tone trustworthy without a heavy, official look.', 104],
+  ['02', 'Red and blue lead', 'The house red and blue carry buttons, labels and accents. Green and yellow support only specific blocks.', 78],
+  ['03', 'Introduce, then link', 'Each section is short and links onward, instead of putting all the content on one page.', 78],
+  ['04', 'More than a football club', 'Images and copy cover facilities, users, maintenance and community, not one association.', 78],
+];
+const decisions = [
+  ['01', 'A clear promise first', 'The hero states the role in one line, offers two actions and keeps the navigation to five items.', 78],
+  ['02', 'Cards before detail', 'Three focus cards introduce management, users and quality before any long text.', 78],
+  ['03', 'Proof and a way in', 'News and the long-term vision build trust, and a photo-led block closes with a clear route to contact.', 78],
+];
+const versions = [['StichtingS_285-1745', 'Version 1'], ['StichtingS_285-1748', 'Version 2'], ['StichtingS_285-1751', 'Version 3'], ['StichtingS_285-1754', 'Approved version']];
+const photos = [
+  ['StichtingS_287-1635', 'Sports park'], ['StichtingS_287-1638', 'Clubhouse'], ['StichtingS_287-1641', 'Canteen'], ['StichtingS_287-1644', 'Fields'],
+  ['StichtingS_287-1647', 'Meeting rooms'], ['StichtingS_287-1650', 'Changing rooms'], ['StichtingS_287-1653', 'Clubhouse interior'], ['StichtingS_287-1656', 'Canteen interior'],
+];
+const palette = [
+  ['Red', '#E62A2C', 'Main', '#e62a2c'], ['Blue', '#08A5D8', 'Main', '#08a5d8'], ['Green', '#68B42D', 'Support', '#68b42d'],
+  ['Yellow', '#F9AF19', 'Support', '#f9af19'], ['Pink', '#E41372', 'Small accent', '#e41372'], ['Ink', '#1B1C1B', 'Text and logo', '#1b1c1b'],
+];
+const outcomes = [
+  ['01', 'Information design', 'A long text page becomes eight scannable sections with clear routes onward.'],
+  ['02', 'Brand-led UI', 'Red and blue from the official style lead, with green and yellow used sparingly.'],
+  ['03', 'Responsive design', 'A single-column mobile layout keeps the same sections, cards and calls to action.'],
+  ['04', 'Content strategy', 'Focus cards, user previews and news show who does what, without leaning on football alone.'],
+];
+const sec = 'relative flex w-full flex-col items-start gap-[32px] px-[40px] py-[72px]';
+const eyebrow = 'min-w-full w-[min-content] whitespace-pre-wrap font-ral text-[14px] font-bold leading-[normal] tracking-[2px] text-[#08a5d8]';
+const title = 'whitespace-nowrap font-ral text-[63px] font-semibold leading-[66px] tracking-[-1.875px] text-white';
+const lead = 'w-full font-ral text-[30px] font-semibold leading-[40px] text-white';
+const body = 'w-full font-ral text-[17px] font-normal leading-[28px] text-white';
+const card = 'flex w-full shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+const num = 'w-full font-ral text-[27px] font-semibold leading-[36px] tracking-[-2px] text-[rgba(8,165,216,0.9)]';
+const ct = 'w-full font-ral text-[22px] font-semibold leading-[30px] text-white';
+const cd = 'w-full font-ral text-[16px] font-normal leading-[26px] text-[#9e9ea6]';
+const sm = 'flex shrink-0 flex-col items-start gap-[16px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[32px]';
+const smt = 'w-[112.5px] font-ral text-[16.5px] font-semibold leading-[22.5px] text-white';
+const Hh = (n) => `height:${n}px`;
+const lk = 'block font-ral text-[16px] font-medium text-[rgba(255,255,255,0.85)]';
+const ovBg = (a) => `linear-gradient(${a}deg, rgb(0, 0, 0) 37.573%, rgb(8, 165, 216) 51.604%, rgb(0, 134, 178) 64.714%, rgb(0, 0, 0) 89.063%)`;
+const thumb = 'relative h-[131.745px] w-[216px] shrink-0 overflow-clip rounded-[7.66px] border-[0.766px] border-solid border-[rgba(255,255,255,0.12)]';
+const thumbImg = 'pointer-events-none absolute inset-0 size-full max-w-none rounded-[7.66px] object-cover';
+const wall = 'flex w-full shrink-0 flex-wrap content-start items-start gap-[20px]';
 ---
-<div style="height:100vh;display:grid;place-items:center;color:#888">TODO stichting-sportpark Tablet</div>
+<div class="relative h-[15058.865px] w-full overflow-clip bg-[#020202]">
+  <section aria-label="Stichting Sportpark hero art" class="absolute left-0 top-0 h-[806px] w-full overflow-clip" style="background-image:linear-gradient(183.6485270286047deg, rgb(2, 2, 2) 8.6024%, rgb(61, 151, 181) 53.887%, rgb(0, 167, 222) 95.891%)">
+    <BgLines top={0} h={884} sw={768} w={34.9091} />
+    <header class="absolute left-[40px] top-[30px] flex h-[43px] w-[688px] items-center justify-between">
+      <div class="relative flex h-[22px] w-[140px] shrink-0 flex-col items-start pr-[99px]">
+        <a href="/" aria-label="Home" class="absolute left-[-5.85px] top-0 flex h-[22px] w-[38.211px] items-center justify-center">
+          <div class="flex-none -skew-x-[28deg] scale-y-[0.88]">
+            <div class="relative flex cursor-pointer items-start gap-[4.257px]">
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+              <span class="block h-[24.917px] w-[6px] shrink-0 rounded-br-[2px] rounded-tl-[2px] bg-[#d5e0e9]"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="flex w-[204px] shrink-0 items-start justify-end gap-[10px]">
+        <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class="flex h-[43px] shrink-0 cursor-pointer items-center gap-[10px] rounded-[46px] bg-[#08a8dc] pl-[13px] pr-[6px]">
+          <p class="font-ral text-[14px] font-semibold leading-[16.5px] text-black text-left whitespace-nowrap">Connect Now</p>
+          <span class="grid size-[32px] shrink-0 place-items-center rounded-[41px] border border-solid border-black" style="background-image:linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%), linear-gradient(90deg, rgb(11, 168, 219) 0%, rgb(11, 168, 219) 100%)"><Arrow c="#0ba8db" /></span>
+        </a>
+        <button type="button" aria-label="Menu" class="flex size-[43px] shrink-0 flex-col items-center justify-center gap-[6px] overflow-clip rounded-[22px]">
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+          <span class="h-[1.5px] w-[18px] shrink-0 rounded-[1px] bg-white"></span>
+        </button>
+      </div>
+    </header>
+    <p aria-hidden="true" class="absolute left-[384px] top-[140px] -translate-x-1/2 bg-clip-text font-utara text-[115.909px] font-semibold not-italic leading-[normal] tracking-[-0.7863px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(180.73736033704392deg, rgb(2, 2, 2) 8.6024%, rgb(61, 151, 181) 53.887%, rgb(0, 167, 222) 95.891%), linear-gradient(0.2628779918018296deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(170.26057774568608deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">SPORTPARK</p>
+    <div class="absolute left-0 top-[237px] h-[634px] w-[846px]"><Img f="StichtingS_406-2766" alt="Stichting Sportpark homepage on a laptop" class="absolute inset-0 size-full max-w-none object-cover" sizes="846px" eager /></div>
+  </section>
+
+  <section aria-label="Project introduction" class="absolute left-0 top-[747px] flex h-[1138.7px] w-full flex-col items-start px-[40px] py-[100px]">
+    <div class="h-[16px] w-px shrink-0"></div>
+    <h1 class="h-[66px] whitespace-nowrap font-ral text-[66px] font-semibold leading-[66px] tracking-[-2.625px] text-white">Stichting Sportpark</h1>
+    <div class="h-[24px] w-px shrink-0"></div>
+    <p class="w-full font-ral text-[22px] font-normal leading-[35px] tracking-[-0.4px] text-[#f5f5f5]">A modern homepage for the foundation that manages Sportpark De Ooigraaf in Beuningen: a text-heavy association site turned into a clear, trustworthy routing page for users, partners and residents.</p>
+    <div class="h-[48px] w-px shrink-0"></div>
+    <div class="flex w-full shrink-0 flex-wrap content-start items-start justify-between gap-y-[20px] overflow-clip leading-[normal]">
+      {meta.map(([k, v]) => (
+        <div class="flex w-[216px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="w-full font-ral text-[24px] font-bold uppercase tracking-[1.3px] text-[#08a5d8]">{k}</p>
+          <p class="w-full font-ral text-[18px] font-medium text-white">{v}</p>
+        </div>
+      ))}
+    </div>
+    <div class="h-[56px] w-px shrink-0"></div>
+    <div class="h-[468.7px] w-[688px] shrink-0 overflow-clip"><div style="zoom:0.5733333"><SiteWidget /></div></div>
+  </section>
+
+  <div class="absolute left-0 top-[1885.7px] w-full" style="isolation:isolate">
+    <section aria-label="At a glance" class="flex w-full flex-wrap content-start items-start justify-between gap-y-[24px] bg-[#020202] px-[40px] py-[48px] whitespace-nowrap">
+      {glance.slice(0, 3).map(([n, t, s]) => (
+        <div class="flex w-[213px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+          <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+          <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+          <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{s}</p>
+        </div>
+      ))}
+      <div class="flex shrink-0 items-center gap-[25px]">
+        {glance.slice(3).map(([n, t, s]) => (
+          <div class="flex w-[213px] shrink-0 flex-col items-start gap-[8px] overflow-clip">
+            <p class="font-ral text-[64px] font-semibold leading-[68px] tracking-[-2px] text-white">{n}</p>
+            <p class="font-ral text-[18px] font-semibold leading-[normal] text-white">{t}</p>
+            <p class="font-ral text-[14px] font-normal leading-[normal] text-[#9e9ea6]">{s}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="overview-t" aria-label="Overview" class={sec} style={`background-image:${ovBg(13.90036437649367)}, linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)`}>
+      <p class={eyebrow}>{'01  /  OVERVIEW'}</p>
+      <h2 class={title}>OVERVIEW</h2>
+      <p class={lead}>A sports park foundation should feel as reliable as the grounds it looks after.</p>
+      <p class={body}>Stichting Sportparkbeheer Beuningen manages Sportpark De Ooigraaf for its users, the municipality and local partners. The old website held the right information but buried it in text and tabs. The redesign keeps the official house style and turns it into a homepage that sends visitors to the right place.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {goals.map(([n, t, d]) => (<div class={card} style={Hh(242)}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section aria-label="Brief and role" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'02  /  BRIEF AND ROLE'}</p>
+      <h2 class={title}>BRIEF AND ROLE</h2>
+      <p class={lead}>The brief: make the existing identity feel more modern, structured and professional online.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {brief.map(([t, d]) => (<div class={card} style={Hh(216)}><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+      <p class="w-full font-ral text-[15px] font-normal leading-[24px] text-[#9e9ea6]">This is a design project. Screens use Dutch copy because the final website will be built in Dutch.</p>
+    </section>
+
+    <section aria-label="The starting point" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'03  /  THE STARTING POINT'}</p>
+      <h2 class={title}>THE STARTING POINT</h2>
+      <p class={lead}>The old site had the right information, but it was hard to scan.</p>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {[finds.slice(0, 2), finds.slice(2)].map((row) => (
+          <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+            {row.map(([k, w, top, t, d]) => (
+              <div class="flex w-full shrink-0 flex-col items-start gap-[16px]">
+                <div class="relative flex h-[280px] w-full shrink-0 flex-col items-center justify-center overflow-clip rounded-[16px] border border-dashed border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.03)]">
+                  <div class="absolute left-[-1px] top-[-0.67px] h-[280px] w-[688px] rounded-[16px]"><div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px]"><Img f="StichtingS_284-1748" alt="" class="absolute left-0 h-[411.93%] w-full max-w-none" style={`top:${top}`} sizes="688px" /></div></div>
+                  <div class="absolute left-[5px] top-[5px] h-[21px] rounded-[5px] bg-[rgba(2,2,2,0.88)]" style={`width:${w}px`}></div>
+                  <p class="absolute left-[11px] top-[10px] font-ral text-[9px] font-bold leading-[normal] tracking-[1.5px] text-[#9e9ea6] whitespace-pre">{'BEFORE  /  ' + k}</p>
+                </div>
+                <h3 class={ct}>{t}</h3>
+                <p class={cd}>{d}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="principles-t" aria-label="Principles" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'04  /  PRINCIPLES'}</p>
+      <h2 class={title}>PRINCIPLES</h2>
+      <p class={lead}>Four rules from the brief kept the homepage clear, local and consistent.</p>
+      <div class={wall}>
+        {principles.map(([n, t, d], i) => (<div class={`${sm} ${i === 1 ? 'min-w-px flex-[1_0_0]' : 'w-[216px]'}`}><p class={`${num} min-w-full w-[min-content]`}>{n}</p><h3 class={smt}>{t}</h3><p class={`${cd} min-w-full w-[min-content]`}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="mobile-t" aria-label="Mobile experience" class={`${sec} overflow-clip`} style="background-image:linear-gradient(11.78198451897353deg, rgb(0, 0, 0) 29.927%, rgb(0, 167, 221) 43.676%, rgb(0, 123, 163) 59.866%, rgb(0, 0, 0) 86.727%)">
+      <BgLines top={2.5} h={1306} w={68.5714} />
+      <p class={eyebrow}>{'05  /  MOBILE EXPERIENCE'}</p>
+      <h2 class={title}>MOBILE EXPERIENCE</h2>
+      <p class={lead}>The same homepage in one column: scroll inside the phone to see every section.</p>
+      <div class="flex w-[688px] shrink-0 items-center gap-[48.408px]">
+        <div class="h-[486.501px] w-[252.327px] shrink-0 overflow-clip"><div style="zoom:0.605"><PhoneWidget /></div></div>
+        <div class="flex w-[387.265px] shrink-0 flex-col items-start gap-[14.522px]">
+          <p class="w-[387.265px] font-ral text-[26.62px] font-semibold leading-[30.255px] tracking-[-1px] text-white">Homepage</p>
+          <p class="w-[338.857px] font-ral text-[10.89px] font-normal leading-[17.548px] text-[rgba(255,255,255,0.9)]">The same eight sections in one column: hero, focus cards, facilities, users, news, vision and a closing call to action.</p>
+          <p class="w-[338.857px] font-ral text-[8.47px] font-normal leading-[13.312px] text-[rgba(255,255,255,0.75)]">Scroll inside the phone. The navigation stays pinned at the top.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="homepage-t" aria-label="The homepage" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'06  /  THE HOMEPAGE'}</p>
+      <h2 class={title}>THE HOMEPAGE</h2>
+      <p class={lead}>Each section has one job, from what the foundation does to how to get in touch.</p>
+      <div class="relative h-[464.973px] w-[688px] shrink-0 rounded-[9.173px] border-[0.573px] border-solid border-[rgba(255,255,255,0.12)] bg-[#f5f5f5]">
+        <Img f="StichtingS_285-1701" alt="The approved Stichting Sportpark homepage" class="pointer-events-none absolute inset-0 size-full max-w-none rounded-[9.173px] object-cover" sizes="688px" />
+      </div>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[24px]">
+        {decisions.map(([n, t, d]) => (<div class={card} style={Hh(242)}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>))}
+      </div>
+    </section>
+
+    <section id="variations-t" aria-label="Variations" class={sec} style={`background-image:${ovBg(8.377638680329014)}`}>
+      <BgLines top={1} h={2920} />
+      <p class={eyebrow}>{'07  /  VARIATIONS'}</p>
+      <h2 class={title}>VARIATIONS</h2>
+      <p class={lead}>Three versions were explored before the approved homepage.</p>
+      <p class={eyebrow.replace('text-[#08a5d8]', 'text-[#9e9ea6]')}>{'DESKTOP  /  HOME PAGE VERSIONS'}</p>
+      <div class={wall}>
+        {versions.map(([k, t]) => (
+          <figure class="relative m-0 flex w-[216px] shrink-0 flex-col items-start gap-[10px]">
+            <div class={`${thumb} bg-[#f5f5f5]`}><Img f={k} alt={t} class={thumbImg} sizes="216px" /></div>
+            <figcaption class="w-full font-ral text-[14px] font-medium leading-[normal] text-white">{t}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section id="imagery-t" aria-label="Imagery" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'08  /  IMAGERY'}</p>
+      <h2 class={title}>IMAGERY</h2>
+      <p class={lead}>Photos of the fields, clubhouse, canteen and meeting rooms keep the design local and specific.</p>
+      <div class={wall}>
+        {photos.map(([k, t]) => (
+          <figure class="relative m-0 flex w-[216px] shrink-0 flex-col items-start gap-[10px]">
+            <div class={thumb}><Img f={k} alt={t} class={thumbImg} sizes="216px" /></div>
+            <figcaption class="w-full font-ral text-[14px] font-medium leading-[normal] text-white">{t}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section id="house-style-t" aria-label="House style" class={sec} style={`background-image:${ovBg(13.220215865393342)}`}>
+      <BgLines top={0.5} h={2146} />
+      <p class={eyebrow}>{'09  /  HOUSE STYLE'}</p>
+      <h2 class={title}>HOUSE STYLE</h2>
+      <p class={lead}>Nunito and a disciplined red and blue palette, taken from the official house style.</p>
+      <div class={`${wall} overflow-clip`}>
+        {palette.map(([n, hex, role, col], i) => (
+          <div class={`flex flex-col items-start gap-[10px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] p-[16px] ${i < 3 ? 'w-[216px] shrink-0' : 'min-w-px flex-[1_0_0]'}`}>
+            <div class={`h-[120px] w-full shrink-0 rounded-[10px] ${n === 'Ink' ? 'border border-solid border-[rgba(255,255,255,0.25)]' : ''}`} style={`background-color:${col}`}></div>
+            <p class="w-full font-ral text-[20px] font-semibold leading-[normal] text-white">{n}</p>
+            <p class="w-full font-ral text-[14px] font-medium leading-[normal] text-[#d9d9e0]">{hex}</p>
+            <p class="w-full font-ral text-[14px] font-normal leading-[normal] text-[#d9d9e0]">{role}</p>
+          </div>
+        ))}
+      </div>
+      <div class="flex w-full shrink-0 flex-col items-start gap-[32px] rounded-[16px] border border-solid border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-[40px] py-[32px]">
+        <p class="h-[142px] w-[454.5px] font-nun text-[105px] font-extrabold leading-[normal] text-white" aria-hidden="true">Aa</p>
+        <div class="flex w-full shrink-0 flex-col items-start gap-[10px] overflow-clip">
+          <p class="w-full font-ral text-[27px] font-semibold leading-[normal] text-white">Nunito</p>
+          <p class="w-full font-ral text-[16px] font-normal leading-[normal] text-[#9e9ea6]">The official house typeface. Headings, buttons and body text all use one family, with weight and size doing the work of hierarchy. Text and logo colour is #1B1C1B.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="outcomes-t" aria-label="Outcomes" class={`${sec} bg-[#020202]`}>
+      <p class={eyebrow}>{'10  /  OUTCOMES'}</p>
+      <h2 class={title}>WHAT THIS SHOWS</h2>
+      <p class={lead}>A text-heavy association site becomes a clear routing page.</p>
+      <p class={body}>This is a design case study, not a shipped product, so there are no live figures. It shows how structure, hierarchy and the existing house style change how a local foundation is understood.</p>
+      <div class={wall}>
+        {outcomes.map(([n, t, d], i) => i === 1
+          ? (<div class={`${sm} w-[216px]`} style={Hh(309)}><p class={num}>{n}</p><h3 class={ct}>{t}</h3><p class={cd}>{d}</p></div>)
+          : (<div class={`${sm} w-[216px]`}><p class={`${num} min-w-full w-[min-content]`}>{n}</p><h3 class={smt}>{t}</h3><p class={`${cd} min-w-full w-[min-content]`}>{d}</p></div>))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute left-0 top-[14515.9px] h-[543px] w-full overflow-clip" style="background-image:linear-gradient(19.733808665158477deg, rgb(122, 145, 246) 7.5389%, rgb(49, 71, 166) 29.332%, rgb(0, 0, 0) 59.221%)">
+    <BgLines top={0} h={601} />
+    <p class="absolute top-[90px] left-1/2 -translate-x-1/2 bg-clip-text font-utara text-[71.231px] font-semibold not-italic leading-[normal] tracking-[-0.6558px] text-[transparent] text-center whitespace-nowrap" style="background-image:linear-gradient(0.16214002090967483deg, rgb(132, 153, 248) 35.174%, rgb(65, 85, 172) 56.89%, rgb(0, 0, 0) 97.909%), linear-gradient(173.95684041941473deg, rgb(154, 173, 255) 41.031%, rgb(38, 49, 101) 85.491%, rgb(0, 0, 0) 129.58%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);-webkit-background-clip:text;background-clip:text">Let’s build something!</p>
+    <div class="absolute left-[40px] top-[215.89px] flex w-[688px] flex-col items-center gap-[40px] overflow-clip">
+      <div class="flex w-full shrink-0 flex-col items-start overflow-clip">
+        <p class="w-full font-ral text-[18px] font-normal leading-[30px] text-[rgba(255,255,255,0.75)]">Open to full-time UI/UX &amp; product design roles and select freelance projects. Send a brief and I'll get back to you.</p>
+      </div>
+      <div class="flex w-full shrink-0 flex-wrap content-start items-start gap-x-[40px] gap-y-[32px] overflow-clip whitespace-nowrap">
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal] text-left">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Explore</p>
+          <a href="/#about-t" class={lk}>About Me</a>
+          <a href="/#work-t" class={lk}>Selected Works</a>
+          <a href="/#services-t" class={lk}>What I Do</a>
+          <a href="/#contact-t" class={lk}>Contact</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip leading-[normal]">
+          <p class="font-ral text-[12px] font-bold uppercase tracking-[2px] text-[#96a3f9]">Connect</p>
+          <a href="https://www.linkedin.com/in/muhammadmehrozemaqsood/" target="_blank" rel="noopener" class={lk}>LinkedIn</a>
+          <a href="https://www.behance.net/mehrozemaqsood" target="_blank" rel="noopener" class={lk}>Behance</a>
+          <a href="mailto:mehrozemaqsood8@gmail.com" class={lk}>Email</a>
+        </div>
+        <div class="flex shrink-0 flex-col items-start gap-[14px] overflow-clip">
+          <p class="font-ral text-[12px] font-bold uppercase leading-[normal] tracking-[2px] text-[#96a3f9]">Get in touch</p>
+          <p class="font-ral text-[16px] font-medium leading-[normal] text-[rgba(255,255,255,0.85)]">Lahore, Pakistan</p>
+          <a href="https://wa.me/923246319870" target="_blank" rel="noopener" class="block font-[Arial,Helvetica,sans-serif] text-[16px] not-italic leading-[0] text-[rgba(255,255,255,0.85)]"><span class="block leading-[normal]">+92 324 6319870</span></a>
+          <p class="font-ral text-[16px] font-medium leading-[0] text-[rgba(255,255,255,0.85)]"><span class="leading-[normal]">Replies within </span><span class="font-[Arial,Helvetica,sans-serif] font-normal not-italic leading-[normal]">24</span><span class="leading-[normal]">h</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-[40px] top-[509.89px] h-px w-[688px] bg-white"></div>
+  </footer>
+</div>
