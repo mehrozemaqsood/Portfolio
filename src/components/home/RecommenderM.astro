@@ -2,11 +2,11 @@
 import { testimonials as deck } from './testimonials';
 // back cards of the fan (tablet): [wrapper left, top, w, h, rotate, scale, secondLine]
 const back = [
-  { l: 54.61, t: -22.89, w: 272.596, h: 138.676, r: 11, k: 0.75, co: 'Job title' },
-  { l: 43.31, t: -20.08, w: 288.94, h: 138.068, r: 8.8, k: 0.8, co: 'Job title' },
-  { l: 32.17, t: -16.41, w: 304.603, h: 136.011, r: 6.6, k: 0.85, co: 'Company name' },
-  { l: 21.23, t: -11.85, w: 319.509, h: 132.485, r: 4.4, k: 0.9, co: 'Company name' },
-  { l: 10.5, t: -6.39, w: 333.583, h: 127.473, r: 2.2, k: 0.95, co: 'Company name' },
+  { l: 46.84, t: -19.43, w: 296.32, h: 248.87, r: 11, k: 0.75 },
+  { l: 36.61, t: -17.9, w: 309.75, h: 256.29, r: 8.8, k: 0.8 },
+  { l: 26.77, t: -15.14, w: 321.91, h: 262.17, r: 6.6, k: 0.85 },
+  { l: 17.36, t: -11.28, w: 332.71, h: 266.45, r: 4.4, k: 0.9 },
+  { l: 8.51, t: -6.29, w: 342.1, h: 269.07, r: 2.2, k: 0.95 },
 ];
 ---
 <section class="relative flex w-full flex-col gap-[48px] overflow-clip px-[20px] py-[72px]" style="background-image:linear-gradient(183.73478602852157deg, rgb(0, 0, 0) 14.763%, rgb(92, 116, 218) 29.426%, rgb(49, 71, 166) 43.127%, rgb(0, 0, 0) 68.574%), linear-gradient(90deg, rgb(2, 2, 2) 0%, rgb(2, 2, 2) 100%)">
@@ -29,19 +29,19 @@ const back = [
   </div>
   <div class="relative flex w-full shrink-0 flex-col items-center gap-[32px]">
     <p class="font-ral text-[14px] font-medium uppercase leading-[20px] text-white opacity-50 whitespace-nowrap">[ DRAG TO SWIPE ]</p>
-    <div class="rec-stack relative h-[120.954px] w-[346.752px] shrink-0 touch-pan-y select-none" style="cursor:grab;zoom:0.78" data-deck={JSON.stringify(deck)}>
+    <div class="rec-stack rec-stack-m relative h-[270px] w-[350px] shrink-0 touch-pan-y select-none" style="cursor:grab" data-deck={JSON.stringify(deck)}>
       {back.map((c, b) => (
         <div class="rec-back absolute flex items-center justify-center" data-pos={5 - b} style={`${5 - b >= deck.length ? 'visibility:hidden;' : ''}left:${c.l}px;top:${c.t}px;width:${c.w}px;height:${c.h}px`}>
           <div class="flex-none" style={`transform:rotate(${c.r}deg) scale(${c.k})`}>
-            <div class="rec-card" style="zoom:0.7">
+            <div class="rec-card">
               <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p data-f="q">{(deck[5 - b] ?? deck[0]).q}</p></div><div class="rec-qb"></div></div></div>
               <div class="rec-c"><div class="rec-l"><p data-f="r">{(deck[5 - b] ?? deck[0]).r}</p><p data-f="c">{(deck[5 - b] ?? deck[0]).c}</p></div><p class="rec-n" data-f="n">{(deck[5 - b] ?? deck[0]).n}</p></div>
             </div>
           </div>
         </div>
       ))}
-      <div class="rec-front absolute left-0 top-0 flex h-[120.954px] w-[346.752px] items-center justify-center" style="will-change:transform">
-        <div class="rec-card" style="zoom:0.7">
+      <div class="rec-front absolute left-0 top-0 flex h-[270px] w-[350px] items-center justify-center" style="will-change:transform">
+        <div class="rec-card">
           <div class="rec-q"><div class="rec-qi"><div class="rec-qt"><p data-f="q">{deck[0].q}</p></div><div class="rec-qb"></div></div></div>
           <div class="rec-c"><div class="rec-l"><p data-f="r">{deck[0].r}</p><p data-f="c">{deck[0].c}</p></div><p class="rec-n" data-f="n">{deck[0].n}</p></div>
         </div>
@@ -49,3 +49,15 @@ const back = [
     </div>
   </div>
 </section>
+<style is:global>
+  .rec-stack-m .rec-card{flex-direction:column;align-items:stretch;justify-content:flex-start;width:350px;height:270px;border-radius:10px;background:#f2f0ef;overflow:hidden;box-shadow:0 0 0 .75px rgba(0,0,0,.18)}
+  .rec-stack-m .rec-q{width:100%;height:auto;flex:1 1 0;min-height:0;padding:0;border-radius:0}
+  .rec-stack-m .rec-qi{position:static;flex:1 1 0;width:100%;min-height:0;border-radius:0;display:flex}
+  .rec-stack-m .rec-qt{position:static;width:100%;height:100%;padding:22px 22px 10px;justify-content:center}
+  .rec-stack-m .rec-qt p{width:auto;font-size:15.5px;line-height:22px;letter-spacing:-.15px}
+  .rec-stack-m .rec-qb{display:none}
+  .rec-stack-m .rec-c{width:100%;height:auto;flex:none;flex-direction:column-reverse;align-items:flex-start;justify-content:flex-start;gap:3px;padding:14px 22px 18px;border-radius:0;border-top:1px solid rgba(0,0,0,.14)}
+  .rec-stack-m .rec-l{height:auto;width:auto;flex-direction:column}
+  .rec-stack-m .rec-l p{font-size:11.5px;line-height:15px;letter-spacing:.2px}
+  .rec-stack-m .rec-n{height:auto;font-size:22px;line-height:26px;letter-spacing:-.4px}
+</style>
