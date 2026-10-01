@@ -32,9 +32,10 @@ const chunks = [['R2_I239-7709-239-7632', 715], ['R2_I239-7709-239-7633', 257.08
       const end = total - 715;
       Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : Promise.resolve()))).then(() => {
         const wait = Math.max(0, 1500 - performance.now());
+        // swap the static photo for the identical live screen right away (so nothing changes at the 1.5s mark), then start moving
+        vp.style.transition = 'opacity .25s ease'; vp.style.opacity = '1';
+        const patch = root.parentElement?.querySelector<HTMLElement>('[data-ms-patch]'); if (patch) { patch.style.transition = 'opacity .25s ease'; patch.style.opacity = '0'; }
         setTimeout(() => {
-          vp.style.transition = 'opacity .6s ease'; vp.style.opacity = '1';
-          const patch = root.parentElement?.querySelector<HTMLElement>('[data-ms-patch]'); if (patch) { patch.style.transition = 'opacity .6s ease'; patch.style.opacity = '0'; }
           // browse like a person: glide to a section, rest a beat, glide on; at the bottom turn around and browse back up, forever
           const fwd = [0, 640, 1380, 2300, 3260, 3800, end];
           const stops = [...fwd, ...fwd.slice(0, -1).reverse()];
